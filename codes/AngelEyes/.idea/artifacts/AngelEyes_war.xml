@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="AngelEyes:war">
+    <output-path>$PROJECT_DIR$/../AngelEyes/target</output-path>
+    <root id="archive" name="angeleyes-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="AngelEyes:war exploded" />
+    </root>
+  </artifact>
+</component>
