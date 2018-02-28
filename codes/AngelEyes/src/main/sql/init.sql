@@ -10,10 +10,10 @@ use angeleyes;
 
 CREATE TABLE user(
   user_id BIGINT UNIQUE NOT NULL AUTO_INCREMENT COMMENT '用户ID',
-  user_email VARCHAR(30) NOT NULL COMMENT '用户邮箱, 也做登陆名',
+  user_email VARCHAR(30) UNIQUE NOT NULL COMMENT '用户邮箱, 也做登陆名',
   user_name VARCHAR(120) COMMENT '昵称',
   user_password VARCHAR(21) NOT NULL COMMENT '用户密码，md5加密',
-  user_type SMALLINT NOT NULL DEFAULT 0 COMMENT '用户类型，0：普通会员，1：高级会员，2：版主，3：模块管理员，4：系统管理员',
+  user_type SMALLINT NOT NULL DEFAULT 0 COMMENT '用户类型，1：普通会员，2：高级会员，3：版主，4：模块管理员，0：系统管理员',
   user_gender  TINYINT NOT NULL DEFAULT 0 COMMENT '用户性别，0代表男，1代表女',
   user_phoneNumber CHAR(11) NOT NULL COMMENT '用户手机号',
   user_img VARCHAR(50) NOT NULL COMMENT '用户头像',

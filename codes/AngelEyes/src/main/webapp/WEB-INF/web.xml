@@ -7,7 +7,7 @@
   <!--修改servlet版本为3.1-->
   <!--配置DispatcherServlet-->
   <servlet>
-    <servlet-name>choice-dispatcher</servlet-name>
+    <servlet-name>angeleyes-dispatcher</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
     <!--
@@ -21,7 +21,7 @@
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>choice-dispatcher</servlet-name>
+    <servlet-name>angeleyes-dispatcher</servlet-name>
     <!--默认匹配所有请求-->
     <url-pattern>/</url-pattern>
   </servlet-mapping>
