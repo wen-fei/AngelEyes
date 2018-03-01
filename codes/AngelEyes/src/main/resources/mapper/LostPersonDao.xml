@@ -1,0 +1,103 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.angeleyes.dao.LostPersonDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+    <select id="queryByName" resultType="LostPerson">
+        select *
+        from lost_person_info
+        where lost_person_name like #{name}
+
+    </select>
+
+    <select id="queryById" resultType="LostPerson" parameterType="Long">
+        select *
+        from lost_person_info
+        where lost_person_id = #{id}
+
+    </select>
+
+    <select id="queryByAge" resultType="LostPerson">
+        select *
+        from lost_person_info
+        where lost_person_age = #{age}
+    </select>
+
+    <select id="queryBySex" resultType="LostPerson">
+        select *
+        from lost_person_info
+        where lost_person_sex = #{sex}
+    </select>
+
+    <select id="queryByTime" resultType="LostPerson">
+        select *
+        from lost_person_info
+        where lost_person_time BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+    <select id="queryByArea" resultType="LostPerson">
+        select *
+        from lost_person_info
+        where lost_person_area LIKE #{area}
+    </select>
+
+    <select id="queryByLive" resultType="LostPerson">
+        select *
+        from lost_person_info
+        where lost_person_live LIKE #{live}
+    </select>
+
+    <insert id="insertLostPerson">
+
+        INSERT INTO lost_person_info (lost_person_type,
+                                      lost_person_no,
+                                      lost_person_name,
+                                      lost_person_sex,
+                                      lost_person_age,
+                                      lost_person_height,
+                                      lost_person_area,
+                                      lost_person_live,
+                                      lost_person_character,
+                                      lost_person_others,
+                                      lost_person_time,
+                                      lost_person_registerTime,
+                                      lost_person_img_id,
+                                      lost_person_family_name,
+                                      lost_person_family_phone)
+        VALUES (#{type}, #{no}, #{name}, #{sex}, #{age}, #{height}, #{area}, #{live}, #{character},
+                #{others}, #{time}, #{registerTime}, #{img_id}, #{family_name}, #{family_phone})
+    </insert>
+
+    <update id="updateLostPersonInfo">
+        UPDATE lost_person_info
+        SET lost_person_type =          #{type},
+            lost_person_no =            #{no},
+            lost_person_name =          #{name},
+            lost_person_sex =           #{sex},
+            lost_person_age =           #{age},
+            lost_person_height =        #{height},
+            lost_person_area =          #{area},
+            lost_person_live =          #{live},
+            lost_person_character =     #{character},
+            lost_person_others =        #{others},
+            lost_person_time =          #{time},
+            lost_person_img_id =        #{img_id},
+            lost_person_family_name =   #{family_name},
+            lost_person_family_phone =  #{family_phone}
+        WHERE lost_person_id =          #{id}
+    </update>
+
+    <delete id="deleteLostPersonInfo_one">
+        DELETE FROM lost_person_info
+        WHERE lost_person_id = #{id}
+    </delete>
+
+    <delete id="deleteLostPersonInfo_many">
+        DELETE FROM lost_person_info
+        WHERE lost_person_id IN
+        <foreach collection="array" open="(" close=")" separator="," item="userId" index="index">
+          #{ids}
+        </foreach>
+    </delete>
+</mapper>

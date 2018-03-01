@@ -63,7 +63,7 @@ CREATE TABLE article(
   article_is_hot TINYINT NOT NULL COMMENT '是否是热帖子',
   article_is_top TINYINT NOT NULL COMMENT '是否是置顶帖子',
   article_last_reply_userID BIGINT NOT NULL  COMMENT '最后回复用户ID',
-  article_last_reply_time TIMESTAMP NOT NULL  COMMENT '最后回复时间',
+  article_last_reply_time DATETIME NOT NULL  COMMENT '最后回复时间',
 
   article_collect_counts INT NOT NULL COMMENT '帖子收藏数量',
   article_good_counts INT NOT NULL COMMENT '帖子点赞数量',
@@ -133,6 +133,31 @@ CREATE TABLE ARTICLE_COLLECT(
   CONSTRAINT fk_aid FOREIGN KEY (aid) REFERENCES article(article_id),
   CONSTRAINT fk_uid FOREIGN KEY (uid) REFERENCES user(user_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='图片匹配相似度记录表';
+
+
+-- 9. 走失儿童登记表
+CREATE TABLE LOST_PERSON_INFO(
+  lost_person_id BIGINT UNIQUE NOT NULL AUTO_INCREMENT COMMENT '走失儿童ID',
+  lost_person_type TINYINT NOT NULL COMMENT '走失类别 0：宝贝寻家 1：家寻宝贝',
+  lost_person_no VARCHAR(50) NOT NULL COMMENT '走失儿童编号',
+  lost_person_name VARCHAR(50) NOT NULL COMMENT '走失儿童姓名',
+  lost_person_sex TINYINT NOT NULL DEFAULT 0 COMMENT '走失儿童性别',
+  lost_person_age int NOT NULL DEFAULT 0 COMMENT '走失儿童年龄',
+  lost_person_height int NOT NULL DEFAULT 0 COMMENT '走失儿童身高',
+  lost_person_area VARCHAR(200) NOT NULL COMMENT '走失地区',
+  lost_person_live VARCHAR(200) NOT NULL COMMENT '走失儿童户籍详细地区',
+  lost_person_character VARCHAR(255) NOT NULL COMMENT '走失儿童家属描述特征',
+  lost_person_others VARCHAR(255) COMMENT '走失儿童其他补充信息',
+  lost_person_time DATETIME NOT NULL COMMENT '走失时间',
+  lost_person_registerTime DATETIME NOT NULL COMMENT '注册时间',
+  lost_person_img_id BIGINT NOT NULL COMMENT '走失儿童照片id',
+  lost_person_family_name VARCHAR(200) NULL COMMENT '走失家属联系人',
+  lost_person_family_phone CHAR(11) NULL COMMENT '走失儿童家属联系方式'
+  PRIMARY KEY (lost_person_id),
+  CONSTRAINT fk_lost_person_img FOREIGN KEY (lost_person_img_id) REFERENCES img_sources(img_id)
+
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='走失儿童信息登记表';
+
 
 -- 触发器
 
