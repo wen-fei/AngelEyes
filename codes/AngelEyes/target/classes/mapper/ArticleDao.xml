@@ -1,0 +1,95 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.angeleyes.dao.ArticleDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+
+    <insert id="addArticle">
+        INSERT
+        INTO article(article_title,article_authorID,article_content,article_module_id)
+        VALUES (#{article_title},#{article_authorID},#{article_content},#{article_module_id})
+    </insert>
+
+    <select id="getArticleById" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_id = #{article_id}
+    </select>
+
+    <select id="getArticleByAuthorID" resultType="Article" parameterType="Long">
+        SELECT *
+        FROM article
+        WHERE article_authorID = #{authorID}
+    </select>
+
+    <select id="getAllArticle" resultType="Article">
+        SELECT *
+        FROM article
+    </select>
+
+    <!--<select id="getArticleByTime" resultType="Article" parameterType="Timestamp">-->
+        <!--SELECT *-->
+        <!--FROM article-->
+        <!--WHERE article_create_time IN #{startTime} BETWEEN #{endTime}-->
+    <!--</select>-->
+
+    <select id="getArticleCount" resultType="Integer">
+        SELECT count(article_id)
+        FROM article
+    </select>
+
+    <select id="getAllGood" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_is_good = 1
+    </select>
+
+    <select id="getAllHot" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_is_hot = 1
+    </select>
+
+    <select id="getAllTop" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_is_top = 1
+    </select>
+
+    <update id="setArticleGood" parameterType="Long">
+        UPDATE article
+        SET article_is_good = 1
+        WHERE article_id = #{article_id}
+    </update>
+
+    <update id="setArticleHot" parameterType="Long">
+        UPDATE article
+        SET article_is_hot = 1
+        WHERE article_id = #{article_id}
+    </update>
+
+    <update id="setArticleTop" parameterType="Long">
+        UPDATE article
+        SET article_is_top = 1
+        WHERE article_id = #{article_id}
+    </update>
+
+    <update id="cancelArticleGood" parameterType="Long">
+        UPDATE article
+        SET article_is_good = 0
+        WHERE article_id = #{article_id}
+    </update>
+
+    <update id="cancelArticleHot" parameterType="Long">
+        UPDATE article
+        SET article_is_hot = 0
+        WHERE article_id = #{article_id}
+    </update>
+
+    <update id="cancelArticleTop" parameterType="Long">
+        UPDATE article
+        SET article_is_top = 0
+        WHERE article_id = #{article_id}
+    </update>
+</mapper>

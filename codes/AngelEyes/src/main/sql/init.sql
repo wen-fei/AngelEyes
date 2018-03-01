@@ -63,7 +63,7 @@ CREATE TABLE article(
   article_is_hot TINYINT NOT NULL COMMENT '是否是热帖子',
   article_is_top TINYINT NOT NULL COMMENT '是否是置顶帖子',
   article_last_reply_userID BIGINT NOT NULL  COMMENT '最后回复用户ID',
-  article_last_reply_time DATETIME NOT NULL  COMMENT '最后回复时间',
+  article_last_reply_time TIMESTAMP NOT NULL  COMMENT '最后回复时间',
 
   article_collect_counts INT NOT NULL COMMENT '帖子收藏数量',
   article_good_counts INT NOT NULL COMMENT '帖子点赞数量',
@@ -72,7 +72,7 @@ CREATE TABLE article(
   /*主键*/
   PRIMARY KEY (article_id),
   /*外键*/
-  CONSTRAINT fk_article_author FOREIGN KEY f(article_id) REFERENCES user(user_id),
+  CONSTRAINT fk_article_author FOREIGN KEY (article_authorID) REFERENCES user(user_id),
   CONSTRAINT fk_article_module FOREIGN KEY (article_module_id) REFERENCES module(module_id),
   CONSTRAINT fk_article_last_reply_author FOREIGN KEY (article_last_reply_userID) REFERENCES  user(user_id),
 
