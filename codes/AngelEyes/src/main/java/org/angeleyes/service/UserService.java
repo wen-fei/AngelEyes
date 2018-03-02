@@ -43,7 +43,8 @@ public interface UserService {
     /**
      * 修改用户密码
      * @param email
-     * @param password
+     * @param old_password
+     * @param new_password
      * @return
      */
     int updateUserPwd(String email, String old_password, String new_password);
@@ -62,6 +63,31 @@ public interface UserService {
      * @return
      */
     int updateUserInfo(User user);
+
+
+    /**
+     * 用户登陆
+     * @param email
+     * @param passsword
+     * @return
+     */
+    User user_login(String email, String passsword);
+
+    /**
+     * 用户注册
+     * @param email
+     * @param password
+     * @param user_name
+     * @return
+     */
+    int user_regist(String email, String password, String user_name);
+
+    /**
+     * 检查邮件是否已经使用
+     * @param email
+     * @return
+     */
+    User check_email(String email);
 
 
 }

@@ -27,15 +27,30 @@ while i < 10000:
         continue
     else:
         # 类别
+        type_no = 0
         type = html.xpath('//*[@id="table_1_normaldivr"]/ul/li[1]/text()')[0]
+        if type == "家寻宝贝":
+            type_no = 1
+        elif type == "宝贝寻家":
+            type_no = 2
+        elif type == "流浪乞讨":
+            type_no = 3
+        elif type == "其他寻人":
+            type_no = 4
+
         pattern = r'\d+'
         no = re.search(re.compile(pattern), no_url).group(0)
         # 姓名
         name = html.xpath('//*[@id="table_1_normaldivr"]/ul/li[3]/text()')[0]
+
         # 性别
         sex = html.xpath('//*[@id="table_1_normaldivr"]/ul/li[4]/text()')[0]
+        map_sex = {'男':0, '女':1, '其他': 3}
+        sex_no = map_sex[sex]
+
         # 出生日期
         date_of_birth = html.xpath('//*[@id="table_1_normaldivr"]/ul/li[5]/text()')[0]
+
         # 身高
         height = html.xpath('//*[@id="table_1_normaldivr"]/ul/li[6]/text()')[0]
         # 时间
@@ -60,14 +75,3 @@ while i < 10000:
         #     print("错误原因：", e)
         # finally:
         #     connection.close()
-        print(type)
-        print(no)
-        print(name)
-        print(sex)
-        print(date_of_birth)
-        print(height)
-        print(area)
-        print(live)
-        print(character)
-        print(others)
-        print(registerTime)

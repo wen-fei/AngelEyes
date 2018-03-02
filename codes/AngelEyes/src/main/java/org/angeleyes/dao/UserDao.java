@@ -70,7 +70,6 @@ public interface UserDao {
      * @param user_home_district    家乡县
      * @param user_home_town        家乡镇
      * @param user_home_details     详细地址
-     * @param user_type             用户类型
      * @param phoneNumber           手机
      * @return
      */
@@ -114,4 +113,21 @@ public interface UserDao {
      */
     int setUserController(@Param("user_email")Long user_email);
 
+    /**
+     * 用户登陆
+     * @param email
+     * @param passsword
+     * @return
+     */
+    User user_login(@Param("email") String email, @Param("password") String passsword);
+
+    /**
+     * 用户注册
+     * @param email
+     * @param user_name
+     * @param password
+     * @return
+     */
+    int user_regist(@Param("email") String email, @Param("user_name") String user_name,
+                    @Param("password") String password);
 }

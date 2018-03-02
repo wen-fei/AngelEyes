@@ -84,4 +84,17 @@
             SET user_type = 0
             where user_email = #{user_email}
     </update>
+    
+    <select id="user_login" resultType="User">
+        SELECT user_id
+        FROM user
+        WHERE user_email = #{email}
+        AND user_password = #{password}
+    </select>
+
+    <insert id="user_regist">
+        INSERT INTO user(user_email, user_password, user_name)
+                VALUES (#{email}, #{password}, #{user_name})
+
+    </insert>
 </mapper>

@@ -7,8 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
+
+import static org.angeleyes.utils.CodeUtils.EncodeByMd5;
 
 
 @Service
@@ -59,5 +60,17 @@ public class UserServiceImpl implements UserService{
                 user.getUser_homeTown_detail(),
                 user.getUser_phoneNumber()
                 );
+    }
+
+    public User user_login(String email, String passsword) {
+        return userDao.user_login(email, EncodeByMd5(passsword));
+    }
+
+    public int user_regist(String email, String password, String user_name) {
+        return userDao.user_regist(email, user_name, password);
+    }
+
+    public User check_email(String email) {
+        return userDao.checkUser_email(email);
     }
 }
