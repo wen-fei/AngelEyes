@@ -6,7 +6,7 @@
     即针对dao接口中的方法编写我们的sql语句-->
     <select id="getReplyById" resultType="Reply">
         select *
-        from reply,user_info
+        from reply,user
         where reply_id = #{replyId}
         and  reply.reply_author_id = user.user_id
     </select>
@@ -19,63 +19,63 @@
 
     <select id="getReplyListByArticleId" resultType="Reply">
         select *
-        from reply,user_info
+        from reply,user
         where reply_article_id = #{articleId}
-              and  reply.reply_author_id = user_info.user_info_id
+              and  reply.reply_author_id = user.user_id
     </select>
 
     <select id="getReplyList" resultType="Reply">
         select *
-        from reply,user_info,article
-        where reply_author_id = user_info.user_info_id
+        from reply,user,article
+        where reply_author_id = user.user_id
         and reply_article_id = article.article_id
     </select>
 
     <select id="getReplyListByUserId" resultType="Reply">
         select *
-        from reply,user_info,article
+        from reply,user,article
         where reply_article_id = #{userID}
-        and   reply_author_id = user_info.user_info_id
+        and   reply_author_id = user.user_id
         and reply_article_id = article.article_id
     </select>
 
     <select id="getReplyListByTime" resultType="Reply">
         select *
-        from reply,article,user_info
+        from reply,article,user
         where reply_time BETWEEN #{startTime} AND #{endTime}
-        and   reply_author_id = user_info.user_info_id
+        and   reply_author_id = user.user_id
         and   reply_article_id = article.article_id
     </select>
 
     <select id="getReplyListByModuleId" resultType="Reply">
         select *
-        from reply,article,user_info
+        from reply,article,user
         where article.article_module_id = #{moduleId}
-        and   reply_author_id = user_info.user_info_id
+        and   reply_author_id = user.user_id
         and   reply_article_id = article.article_id
     </select>
 
     <select id="getReplyListForumId" resultType="Reply">
         select *
-        from reply,article,user_info
-        where article.article_forum_id = #{forumId}
-        and   reply_author_id = user_info.user_info_id
+        from reply,article,user
+        where article.article_id = #{forumId}
+        and   reply_author_id = user.user_id
         and   reply_article_id = article.article_id
     </select>
 
     <select id="getReplyByReplyId" resultType="Reply">
         select *
-        from reply,article,user_info
+        from reply,article,user
         where reply_id = #{replyId}
-        and   reply_author_id = user_info.user_info_id
+        and   reply_author_id = user.user_id
         and   reply_article_id = article.article_id
     </select>
 
     <select id="getReplyByReplyContent" resultType="Reply">
         select *
-        from reply,article,user_info
+        from reply,article,user
         where reply_content like concat(concat('%',#{contenKey}),'%')
-        and   reply_author_id = user_info.user_info_id
+        and   reply_author_id = user.user_id
         and   reply_article_id = article.article_id
     </select>
 

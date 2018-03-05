@@ -153,12 +153,25 @@ CREATE TABLE LOST_PERSON_INFO(
   lost_person_registerTime DATETIME NOT NULL COMMENT '注册时间',
   lost_person_img_id BIGINT NOT NULL COMMENT '走失儿童照片id',
   lost_person_family_name VARCHAR(200) NULL COMMENT '走失家属联系人',
-  lost_person_family_phone CHAR(11) NULL COMMENT '走失儿童家属联系方式'
+  lost_person_family_phone CHAR(11) NULL COMMENT '走失儿童家属联系方式',
   PRIMARY KEY (lost_person_id),
   CONSTRAINT fk_lost_person_img FOREIGN KEY (lost_person_img_id) REFERENCES img_sources(img_id)
 
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='走失儿童信息登记表';
 
+USE angeleyes;
+-- 10. 帖子回复表
+CREATE TABLE reply(
+  reply_id BIGINT NOT NULL AUTO_INCREMENT COMMENT '回复ID',
+  reply_content LONGTEXT COMMENT '回复内容',
+  reply_time DATETIME NOT NULL COMMENT '回复时间',
+  reply_author_id BIGINT UNIQUE NOT NULL COMMENT '外键：回复作者用户ID',
+  reply_article_id BIGINT UNIQUE NOT NULL COMMENT '外键：所属帖子ID',
+  PRIMARY KEY (reply_id),
+  /*外键*/
+  CONSTRAINT fk_reply_author FOREIGN KEY (reply_author_id) REFERENCES user (user_id),
+  CONSTRAINT fk_reply_article FOREIGN KEY (reply_article_id) REFERENCES article(article_id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='帖子回复表';
 
 -- 触发器
 
