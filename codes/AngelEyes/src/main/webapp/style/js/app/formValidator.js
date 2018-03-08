@@ -8,7 +8,7 @@ $(document).ready(function() {
      * 你只需传入相应的键值对
      * */
     $('#loginForm').bootstrapValidator({
-        message: '用户名非法',
+        message: '昵称非法',
         feedbackIcons: {/*输入框不同状态，显示图片的样式*/
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -19,7 +19,7 @@ $(document).ready(function() {
                 message: 'The username is not valid',
                 validators: {
                     notEmpty: {/*非空提示*/
-                        message: '用户名不能为空'
+                        message: '昵称不能为空'
                     },
                     regexp: {/* 只需加此键值对，包含正则表达式，和提示 */
                         regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -28,7 +28,7 @@ $(document).ready(function() {
                     stringLength: {/*长度提示*/
                         min: 6,
                         max: 30,
-                        message: '用户名长度必须在6到30之间'
+                        message: '昵称长度必须在6到30之间'
                     }/*最后一个没有逗号*/
                 }
             },
@@ -66,7 +66,7 @@ $(document).ready(function() {
      * 你只需传入相应的键值对
      * */
     $('#registForm').bootstrapValidator({
-        message: '用户名非法',
+        message: '昵称非法',
         feedbackIcons: {/*输入框不同状态，显示图片的样式*/
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -77,7 +77,7 @@ $(document).ready(function() {
                 message: 'The username is not valid',
                 validators: {
                     notEmpty: {/*非空提示*/
-                        message: '用户名不能为空'
+                        message: '昵称不能为空'
                     },
                     regexp: {/* 只需加此键值对，包含正则表达式，和提示 */
                         regexp: /^[a-zA-Z0-9_\.]+$/,
@@ -86,7 +86,7 @@ $(document).ready(function() {
                     stringLength: {/*长度提示*/
                         min: 6,
                         max: 30,
-                        message: '用户名长度必须在6到30之间'
+                        message: '昵称长度必须在6到30之间'
                     }/*最后一个没有逗号*/
                 }
             },
@@ -125,17 +125,17 @@ $(document).ready(function() {
             user_email: {
                 validators: {
                     notEmpty: {
-                        message: '邮箱不能为空'
+                        message: '登陆邮箱不能为空'
                     },
                     emailAddress: {
-                        message: '邮箱格式非法'
+                        message: '登陆邮箱格式非法'
                     }
                 }
             }
         }
     });
     $('#user_info_setting').bootstrapValidator({
-        message: '用户名非法',
+        message: '昵称非法',
         feedbackIcons: {/*输入框不同状态，显示图片的样式*/
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -145,7 +145,7 @@ $(document).ready(function() {
             name: {
                 validators: {
                     notEmpty: {
-                        message: '用户名不能为空'
+                        message: '昵称不能为空'
                     },
                     stringLength: {
                         max: 7,

@@ -3,11 +3,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <meta http-equiv="refresh" content="3;url=/app/index">
+    <meta http-equiv="refresh" content="3;url=/app/login/loginview">
     <title>结果</title>
     <script type="text/javascript">
         var time = 4;
-
         function returnUrlByTime() {
 
             window.setTimeout('returnUrlByTime()', 1000);

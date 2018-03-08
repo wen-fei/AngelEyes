@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService{
     }
 
     public int user_regist(String email, String password, String user_name) {
-        return userDao.user_regist(email, user_name, password);
+        return userDao.user_regist(email, user_name, EncodeByMd5(password));
     }
 
     public User check_email(String email) {

@@ -16,18 +16,17 @@
     <div class="aw-login-box">
         <div class="mod-body clearfix">
             <div class="content pull-left">
-                <h1 class="logo"><a href=""></a></h1>
+                <h1 class="logo"><a href="../../../../style/imgs/login_logo.png"></a></h1>
                 <form class="form-group" action="/app/login/login" method="post" id="loginForm">
                     <div class="form-group">
-                        <label for="">用户名</label>
-                        <input class="form-control" type="text" placeholder="" name="user_name">
+                        <label for="">邮箱</label>
+                        <input class="form-control" type="text" placeholder="" name="email">
                     </div>
                     <div class="form-group">
                         <label for="">密码</label>
                         <input class="form-control" type="password" placeholder="" name="password">
                     </div>
                     <div class="text-right">
-
                         <button class="btn btn-primary" type="submit">登录</button>
                         <button class="btn btn-danger" data-dismiss="modal" type="cancel">取消</button>
                     </div>
@@ -35,8 +34,8 @@
             </div>
             <div class="side-bar pull-left">
                 <div style="margin-top: 50px">
-                    <p>不逼自己一把，</p>
-                    <p>你都不知道你有多优秀。</p>
+                    <p>每一个孩子，</p>
+                    <p>都是父母的宝贝。</p>
                 </div>
             </div>
         </div>

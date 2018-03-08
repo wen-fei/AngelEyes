@@ -20,11 +20,18 @@
     <div class="mod-body">
         <form class="form-group form-horizontal" action="/app/login/regist" id="registForm" >
             <div class="form-group">
+                <label for="email" class="col-md-3 control-label">邮箱</label>
+                <div class="col-md-9" >
+                    <input class="form-control" id="email" onblur="checkIsUserEmail()" type="email" placeholder="例如:123@123.com" name="user_email">
+                    <span id="useremailText" style="color: red"></span>
+                </div>
+            </div>
+            <div class="form-group">
 
-                    <label for="username" class="col-md-3 control-label">用户名</label>
+                    <label for="username" class="col-md-3 control-label">昵称</label>
                 <div class="col-md-9">
-                    <input id="username" onblur="checkIsUsername()" class="form-control" type="text" placeholder="6-15位字母或数字" name="user_name_regist">
-                    <span id="usernameText" style="color: red"></span>
+                    <input id="username" class="form-control" type="text" placeholder="6-15位字母或数字" name="user_name_regist">
+
                 </div>
             </div>
             <div class="form-group">
@@ -39,12 +46,7 @@
                     <input class="form-control" id="repassword" type="password" placeholder="至少6位字母或数字" name="confirmPassword">
                 </div>
             </div>
-            <div class="form-group">
-                <label for="email" class="col-md-3 control-label">邮箱</label>
-                <div class="col-md-9" >
-                <input class="form-control" id="email" type="email" placeholder="例如:123@123.com" name="user_email">
-                </div>
-            </div>
+
             <div>
                 <button class="btn btn-primary btn-large btn-block" type="submit">提交</button>
             </div>
@@ -62,26 +64,26 @@
 <script type="text/javascript" src="../../../../style/js/app/formValidator.js"></script>
 <script>
     //检查用户名是否存在
-    function checkIsUsername() {
-        var username = $('#username').val();
-        if (username.length > 5) {
+    function checkIsUserEmail() {
+        var email = $('#email').val();
+        if (email.length > 5) {
             $.ajax({
                 type: "POST",//请求方式
                 url: "${pageContext.request.contextPath}/app/login/"
-                    + username + "/checkUsername",//发送请求地址
+                    + email + "/checkUserEmail",//发送请求地址
                 dataType: "json",
                 data: {//发送数据
-                    username: $('#username').val()
+                    username: $('#email').val()
                 },
                 //请求成功后的回调函数有两个参数
                 success: function (data) {
                     if (data == '0') {
-                        $('#usernameText').text("用户名已存在");
-                        $('#usernameText').css('color', 'red');
+                        $('#useremailText').text("邮箱已注册");
+                        $('#useremailText').css('color', 'red');
 //                        $('#submit').attr("disabled", "disabled");
                     } else {
-                        $('#usernameText').text("用户名可以使用");
-                        $('#usernameText').css('color', 'green');
+                        $('#useremailText').text("邮箱可以使用");
+                        $('#useremailText').css('color', 'green');
 //                        $('#submit').removeAttr("disabled");
                     }
                 }
