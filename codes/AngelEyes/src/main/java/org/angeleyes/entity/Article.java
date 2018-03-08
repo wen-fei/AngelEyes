@@ -37,6 +37,36 @@ public class Article {
 
     private int article_share_counts;
 
+    private String article_author_name;
+
+    private String article_author_type_name;
+
+    private String article_create_time_date;
+
+    public String getArticle_create_time_date() {
+        return article_create_time_date;
+    }
+
+    public void setArticle_create_time_date(String article_create_time_date) {
+        this.article_create_time_date = article_create_time_date;
+    }
+
+    public String getArticle_author_name() {
+        return article_author_name;
+    }
+
+    public void setArticle_author_name(String article_author_name) {
+        this.article_author_name = article_author_name;
+    }
+
+    public String getArticle_author_type_name() {
+        return article_author_type_name;
+    }
+
+    public void setArticle_author_type_name(String article_author_type_name) {
+        this.article_author_type_name = article_author_type_name;
+    }
+
     public Long getArticle_id() {
         return article_id;
     }

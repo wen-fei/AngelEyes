@@ -92,4 +92,26 @@
         SET article_is_top = 0
         WHERE article_id = #{article_id}
     </update>
+
+    <select id="getCountsInfo" resultType="Counts">
+        select count(article_id) as articleCounts,
+        sum(article_comment_number) as replyCounts,
+        sum(article_read_number) as readCounts
+        from article
+    </select>
+
+    <select id="queryByTime" resultType="Article">
+        select *
+        from article
+        where article_create_time BETWEEN #{startTime} and #{endTime}
+        <if test="isAll == 0">
+            <if test="typeId == 1">
+#                 AND article_forum_id = #{ID}
+            </if>
+            <if test="typeId == 2">
+                AND article_module_id = #{ID}
+            </if>
+        </if>
+        ORDER BY article_create_time
+    </select>
 </mapper>

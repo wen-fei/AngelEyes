@@ -1,0 +1,82 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.angeleyes.dao.ModuleDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+
+
+    <select id="queryModuleById" resultType="Module">
+        select *
+        from module
+        where module_id = #{moduleId}
+    </select>
+
+    <update id="updateModuleById">
+      UPDATE
+      module
+      SET module_name = #{moduleName},
+          module_controller_id = #{moduleControllerId}
+      WHERE module_id = #{moduleId}
+    </update>
+
+    <delete id="deleteModuleById">
+        DELETE
+        from module
+        where module_id = #{moduleId}
+    </delete>
+
+
+    <select id="getArticleListByModuleID"  resultType="Article">
+        select *
+        from article
+        where article_module_id = #{moduleId}
+    </select>
+
+    <select id="getArticlesHot" resultType="Article">
+        select *
+        from module,article,article_scores
+        where module_id = #{moduleId}
+        and article_is_hot = 1
+              and module.module_id = article.article_module_id
+              and article.article_id = article_scores.article_scores_id
+        ORDER BY article_scores.article_scores DESC, article_create_time desc
+
+    </select>
+
+    <select id="getArticlesJing" resultType="Article">
+        select *
+        from module,article,article_scores
+        where module_id = #{moduleId}
+        and article_is_good = 1
+              and module.module_id = article.article_module_id
+              and article.article_id = article_scores.article_scores_id
+        ORDER BY article_scores.article_scores DESC, article_create_time desc
+
+    </select>
+
+    <select id="getArticlesTop" resultType="Article">
+        select *
+        from module,article,article_scores
+        where module_id = #{moduleId}
+        and article_is_top = 1
+        and module.module_id = article.article_module_id
+        and article.article_id = article_scores.article_scores_id
+        ORDER BY article_scores.article_scores desc, article_create_time desc
+    </select>
+
+    <select id="getArticlesCommon"  resultType="Article">
+        select *
+        from article,article_scores
+        where article_module_id = #{moduleId}
+        and article.article_is_top=0
+        and article.article_id = article_scores.article_scores_id
+        ORDER BY article_scores.article_scores DESC, article_create_time desc
+
+    </select>
+
+    <select id="getModuleAll" resultType="Module">
+        select * from module
+    </select>
+
+</mapper>

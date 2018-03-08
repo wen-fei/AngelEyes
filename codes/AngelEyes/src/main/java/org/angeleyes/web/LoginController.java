@@ -109,4 +109,12 @@ public class LoginController {
     public String registView(Model model){
         return "/app/user/regist";
     }
+
+    //用户退出登录
+    @RequestMapping(value="/logout",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public String logout(Model model, HttpSession session){
+        session.removeAttribute("UserInfo_session");
+        return "1";
+    }
 }

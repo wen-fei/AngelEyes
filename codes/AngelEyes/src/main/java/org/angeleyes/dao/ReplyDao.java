@@ -5,9 +5,7 @@ import org.angeleyes.entity.Reply;
 
 import java.util.List;
 
-/**
- * Created by user on 2017/4/29.
- */
+
 public interface ReplyDao {
 
     /**

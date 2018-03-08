@@ -7,7 +7,6 @@ use angeleyes;
 -- 创建数据库表
 
 -- 1. 用户表
-
 CREATE TABLE user(
   user_id BIGINT UNIQUE NOT NULL AUTO_INCREMENT COMMENT '用户ID',
   user_email VARCHAR(30) UNIQUE NOT NULL COMMENT '用户邮箱, 也做登陆名',
@@ -172,6 +171,29 @@ CREATE TABLE reply(
   CONSTRAINT fk_reply_author FOREIGN KEY (reply_author_id) REFERENCES user (user_id),
   CONSTRAINT fk_reply_article FOREIGN KEY (reply_article_id) REFERENCES article(article_id)
 )ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='帖子回复表';
+
+-- 11. 论坛模块表
+CREATE TABLE module(
+  module_id INT NOT NULL AUTO_INCREMENT COMMENT '模块ID',
+  module_name VARCHAR(30) NOT NULL COMMENT '模块名称',
+  module_controller_id BIGINT UNIQUE NOT NULL COMMENT '模块管理员用户ID',
+  module_article_count BIGINT NOT NULL COMMENT '模块帖子数量',
+  module_read_count BIGINT NOT NULL COMMENT '模块总浏览量',
+  module_article_count_closedDay   BIGINT NOT NULL COMMENT '最近一天模块帖子数量',
+  module_article_count_closedWeek  BIGINT NOT NULL COMMENT '最近一周模块帖子数量',
+  module_article_count_closedMonth BIGINT NOT NULL COMMENT '最近一月模块帖子数量',
+  module_article_count_closedYear  BIGINT NOT NULL COMMENT '最近一年模块帖子数量',
+  module_reply_count_closedDay   BIGINT NOT NULL COMMENT '最近一天模块回复数量',
+  module_reply_count_closedWeek  BIGINT NOT NULL COMMENT '最近一周模块回复数量',
+  module_reply_count_closedMonth BIGINT NOT NULL COMMENT '最近一月模块回复数量',
+  module_reply_count_closedYear  BIGINT NOT NULL COMMENT '最近一年模块回复数量',
+  module_read_count_closedDay    BIGINT NOT NULL COMMENT '最近一天模块浏览量',
+  module_read_count_closedWeek   BIGINT NOT NULL COMMENT '最近一周模块浏览量',
+  module_read_count_closedMonth  BIGINT NOT NULL COMMENT '最近一月模块浏览量',
+  module_read_count_closedYear   BIGINT NOT NULL COMMENT '最近一年模块浏览量',
+  PRIMARY KEY (module_id),
+  CONSTRAINT fk_module_author FOREIGN KEY (module_controller_id) REFERENCES user(user_id)
+)ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT='模块信息表';
 
 -- 触发器
 

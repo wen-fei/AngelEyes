@@ -1,107 +1,185 @@
 package org.angeleyes.service;
 
-import org.angeleyes.entity.Article;
+import org.apache.ibatis.annotations.Param;
+import org.angeleyes.entity.*;
 
-import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
+/**
+ * 业务接口
+ */
 public interface ArticleService {
-    /**
-     * 创建新的article
-     * @param article_title
-     * @param article_authorID
-     * @param article_content
-     * @param article_module_id
-     * @return
-     */
-    int addArticle(String article_title, Long article_authorID,
-                   String article_content, int article_module_id);
-    /**
-     * 通过id获取article
-     * @param article_id
-     * @return
-     */
-    Article getArticleById(Long article_id);
 
     /**
-     * 获取用户发布的所有article
-     * @param authorID
+     * 查询所有主题信息
      * @return
      */
-    List<Article> getArticleByAuthorID(Long authorID);
+    List<Article> getArticleList();
 
     /**
-     * 获取所有的Article
+     * 查询单个主题信息
+     * @param articleId
      * @return
      */
-    List<Article> getAllArticle();
+    Article getArticleById(long articleId);
 
     /**
-     * 通过获取某一时间段的artile
+     * 删除一个主题
+     * @param articleId
+     * @return
+     */
+    int deleteArticleOne(long articleId);
+
+    /**
+     * 批量删除主题
+     * @param articleIds
+     * @return
+     */
+    int deleteArticleBatch(long[] articleIds);
+
+    /**
+     * 按一定条件查询帖子
+     * 查询条件用户选择
+     * @param needId
      * @param startTime
      * @param endTime
+     * @param titleKey  帖子标题关键字
      * @return
      */
-    List<Article> getArticleByTime(Timestamp startTime, Timestamp endTime);
+    List<Article> getArticleByNeeds(int needId, Long startTime, Long endTime, String titleKey);
 
     /**
-     * 获取article数量
+     * 设置一个帖子状态，默认审核通过
+     * @param articleId
      * @return
      */
-    int getArticleCount();
+    int proveArticle(long articleId, int status);
 
     /**
-     * 获取所有good的article
+     * 批量审核通过
+     * @param articleIds
      * @return
      */
-    List<Article> getAllGood();
+    int proveArticleBatch(long[] articleIds);
 
     /**
-     * 获取所有hot的article
+     * 主题总数量
      * @return
      */
-    List<Article> getAllHot();
+    int articleCount();
 
     /**
-     * 获取所有Top的article
+     *
+     * @param offset
+     * @param countLimit
      * @return
      */
-    List<Article> getAllTop();
+    List<Article> getArticleByPage(int offset, int countLimit);
 
-    /**
-     * 设置article的good，hot，top
-     * @param article_id
+
+    /**将文章中的状态码
+     * 通过id查找到名称
+     * @param articleList
      * @return
      */
-    int setArticleGood(Long article_id);
-
-    int setArticleHot(Long article_id);
-
-    int setArticleTop(Long article_id);
+    List<Article> setArticleFromIdToName(List<Article> articleList);
 
     /**
-     * 取消article的good， hot， top
-     * @param article_id
+     *
+     * @param articleList
      * @return
      */
-    int cancelArticleGood(Long article_id);
-
-    int cancelArticleHot(Long article_id);
-
-    int cancelArticleTop(Long article_id);
+    Article setArticleFromIdToName(Article articleList);
 
     /**
-     * +1 article的count of collect，good，notgood，share, readNumber, commentNumber
+     * 查询所有模块类型列表
+     * @return
      */
-    int addArticleCollect(Long article_id);
+    List<Module> getAtricleModuleList(int forumId);
 
-    int addArticleGood(Long article_id);
+    /**
+     * 通过新的主题信息更新主题信息
+     * @param articleTitle      主题标题
+     * @param article_type_id   主题类型ID
+     * @param article_forum_id  主题所属板块id
+     * @param article_module_id 主题所属模块id
+     * @return
+     */
+    int updateArticle(String articleTitle,int article_type_id, int article_forum_id,int article_module_id);
 
-    int addArticleNotgood(Long article_id);
 
-    int addArticleShare(Long article_id);
 
-    int addArticleComment(Long article_id);
+    /**
+     * Hacker News 热门帖子排序算法---计算帖子得分
+     * @param moduleId      模块ID，得到本模块下帖子列表。所有的热门帖子可以选择每隔模块下排名第一的帖子作为火贴推荐
+     * @return Map<Long parm1,Long parm2> parm1 帖子ID，parm2 帖子得分
+     */
+    Map<Long,Long> setArticleScores(int moduleId);
 
-    int addArticleread(Long article_id);
+    /**
+     * 通过评论id查找评论信息
+     * @param replyId
+     * @return
+     */
+    Reply getReplyInfoById(long replyId);
+
+
+    /**
+     * 通过主题ID查找属于此主题下的所有评论
+     * @param articleId
+     * @return
+     */
+
+    List<Reply> getReplyInfoByArticleId(long articleId);
+
+
+    /**
+     * 发表一篇文章
+     * @param article_title
+     * @param article_content
+     * @param article_author_id
+     * @param module_id
+     * @param articleType
+     * @return
+     */
+    int insertOneArticle(String article_title, String article_content, long article_author_id, int module_id, int articleType);
+
+    /**
+     * 记录主题浏览次数
+     * @param articleId
+     * @return
+     */
+    int updateArticleClickCounts(long articleId);
+
+    /**
+     * 点赞，踩， 转发，收藏
+     * @param aid
+     * @param uid
+     * @param type 1 点赞 2 踩 3 转发 4 收藏
+     * @return
+     */
+    int articleCollet(long aid, long uid, int type);
+
+    /**
+     * 判断是否已经点赞收藏踩
+     * 转发无限制
+     * @param aid
+     * @param uid
+     * @param type
+     * @return
+     */
+    Article articleColletCheck(long aid, long uid, int type);
+
+    /**
+     * 首页热门主题
+     * @return
+     */
+    List<Article> getArticleListHotByScore();
+
+    /**
+     * 首页最近点击最高的主题
+     * @return
+     */
+    List<Article> getArticleListHotByRead();
 }
