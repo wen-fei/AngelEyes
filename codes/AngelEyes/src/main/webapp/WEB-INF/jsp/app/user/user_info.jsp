@@ -138,15 +138,15 @@
                         <c:if test="${user_info_detail.user_gender == 0}">男</c:if>
                         <c:if test="${user_info_detail.user_gender == 1}">女</c:if>
                     </li>
-                    <li><em>家乡所在省份</em>${user_info_detail.homeTown_province}</li>
-                    <li><em>家乡所在城市</em>${user_info_detail.homeTown_city}</li>
+                    <li><em>家乡所在省份</em>${user_info_detail.user_homeTown_province}</li>
+                    <li><em>家乡所在城市</em>${user_info_detail.user_homeTown_city}</li>
                     <li><em>用户手机</em>${user_info_detail.user_phoneNumber}</li>
-                    <li><em>用户详细地址</em>${user_info_detail.user_homeTown_details}</li>
+                    <li><em>用户详细地址</em>${user_info_detail.user_homeTown_detail}</li>
                 </ul>
             </div>
         </div>
         <div class="panel-footer">
-            <a href="http://localhost:8080/app/user/user_info${user_info_detail.user_info_id}/setting" class="btn btn-primary">修改资料</a>
+            <a href="http://localhost:8080/app/user/user_info${user_info_detail.user_id}/setting" class="btn btn-primary">修改资料</a>
         </div>
     </div>
 </div>

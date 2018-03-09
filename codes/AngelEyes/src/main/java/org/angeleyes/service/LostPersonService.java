@@ -3,6 +3,8 @@ package org.angeleyes.service;
 import org.angeleyes.entity.LostPerson;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 
 public interface LostPersonService {
     /**
@@ -40,7 +42,7 @@ public interface LostPersonService {
     /**
      * 通过居住地区查找
      *
-     * @param area
+     * @param live
      * @return
      */
     LostPerson queryByLive(String live);
@@ -131,4 +133,10 @@ public interface LostPersonService {
      * @return
      */
     int deleteLostPersonInfo_many(Long[] ids);
+
+    /**
+     * 查询最近时间走失的50条信息
+     * @return
+     */
+    List<LostPerson> queryInfo50Recent();
 }

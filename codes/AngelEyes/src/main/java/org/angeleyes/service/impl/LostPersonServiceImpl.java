@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 @Service
 @Transactional
@@ -72,4 +73,10 @@ public class LostPersonServiceImpl implements LostPersonService {
     public int deleteLostPersonInfo_many(Long[] ids) {
         return deleteLostPersonInfo_many(ids);
     }
+
+    public List<LostPerson> queryInfo50Recent() {
+        List<LostPerson> lostPerson = lostPersonDao.queryInfo50Recent();
+        return lostPerson;
+    }
+
 }

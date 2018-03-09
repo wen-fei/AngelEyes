@@ -2,8 +2,10 @@ package org.angeleyes.web;
 
 import org.angeleyes.entity.Article;
 import org.angeleyes.entity.Counts;
+import org.angeleyes.entity.LostPerson;
 import org.angeleyes.entity.Module;
 import org.angeleyes.service.ArticleService;
+import org.angeleyes.service.LostPersonService;
 import org.angeleyes.service.ModuleService;
 import org.angeleyes.service.UserService;
 import org.slf4j.Logger;
@@ -30,13 +32,19 @@ public class AppController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private LostPersonService lostPersonService;
     /**
      * 主页主模块列表
+     * 显示走失儿童信息瀑布模式
      * @param model
      * @return
      */
     @RequestMapping("/index")
     public String index(Model model){
+        List<LostPerson> lost_person_info = lostPersonService.queryInfo50Recent();
+        model.addAttribute("lost_person_info", lost_person_info);
         return "app/index";
     }
 
@@ -77,5 +85,6 @@ public class AppController {
 
         return "app/article/article_list";
     }
+
 
 }

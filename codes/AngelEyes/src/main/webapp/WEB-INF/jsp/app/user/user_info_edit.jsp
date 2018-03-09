@@ -49,8 +49,8 @@
                 <c:if test="${sessionScope.UserInfo_session != null}">
                     <li>
                         <span>欢迎会员：</span>
-                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/info" title="点击修改个人资料">
-                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.name}
+                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
+                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
                         </a>
                         <a href="/app/login/logout" class="btn btn-danger">退出</a>
                     </li>

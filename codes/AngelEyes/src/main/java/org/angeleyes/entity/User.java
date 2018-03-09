@@ -29,6 +29,26 @@ public class User {
 
     private String user_homeTown_district;
 
+    private Long registerTime;
+
+    private String registerTime_date;
+
+    public Long getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(Long registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public String getRegisterTime_date() {
+        return registerTime_date;
+    }
+
+    public void setRegisterTime_date(String registerTime_date) {
+        this.registerTime_date = registerTime_date;
+    }
+
     public int getUser_age() {
         return user_age;
     }

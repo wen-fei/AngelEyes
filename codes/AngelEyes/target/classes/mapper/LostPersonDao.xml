@@ -100,4 +100,11 @@
           #{ids}
         </foreach>
     </delete>
+
+    <select id="queryInfo50Recent" resultType="LostPerson">
+        select *
+        from lost_person_info
+        ORDER BY lost_person_id DESC
+        LIMIT 0,50
+    </select>
 </mapper>

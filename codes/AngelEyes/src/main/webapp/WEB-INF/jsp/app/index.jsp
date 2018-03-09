@@ -44,6 +44,14 @@
 		</script>
         <!----//End-dropdown--->
 		<!---//End-click-drop-down-menu----->
+		<style>
+			.rateit p{
+				font-size: 0.875em;
+				color: #B7B5B5;
+				margin: 0.6em 0;
+				line-height: 1.5em;
+			}
+		</style>
 	</head>
 	<body>
 		<!---start-wrap---->
@@ -51,7 +59,7 @@
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
-					<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/logo.png" title="pinbal" /></a>
+					<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
 				</div>
 				<div class="nav-icon">
 					 <a href="#" class="right_bt" id="activator"><span> </span> </a>
@@ -62,14 +70,18 @@
 						 	<div class="form_content">
 								<div class="menu_box_list">
 									<ul>
-										<li><a href="index.jsp"><span>��ҳ</span></a></li>
-										<li><a href="introduction.html"><span>��վ����</span></a></li>
-										<li><a href="#"><span>��̳</span></a></li>
-										<li><a href="contact.html"><span>��ϵ����</span></a></li>
+										<li><a href="index.jsp"><span>家寻宝贝</span></a></li>
+										<li><a href="introduction.html"><span>宝贝寻家</span></a></li>
+										<li><a href="contact.html"><span>走失登记</span></a></li>
+										<li><a href="#"><span>论坛</span></a></li>
+										<li><a href="contact.html"><span>关于我们</span></a></li>
 										<div class="clear"> </div>
 									</ul>
 								</div>
-								<a class="boxclose" id="boxclose"> <span> </span></a>
+								<a class="boxclose" id="boxclose">
+									<span>
+									</span>
+								</a>
 							</div>                                  
 						</div> 	
 					</div> 
@@ -82,7 +94,11 @@
 				<div class="userinfo">
 					<div class="user">
 						<ul>
-							<li><a href="login.html"><img src="<%=request.getContextPath() %>/style/imgs/user-pic.png" title="user-name" /><span>��¼</span></a></li>
+							<li>
+								<a href="login.html"><img src="<%=request.getContextPath() %>/style/imgs/user-pic.png" title="user-name" />
+									<span>用户昵称</span>
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -90,244 +106,32 @@
 			</div>
 		</div>
 		<!---//End-header---->
-        <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >��ҵ��վģ��</a></div>
 		<!---start-content---->
 		<div class="content">
 			<div class="wrap">
 			 <div id="main" role="main">
 			      <ul id="tiles">
-			        <!-- These are our grid blocks -->
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="200">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">С��</a></h3>
-				        		<span><a href="#"><label> </label>����</a></span>
-				        		<p>����ʱ�䣺2018.3.3</p>		
-				        		<p>�������ڣ�2003.1.1</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img2.jpg" width="200" height="299">
-						<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<span><a href="#"><label> </label>����</a></span>
-				        		<p>����ʱ�䣺2018.3.3</p>		
-				        		<p>�������ڣ�2003.1.1</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-					</li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img3.jpg" width="200" height="214">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<span><a href="#"><label> </label>����</a></span>
-				        		<p>����ʱ�䣺2018.3.3</p>		
-				        		<p>�������ڣ�2003.1.1</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img4.jpg" width="200" height="333">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<span><a href="#"><label> </label>����</a></span>
-				        		<p>����ʱ�䣺2018.3.3</p>		
-				        		<p>�������ڣ�2003.1.1</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <!----//--->
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img4.jpg" width="200" height="333">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<span><a href="#"><label> </label>����</a></span>
-				        		<p>����ʱ�䣺2018.3.3</p>		
-				        		<p>�������ڣ�2003.1.1</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img3.jpg" width="200" height="214">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img2.jpg" width="200" height="299">
-						<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-					</li>
-					  <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="200">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <!----//--->
-			         <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="200">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="299">
-						<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-					</li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="214">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
-			        <li onClick="location.href='single-page.html';">
-			        	<img src="<%=request.getContextPath() %>/style/imgs/img4.jpg" width="200" height="333">
-			        	<div class="post-info">
-			        		<div class="post-basic-info">
-				        		<h3><a href="#">Animation films</a></h3>
-				        		<span><a href="#"><label> </label>Movies</a></span>
-				        		<p>Lorem Ipsum is simply dummy text of the printing & typesetting industry.</p>
-			        		</div>
-			        		<div class="post-info-rate-share">
-			        			<div class="rateit">
-			        				<span> </span>
-			        			</div>
-			        			<div class="post-share">
-			        				<span> </span>
-			        			</div>
-			        			<div class="clear"> </div>
-			        		</div>
-			        	</div>
-			        </li>
+                      <c:forEach items="${lost_person_info}" var="lost_info">
+						  <li onClick="location.href='/app/loster/person_id/${lost_info.lost_person_id}';">
+							<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="200">
+							<div class="post-info">
+								<div class="post-basic-info">
+									<h3><a href="#">走失人姓名：${lost_info.lost_person_name}</a></h3>
+									<p>出生日期：${lost_info.lost_person_birth}</p>
+									<p>走失时身高：${lost_info.lost_person_height}</p>
+									<p>特征：${lost_info.lost_person_character}</p>
+								</div>
+								<div class="post-info-rate-share">
+									<div class="rateit">
+										<p>家属姓名：${lost_info.lost_person_family_name}</p>
+										<p>家属联系方式：${lost_info.lost_person_family_phone} </p>
+									</div>
+									<%--<div class="post-share"></div>--%>
+									<div class="clear"> </div>
+								</div>
+							</div>
+						</li>
+					  </c:forEach>
 			        <!-- End of grid blocks -->
 			      </ul>
 			    </div>
@@ -390,7 +194,6 @@
 		      $window.bind('scroll.wookmark', onScroll);
 		    })(jQuery);
 		  </script>
-		
 		<!---//End-wrap---->
 	</body>
 </html>

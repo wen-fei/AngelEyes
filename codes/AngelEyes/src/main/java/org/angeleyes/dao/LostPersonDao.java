@@ -3,6 +3,8 @@ package org.angeleyes.dao;
 import org.angeleyes.entity.LostPerson;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface LostPersonDao {
 
     /**
@@ -139,4 +141,10 @@ public interface LostPersonDao {
      * @return
      */
     int deleteLostPersonInfo_many(Long[] ids);
+
+    /**
+     * 查询最近时间走失的50条信息
+     * @return
+     */
+    List<LostPerson> queryInfo50Recent();
 }

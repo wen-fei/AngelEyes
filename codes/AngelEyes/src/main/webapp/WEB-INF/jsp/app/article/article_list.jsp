@@ -429,7 +429,7 @@
         $("#save").click(function(){
             if ($("#user_id").val()== null){
                 alert("请先登录！");
-                window.location.href = "http://localhost:8080/app/login/loginview";
+                window.location.href = "http://localhost:8088/app/login/loginview";
             }
             else if($("#article_title_new").val() == ""){
                 alert("主题不能为空！");
@@ -491,7 +491,7 @@
         if (${sessionScope.UserInfo_session != null}) {
             if (${sessionScope.UserInfo_session.wantschool == null}) {
                 alert("您尚未完善用户信息，请填写您的资料！");
-                window.location.href = "http://localhost:8080/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/setting";
+                window.location.href = "http://localhost:8088/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/setting";
             }
         }
     });
