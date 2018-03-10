@@ -79,16 +79,15 @@ public interface LostPersonService {
      * @param character    走失人特征
      * @param others       其他
      * @param time         走失时间
-     * @param registerTime 记录产生时间
      * @param img_id       走失人图片
      * @param family_name  家属联系人姓名
      * @param family_phone 家属联系人电话
      * @return
      */
-    int insertLostPerson(int type, String no, String name,
-                         int sex, int age, int height, String area,
+    int insertLostPerson(String type, String no, String name,
+                         String sex, String age, String height, String area,
                          String live, String character, String others,
-                         Long time, Long registerTime, Long img_id,
+                         String time, Long img_id,
                          String family_name, String family_phone);
 
     /**

@@ -45,16 +45,13 @@ public class LostPersonServiceImpl implements LostPersonService {
         return lostPersonDao.queryByTime(startTime, endTime);
     }
 
-    public int insertLostPerson(int type, String no, String name, int sex,
-                                int age, int height, String area, String live,
-                                String character, String others, Long time,
-                                Long registerTime, Long img_id, String family_name,
-                                String family_phone) {
-        registerTime = new Date().getTime();
+    public int insertLostPerson(String type, String no, String name, String sex, String age, String height, String area, String live, String character, String others, String time, Long img_id, String family_name, String family_phone) {
+        String registerTime = String.valueOf(new Date().getTime());
         return lostPersonDao.insertLostPerson(type, no, name, sex, age,
                 height, area, live, character, others, time, registerTime, img_id, family_name, family_phone
         );
     }
+
 
     public int updateLostPersonInfo(Long id, int type, String no,
                                     String name, int sex, int age,
@@ -78,5 +75,6 @@ public class LostPersonServiceImpl implements LostPersonService {
         List<LostPerson> lostPerson = lostPersonDao.queryInfo50Recent();
         return lostPerson;
     }
+
 
 }

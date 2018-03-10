@@ -59,6 +59,7 @@
 			<div class="header">
 				<div class="wrap">
 				<div class="logo">
+					<h3>网站导航</h3>
 					<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
 				</div>
 				<div class="nav-icon">
@@ -72,7 +73,7 @@
 									<ul>
 										<li><a href="index.jsp"><span>家寻宝贝</span></a></li>
 										<li><a href="introduction.html"><span>宝贝寻家</span></a></li>
-										<li><a href="contact.html"><span>走失登记</span></a></li>
+										<li><a href="/app/loster/registration"><span>走失登记</span></a></li>
 										<li><a href="#"><span>论坛</span></a></li>
 										<li><a href="contact.html"><span>关于我们</span></a></li>
 										<div class="clear"> </div>

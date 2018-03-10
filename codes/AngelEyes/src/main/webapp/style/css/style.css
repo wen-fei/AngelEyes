@@ -35,7 +35,7 @@ body{
 }
 /*---start-header----*/
 .header{
-	background:url(../images/border.png) repeat-x 0px 0px #FFF;
+	background:url(../../style/imgs/border.png) repeat-x 0px 0px #FFF;
 	padding: 1.5em 0 1.2em;
 	border-bottom: 1px solid rgba(214, 213, 212, 0.64);
 	position: fixed;
@@ -60,7 +60,7 @@ body{
 	width:48px;
 	height:34px;
 	display:block;
-	background:url(../images/nav-icon.png) no-repeat 0px 0px;
+	background:url(../../style/imgs/nav-icon.png) no-repeat 0px 0px;
 }
 .top-searchbar {
 	float: left;
@@ -95,7 +95,7 @@ body{
 }
 .top-searchbar input[type="submit"]{
 	position: absolute;
-	background: url(../images/search-icon.png) no-repeat 0px 0px;
+	background: url(../../style/imgs/search-icon.png) no-repeat 0px 0px;
 	height: 26px;
 	width: 26px;
 	display: inline-block;
@@ -167,10 +167,10 @@ a.boxclose{
 	width:35px;
 	height:35px;
 	display:inline-block;
-	background:url(../images/close2.png) no-repeat 0px 0px;
+	background:url(../../style/imgs/close2.png) no-repeat 0px 0px;
 }
 .boxclose span:hover{
-	background:url(../images/close2h.png) no-repeat 0px 0px;
+	background:url(../../style/imgs/close2h.png) no-repeat 0px 0px;
 }
 /*--userinfo--*/
 .userinfo{
@@ -207,7 +207,7 @@ a.boxclose{
 /*--//userinfo--*/
 /*----start-post-grids----*/
 .post-share span{
-	background:url(../images/facebook.png) no-repeat 0px 0px;
+	background:url(../../style/imgs/facebook.png) no-repeat 0px 0px;
 	height:26px;
 	width:26px;
 	display:inline-block;
@@ -217,16 +217,16 @@ a.boxclose{
 	-o-border-radius:30em;
 }
 .post-share span:hover{
-	background:url(../images/facebookh.png) no-repeat 0px 0px;
+	background:url(../../style/imgs/facebookh.png) no-repeat 0px 0px;
 }
 .rateit span{
 	height:18px;
 	width:76px;
-	background:url(../images/start-rate.png) no-repeat 0px 0px; 
+	background:url(../../style/imgs/start-rate.png) no-repeat 0px 0px;
 	display:inline-block;
 }
 .rateit span:hover{
-	background:url(../images/start-rateh.png) no-repeat 0px 0px; 
+	background:url(../../style/imgs/start-rateh.png) no-repeat 0px 0px;
 }
 .post-basic-info{
 	padding: 7% 7% 5% 7%;
@@ -252,7 +252,7 @@ a.boxclose{
 	height:12px;
 	width:12px;
 	display:inline-block;
-	background:url(../images/map-pin.png) no-repeat 0px 0px;
+	background:url(../../style/imgs/map-pin.png) no-repeat 0px 0px;
 	margin-right: 0.4em;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -430,7 +430,7 @@ p.para {
 	font-weight: 400;
 }
 .btn1:before{
-	content:url('../images/reply.png');
+	content:url('../../style/imgs/reply.png');
 	float:left;
 }
 .btn1:hover{

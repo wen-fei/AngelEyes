@@ -77,18 +77,18 @@ public interface LostPersonDao {
      * @param family_phone 家属联系人电话
      * @return
      */
-    int insertLostPerson(@Param("type") int type,
+    int insertLostPerson(@Param("type") String type,
                          @Param("no") String no,
                          @Param("name") String name,
-                         @Param("sex") int sex,
-                         @Param("age") int age,
-                         @Param("height") int height,
+                         @Param("sex") String sex,
+                         @Param("age") String age,
+                         @Param("height") String height,
                          @Param("arae") String area,
                          @Param("live") String live,
                          @Param("character") String character,
                          @Param("others") String others,
-                         @Param("time") Long time,
-                         @Param("registerTime") Long registerTime,
+                         @Param("time") String time,
+                         @Param("registerTime") String registerTime,
                          @Param("img_id") Long img_id,
                          @Param("family_name") String family_name,
                          @Param("family_phone") String family_phone);
