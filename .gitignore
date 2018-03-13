@@ -1,0 +1,5 @@
+data/*
+*.class
+codes/AngelEyes/.idea/*
+codes/AngelEyes/target/*
+codes/AngelEyes/src/main/webapp/style/imgs/loster/*
