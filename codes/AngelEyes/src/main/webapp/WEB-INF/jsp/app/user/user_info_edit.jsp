@@ -189,6 +189,26 @@
                      }
                  });
          });
+         // 传给后台界面url，用于登陆后返回
+         query = {
+             "back_url": window.location.href
+         },
+             $.ajax({
+                 url: "${pageContext.request.contextPath}/app/login/back_url_session",
+                 type: 'post',
+                 data: query,
+                 success: function (data, status) {
+                     if (data == "1") {
+                         // alert("退出成功");
+                         // window.location.reload();
+                     } else if (data == "0") {
+                         // alert("error");
+                     }
+                 },
+                 error: function (xhr, textStatus, errorThrown) {
+                     alert("error！");
+                 }
+             });
      });
 </script>
 </body>

@@ -101,7 +101,7 @@
 </head>
 <body style="background: #E3E5E8;">
 <!--头部-->
-<div clasa="hd">
+<div class="hd">
     <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
         <div id="logo" class="col-md-6">
             <%--<img src="../../../style/imgs/app/forum/logo.png" alt="">--%>
@@ -123,13 +123,14 @@
             <ul class="Hui-userbar" style="margin-top: 20px;">
 
                 <c:if test="${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}">
+
                     <li>
                         <a  href="/app/login/registview" class="btn btn-success">
                             <span class="glyphicon glyphicon-user"></span> 注册
                         </a>
                     </li>
                     <li>
-                        <a  href="/app/login/loginview" class="btn btn-primary">
+                        <a  href="/app/login/loginview" class="btn btn-primary" id="login_button">
                             <span class="glyphicon glyphicon-log-in"></span> 登录
                         </a>
                     </li>
@@ -470,9 +471,49 @@
         } else {
             $("#save").removeAttr("disabled");
         }
+
+        // 传给后台界面url，用于登陆后返回
+        query = {
+            "back_url": window.location.href
+        },
+        $.ajax({
+            url: "${pageContext.request.contextPath}/app/login/back_url_session",
+            type: 'post',
+            data: query,
+            success: function (data, status) {
+                if (data == "1") {
+                    // alert("退出成功");
+                    // window.location.reload();
+                } else if (data == "0") {
+                    // alert("error");
+                }
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                alert("error！");
+            }
+        });
+
     });
-
-
+    <%--$("#login_button").click(function () {--%>
+        <%--query = {--%>
+            <%--"back_url": $("#back_url").val()--%>
+        <%--};--%>
+        <%--$.ajax({--%>
+                <%--url:"${pageContext.request.contextPath}/app/login/loginview",--%>
+                <%--type:'post',--%>
+                <%--data: query,--%>
+                <%--success: function (data, status) {--%>
+                    <%--if (data == "1") {--%>
+                        <%--window.location.href = "http://localhost:8088/app/login/loginview";--%>
+                    <%--}else if (data == "0") {--%>
+                        <%--alert("error");--%>
+                    <%--}--%>
+                <%--},--%>
+                <%--error:function(xhr,textStatus,errorThrown){--%>
+                    <%--alert("请求错误！");--%>
+                <%--}--%>
+        <%--});--%>
+    <%--})--%>
 </script>
 </body>
 

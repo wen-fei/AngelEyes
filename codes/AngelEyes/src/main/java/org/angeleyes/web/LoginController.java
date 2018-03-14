@@ -36,18 +36,16 @@ public class LoginController {
     public String login(Model model, HttpServletRequest request, HttpSession session){
         String user_email = request.getParameter("email");
         String user_password = request.getParameter("password");
-//        System.out.println("user_name is:" + user_email);
-//        System.out.println("user_password is:" + user_password);
-
         // 两次密码不一致放在前台用模态框来验证
         User user = userService.user_login(user_email, user_password);
         if(user == null){
             model.addAttribute("registResult","用户名或密码错误");
             return "/error/regist_result";
         }else{
-
             session.setAttribute("UserInfo_session",user);
-            return "redirect: /app/index";
+            String back_url = session.getAttribute("back_url_session").toString();
+            System.out.println("login ------------> back_url is :" + back_url);
+            return "redirect: " + back_url ;
         }
 
     }
@@ -96,8 +94,23 @@ public class LoginController {
      * @return
      */
     @RequestMapping(value="/loginview")
-    public String loginView(Model model){
+    public String loginView(Model model, HttpServletRequest request){
         return "/app/user/login";
+    }
+
+    /**
+     * 接收前台传过来的用于返回的url
+     * @return
+     */
+    @RequestMapping(value="/back_url_session")
+    @ResponseBody
+    public String get_back_url(HttpServletRequest request, HttpSession session, @RequestBody String result){
+        String back_url = request.getParameter("back_url");
+//        System.out.println("back_url_session ------------> back_url is :" + back_url);
+        if(back_url != null){
+            session.setAttribute("back_url_session", back_url);
+        }
+        return "1";
     }
 
     /**

@@ -34,15 +34,18 @@
     <mvc:interceptors>
         <!-- 多个拦截器，顺序执行 -->
         <mvc:interceptor>
+            <mvc:mapping path="/app/login/loginview"/>
+            <bean class="org.angeleyes.LoginInterceptor.BackURLInterceptor"/>
+        </mvc:interceptor>
+
+        <mvc:interceptor>
+            <!-- 这里主要拦截的是后台管理员页面 -->
             <mvc:mapping path="/admin/**"/>
             <mvc:exclude-mapping path="/admin/loginview" />
             <mvc:exclude-mapping path="/admin/login" />
             <bean class="org.angeleyes.LoginInterceptor.LoginInterceptor"/>
         </mvc:interceptor>
 
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/app/login/loginview"/>-->
-            <!--<bean class="org.choice.LoginInterceptor.BackURLInterceptor"/>-->
-        <!--</mvc:interceptor>-->
+
     </mvc:interceptors>
 </beans>

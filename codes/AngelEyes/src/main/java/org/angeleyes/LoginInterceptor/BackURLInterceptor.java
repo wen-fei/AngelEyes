@@ -16,9 +16,9 @@ public class BackURLInterceptor implements HandlerInterceptor {
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String url = requestUri.substring(contextPath.length());
-        System.out.println(requestUri);
-        System.out.println(contextPath);
-        System.out.println(url);
+        //System.out.println(requestUri);
+       // System.out.println(contextPath);
+        //System.out.println(url);
 
         return true;
     }
