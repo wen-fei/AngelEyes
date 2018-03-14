@@ -42,7 +42,6 @@
         <!--顶部右侧账户-->
         <div id="userLogin" class="col-md-3">
             <ul class="Hui-userbar" style="margin-top: 20px;">
-
                 <c:if test="${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}">
                     <li>
                         <a  href="/app/login/registview" class="btn btn-success">
@@ -66,7 +65,6 @@
                 </c:if>
             </ul>
         </div>
-
     </div>
 </div>
 <div class=" container">

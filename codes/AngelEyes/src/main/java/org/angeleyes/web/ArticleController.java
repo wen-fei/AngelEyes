@@ -154,4 +154,41 @@ public class ArticleController {
         return "/app/article/article_reply";
     }
 
+    /**
+     * 前台文章点赞、收藏、转发等日志记录
+     * @param typeId
+     * @param result
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "app/article/type{typeId}/update",produces = {"application/json;charset=UTF-8"})
+    @ResponseBody
+    public  String articleCollect(@PathVariable("typeId") Integer typeId, @RequestBody String result,
+                                  HttpServletRequest request){
+        logger.info("typeId:" + typeId);
+        long uid = Long.valueOf(request.getParameter("user_info_id"));
+        long aid = Long.valueOf(request.getParameter("article_id"));
+        // 不是分享
+        if (typeId != 2){
+            // 判断是否已经点赞收藏踩
+            Article articleIn = articleService.articleColletCheck(aid, uid, typeId);
+            if (articleIn != null){
+                result = ""+typeId;
+            }else{
+                int insertResult = articleService.articleCollet(aid, uid, typeId);
+                if (insertResult > 0)
+                    result = "9";
+                else
+                    result = "8";
+            }
+        }else{
+            int insertResult = articleService.articleCollet(aid, uid, typeId);
+            if (insertResult > 0)
+                result = "9";
+            else
+                result = "8";
+        }
+        return result;
+    }
+
 }

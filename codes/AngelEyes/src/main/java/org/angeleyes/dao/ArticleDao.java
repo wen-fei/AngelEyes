@@ -239,7 +239,7 @@ public interface ArticleDao {
      * @param aid
      * @param uid
      * @param time
-     * @param type 1 点赞 2 踩 3 转发 4 收藏
+     * @param type 1 收藏 2 分享 3 顶 4 踩
      * @return
      */
     int articleCollet(@Param("aid") long aid,

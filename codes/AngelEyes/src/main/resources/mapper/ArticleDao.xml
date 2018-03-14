@@ -195,4 +195,55 @@
         set article_read_number = article_read_number +1
         WHERE  article_id = #{articleId}
     </update>
+
+    <update id="articleCollet">
+        <if test="type == 1">
+            insert into article_collect(aid, uid, time, type)
+             values(#{aid}, #{uid}, #{time}, 1);
+            update article set article_collect_counts = article_collect_counts + 1 WHERE article_id = #{aid};
+        </if>
+        <if test="type == 2">
+            insert into article_collect(aid, uid, time, type)
+            values(#{aid}, #{uid}, #{time}, 2);
+            update article set article_share_counts = article_share_counts + 1 WHERE article_id = #{aid};
+        </if>
+        <if test="type == 3">
+            insert into article_collect(aid, uid, time, type)
+            values(#{aid}, #{uid}, #{time}, 3);
+            update article set article_good_counts = article_good_counts + 1 WHERE article_id = #{aid};
+        </if>
+        <if test="type == 4">
+            insert into article_collect(aid, uid, time, type)
+            values(#{aid}, #{uid}, #{time},4);
+            update article set article_notgood_counts = article_notgood_counts + 1 WHERE article_id = #{aid};
+        </if>
+    </update>
+
+    <select id="articleColletCheck" resultType="Article">
+        <if test="type == 1">
+            SELECT article.article_id
+            from article_collect, article
+            where article_collect.aid = article.article_id
+            and article_collect.aid = #{aid}
+            and article_collect.uid = #{uid}
+            and article_collect.type = 1
+
+        </if>
+        <if test="type == 3">
+            SELECT article.article_id
+            from article_collect, article
+            where article_collect.aid = article.article_id
+            and article_collect.aid = #{aid}
+            and article_collect.uid = #{uid}
+            and article_collect.type = 3
+        </if>
+        <if test="type == 4">
+            SELECT article.article_id
+            from article_collect, article
+            where article_collect.aid = article.article_id
+            and article_collect.aid = #{aid}
+            and article_collect.uid = #{uid}
+            and article_collect.type = 4
+        </if>
+    </select>
 </mapper>

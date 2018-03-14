@@ -360,25 +360,25 @@
                     <tr>
                         <td class="plc plm">
                             <div id="p_btn" class="mtw mbm hm cl">
-                                <a href="#"  onclick="articleCollcet(4)" title="收藏本帖">
+                                <a href="#"  onclick="articleCollcet(1)" title="收藏本帖">
                                     <i>
                                         <img src="../../../../style/imgs/app/forum/fav.gif" alt="收藏">收藏
                                         <span>${articleInfo.article_collect_counts}</span>
                                     </i>
                                 </a>
-                                <a class="sharep" href="#" title="分享推精华" onclick="articleCollcet(3)">
+                                <a class="sharep" href="#" title="分享推精华" onclick="articleCollcet(2)">
                                     <i>
                                         <img src="../../../../style/imgs/app/forum/oshr.png" alt="分享">分享
                                         <span>${articleInfo.article_share_counts}</span>
                                     </i>
                                 </a>
-                                <a id="recommend_add" href="#" onclick="articleCollcet(1)" title="顶一下">
+                                <a id="recommend_add" href="#" onclick="articleCollcet(3)" title="顶一下">
                                     <i>
                                         <img src="../../../../style/imgs/app/forum/rec_add.gif" alt="顶">顶
                                         <span>${articleInfo.article_good_counts}</span>
                                     </i>
                                 </a>
-                                <a id="recommend_subtract" href="#" onclick="articleCollcet(2)" title="踩一下">
+                                <a id="recommend_subtract" href="#" onclick="articleCollcet(4)" title="踩一下">
                                     <i><img src="../../../../style/imgs/app/forum/rec_subtract.gif" alt="踩">踩
                                         <span>${articleInfo.article_notgood_counts}</span>
                                     </i>
@@ -798,11 +798,11 @@
                             window.location.reload();
                         }else if (data=="8"){
                             alert("插入数据库错误");
-                        }else if (data=="1"){
+                        }else if (data=="3"){
                             alert("您已经点过赞");
-                        }else if (data== "2"){
+                        }else if (data== "4"){
                             alert("您已经踩过");
-                        }else if(data == "4"){
+                        }else if(data == "1"){
                             alert("您已经收藏过本帖子");
                         }
                     },
