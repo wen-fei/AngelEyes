@@ -130,4 +130,15 @@ public interface UserDao {
      */
     int user_regist(@Param("email") String email, @Param("user_name") String user_name,
                     @Param("password") String password);
+
+    /**
+     * 日志记录，用户点击一篇主题以后记录到数据库中
+     * @param userId
+     * @param articleId
+     * @param time
+     * @return
+     */
+    int insertToUserArticleRecords_click(@Param("userId") Long userId,
+                                         @Param("articleId") Long articleId,
+                                         @Param("time") Long time);
 }

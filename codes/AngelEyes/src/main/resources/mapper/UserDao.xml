@@ -86,7 +86,7 @@
     </update>
     
     <select id="user_login" resultType="User">
-        SELECT user_id
+        SELECT *
         FROM user
         WHERE user_email = #{email}
         AND user_password = #{password}
@@ -97,4 +97,10 @@
                 VALUES (#{email}, #{password}, #{user_name})
 
     </insert>
+
+    <insert id="insertToUserArticleRecords_click">
+        insert into user_article_records(uid, aid,click,time)
+        values(#{userId},#{articleId},1, #{time})
+    </insert>
+
 </mapper>

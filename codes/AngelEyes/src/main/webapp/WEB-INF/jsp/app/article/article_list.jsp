@@ -102,9 +102,9 @@
 <body style="background: #E3E5E8;">
 <!--头部-->
 <div clasa="hd">
-    <div class="navbar navbar-default navbarcolor" style="background-color: #fff;">
+    <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
         <div id="logo" class="col-md-6">
-            <img src="../../../style/imgs/app/forum/logo.png" alt="">
+            <%--<img src="../../../style/imgs/app/forum/logo.png" alt="">--%>
         </div>
         <div class="col-md-3" style="margin-top: 20px">
             <form action="/app/search" id="searchForm">
@@ -137,9 +137,9 @@
                 <c:if test="${sessionScope.UserInfo_session != null}">
                     <li>
                         <span>欢迎会员：</span>
-                        <input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_info_id}">
-                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/info" title="点击修改个人资料">
-                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.name}
+                        <input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}">
+                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
+                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
                         </a>
                         <button id="logout" class="btn btn-danger">退出</button>
                     </li>
@@ -154,7 +154,7 @@
     <!--导航-->
     <div id="pt" class="bm cl">
         <div class="z">
-            <em>»</em><a href="/app/index" class="nvhm">考研论坛</a><em>›</em>
+            <em>»</em><a href="/app/index" class="nvhm">天使之眼</a><em>›</em>
             <%--<a href="/app/index" id="forum_id">${moduleInfo.forum.forum_name}</a><em>›</em>--%>
             <a href="/app/index" id="forum_id"></a><em>›</em>
             <input type="text" hidden="hidden" value="">
@@ -222,23 +222,6 @@
                                             <div ></div>
                                             全部主题
                                         </a>
-                                        <%--<a href="#" class="xi2">--%>
-                                            <%--<div></div>--%>
-                                            <%--最新--%>
-                                        <%--</a>--%>
-                                        <%--<a href="#" class="xi2">--%>
-                                            <%--<div></div>--%>
-                                            <%--热帖--%>
-                                        <%--</a>--%>
-                                        <%--<a href="#" class="xi2">--%>
-                                            <%--<div></div>--%>
-                                            <%--精华--%>
-                                        <%--</a>--%>
-                                        <%--<a id="filter_dateline" href="javascript:;" class="showmenu xi2">更多</a>--%>
-                                        <%--<span id="clearstickthread" style="display: none;">--%>
-                                            <%--<span class="pipe">|</span>--%>
-                                            <%--<a href="javascript:;" class="xi2" title="显示置顶">显示置顶</a>--%>
-                                        <%--</span>--%>
                                     </div>
                                 </th>
                             </tr>
@@ -486,13 +469,6 @@
             $("#save").attr("disabled", "disabled");
         } else {
             $("#save").removeAttr("disabled");
-        }
-
-        if (${sessionScope.UserInfo_session != null}) {
-            if (${sessionScope.UserInfo_session.wantschool == null}) {
-                alert("您尚未完善用户信息，请填写您的资料！");
-                window.location.href = "http://localhost:8088/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/setting";
-            }
         }
     });
 

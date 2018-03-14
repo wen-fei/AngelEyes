@@ -182,4 +182,14 @@ public interface ArticleService {
      * @return
      */
     List<Article> getArticleListHotByRead();
+
+
+    List<Article> getArticlesGood(int moduleID);
+
+    List<Article> getArticlesTop(int moduleID);
+
+    List<Article> getArticlesHot(int moduleID);
+
+    List<Article> getArticlesCommon(int moduleID);
+
 }

@@ -90,4 +90,12 @@ public interface UserService {
     User check_email(String email);
 
 
+    /**
+     * 日志记录, 用户点击了一次页面
+     * @param uid
+     * @param aid
+     * @return
+     */
+    int insertToUserRecord_click(long uid, long aid);
+
 }

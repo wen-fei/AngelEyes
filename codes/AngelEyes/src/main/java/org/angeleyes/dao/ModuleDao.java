@@ -62,7 +62,7 @@ public interface ModuleDao {
      * @param moduleId
      * @return
      */
-    List<Article> getArticlesJing(Integer moduleId);
+    List<Article> getArticlesGood(Integer moduleId);
 
     /**
      * 11. 查询某模块下置顶帖子

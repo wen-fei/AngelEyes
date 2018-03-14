@@ -107,4 +107,9 @@
         ORDER BY lost_person_id DESC
         LIMIT 0,50
     </select>
+
+    <select id="getImgUrlByImgId" resultType="String">
+        select img_url FROM img_sources
+        WHERE img_id = #{img_id}
+    </select>
 </mapper>

@@ -71,13 +71,6 @@ public interface ModuleService {
     List<Article> getArticlesHot(int moduelId);
 
     /**
-     * 查询某模块下加精帖子
-     * @param moduleId
-     * @return
-     */
-    List<Article> getArticlesJing(int moduleId);
-
-    /**
      * 查询某模块下置顶帖子
      * @param moduleId
      * @return
@@ -92,16 +85,12 @@ public interface ModuleService {
     List<Article> getArticlesCommon(int moduleId);
 
     /**
-     * 获取统计信息，无参默认查询所有统计信息
+     * 查询普通帖子
+     * @param moduleId
      * @return
      */
-    Counts getCountsInfo();
-    /**
-     * 获取统计信息
-     * @param typeId   值为1 按版块id查，值为2按模块id查
-     * @param ID  板块id或模块id
-     * @return
-     */
-    Counts getCountsInfo(int typeId, int ID);
+    List<Article> getArticlesGood(int moduleId);
+
+
 
 }

@@ -1,7 +1,5 @@
 package org.angeleyes.entity;
 
-import java.sql.Timestamp;
-
 public class Article {
     private Long article_id;
 
@@ -11,9 +9,11 @@ public class Article {
 
     private String article_content;
 
-    private Timestamp article_create_time;
+    private Long article_create_time;
 
     private int article_module_id;
+
+    private String article_module_name;
 
     private int article_comment_number;
 
@@ -27,7 +27,11 @@ public class Article {
 
     private Long article_last_reply_userID;
 
-    private Timestamp article_last_reply_time;
+    private String  article_last_reply_username;
+
+    private Long article_last_reply_time;
+
+    private String article_last_reply_time_date;
 
     private int article_collect_counts;
 
@@ -42,6 +46,46 @@ public class Article {
     private String article_author_type_name;
 
     private String article_create_time_date;
+
+    public String getArticle_last_reply_username() {
+        return article_last_reply_username;
+    }
+
+    public void setArticle_last_reply_username(String article_last_reply_username) {
+        this.article_last_reply_username = article_last_reply_username;
+    }
+
+    public Long getArticle_create_time() {
+        return article_create_time;
+    }
+
+    public String getArticle_module_name() {
+        return article_module_name;
+    }
+
+    public void setArticle_module_name(String article_module_name) {
+        this.article_module_name = article_module_name;
+    }
+
+    public Long getArticle_last_reply_time() {
+        return article_last_reply_time;
+    }
+
+    public void setArticle_create_time(Long article_create_time) {
+        this.article_create_time = article_create_time;
+    }
+
+    public void setArticle_last_reply_time(Long article_last_reply_time) {
+        this.article_last_reply_time = article_last_reply_time;
+    }
+
+    public String getArticle_last_reply_time_date() {
+        return article_last_reply_time_date;
+    }
+
+    public void setArticle_last_reply_time_date(String article_last_reply_time_date) {
+        this.article_last_reply_time_date = article_last_reply_time_date;
+    }
 
     public String getArticle_create_time_date() {
         return article_create_time_date;
@@ -99,13 +143,6 @@ public class Article {
         this.article_content = article_content;
     }
 
-    public Timestamp getArticle_create_time() {
-        return article_create_time;
-    }
-
-    public void setArticle_create_time(Timestamp article_create_time) {
-        this.article_create_time = article_create_time;
-    }
 
     public int getArticle_module_id() {
         return article_module_id;
@@ -163,13 +200,6 @@ public class Article {
         this.article_last_reply_userID = article_last_reply_userID;
     }
 
-    public Timestamp getArticle_last_reply_time() {
-        return article_last_reply_time;
-    }
-
-    public void setArticle_last_reply_time(Timestamp article_last_reply_time) {
-        this.article_last_reply_time = article_last_reply_time;
-    }
 
     public int getArticle_collect_counts() {
         return article_collect_counts;

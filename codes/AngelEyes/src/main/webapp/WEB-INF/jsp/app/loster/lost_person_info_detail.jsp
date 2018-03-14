@@ -6,6 +6,7 @@
 <head>
     <title>登记信息</title>
     <link href="<%=request.getContextPath() %>/style/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="<%=request.getContextPath() %>/style/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath() %>/style/imgs/fav-icon.png"/>
 
@@ -44,106 +45,145 @@
         });
     </script>
     <!----//End-dropdown--->
+    <style>
+        #FormView1{
+            margin-left: 100px;
+        }
+        .Hui-userbar > li{
+            margin-right:20px;
+            float: right;
+        }
+        .Hui-userbar{
+            float: right;
+        }
+        #userLogin{
+            float: right;
+        }
+    </style>
 </head>
 <body>
-<!---start-wrap---->
-<!---start-header---->
-<div class="header">
-    <div class="wrap">
-        <div class="logo">
-            <a href="#"><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="300" height="70" title="pinbal"/></a>
-        </div>
-        <div class="nav-icon">
-            <a href="#" class="right_bt" id="activator"><span> </span> </a>
-        </div>
-        <div class="box" id="box">
-            <div class="box_content">
-                <div class="box_content_center">
-                    <div class="form_content">
-                        <div class="menu_box_list">
-                            <ul>
-                                <li><a href="index.html"><span>家寻宝贝</span></a></li>
-                                <li><a href="introduction.html"><span>宝贝寻家</span></a></li>
-                                <li><a href="forum.html"><span>论坛</span></a></li>
-                                <li><a href="contact.html"><span>走失登记</span></a></li>
-                                <li><a href="contact.html"><span>联系我们</span></a></li>
-                                <div class="clear"></div>
-                            </ul>
+    <!---start-wrap---->
+    <!---start-header---->
+    <div class="header">
+        <div class="wrap">
+            <div class="logo">
+                <%--<h3>网站导航</h3>--%>
+                <a href="#"><span>网站导航</span><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
+            </div>
+            <div class="nav-icon">
+                <a href="#" class="right_bt" id="activator"><span> </span> </a>
+            </div>
+            <div class="box" id="box">
+                <div class="box_content">
+                    <div class="box_content_center">
+                        <div class="form_content">
+                            <div class="menu_box_list">
+                                <ul>
+                                    <li><a href="/app/module1/list"><span>宝贝寻家</span></a></li>
+                                    <li><a href="/app/module2/list"><span>家寻宝贝</span></a></li>
+                                    <li><a href="/app/loster/registration"><span>走失登记</span></a></li>
+                                    <li><a href="/app/contact"><span>关于我们</span></a></li>
+                                    <div class="clear"> </div>
+                                </ul>
+                            </div>
+                            <a class="boxclose" id="boxclose">
+										<span>
+										</span>
+                            </a>
                         </div>
-                        <a class="boxclose" id="boxclose"> <span> </span></a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="top-searchbar">
-            <form>
-                <input type="text"/><input type="submit" value=""/>
-            </form>
-        </div>
-        <div class="userinfo">
-            <div class="user">
-                <ul>
-                    <li><a href="login.html"><img src="<%=request.getContextPath() %>/style/imgs/user-pic.png" title="user-name"/><span>登录</span></a></li>
+            <div class="top-searchbar">
+                <form>
+                    <input type="text" /><input type="submit" value="" />
+                </form>
+            </div>
+            <!--顶部右侧账户-->
+            <div id="userLogin" class="col-md-3">
+                <ul class="Hui-userbar" style="margin-top: 20px;">
+
+                    <c:if test="${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}">
+                        <li>
+                            <a  href="/app/login/registview" class="btn btn-success">
+                                <span class="glyphicon glyphicon-user"></span> 注册
+                            </a>
+                        </li>
+                        <li>
+                            <a  href="/app/login/loginview" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-log-in"></span> 登录
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:if test="${sessionScope.UserInfo_session != null}">
+                        <li>
+                            <span>欢迎会员：</span>
+                            <input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}">
+                            <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
+                                <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
+                            </a>
+                            <button id="logout" class="btn btn-danger">退出</button>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
+            <div class="clear"> </div>
         </div>
-        <div class="clear"></div>
     </div>
-</div>
-<!---//End-header---->
-<!---start-content---->
-<div class="content">
-    <div class="wrap">
-        <div class="contact-info">
-            <div class="contact-grids">
-                <!-- 宝贝信息开始 -->
-                <table cellspacing="0" border="0" id="FormView1" style="border-collapse:collapse;">
-                    <tr>
-                        <td colspan="2">
-                            <div id="table_1_normaldivl">
-                                <ul>
-                                    <li>
-                                        <div id="_table_1_photo"><img class="cimg" src="images/img1.jpg"
-                                                                      style="border: 1px solid rgb(217, 217, 217); padding: 2px; width: 266px; height: 360px;"/>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div id="font_red">
-                                            （1）本网站及志愿者提供的寻亲服务均是免费。<br/>
-                                            （2）如信息需修改、补充等情况，请直接通过本站在线咨询联系网站工作人员。<br/>
-                                            （3）本网站不保证登记信息中酬金承诺的有效性，知情人如需要有偿提供线索，请自行与登记人联系确认。
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div id="table_1_normaldivr" class="reginfo">
-                                <div class="title"><img src="<%=request.getContextPath() %>/style/imgs/app/djxx.jpg" width="200" height="50" alt=""/></div>
-                                <ul>
-                                    <li><span>寻亲类别：</span>${loster_info.lost_person_type}</li>
-                                    <li><span>寻亲编号：</span>${loster_info.lost_person_no}</li>
-                                    <li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</span>${loster_info.lost_person_name}</li>
-                                    <li><span>性&nbsp;&nbsp;&nbsp;&nbsp;别：</span>${loster_info.lost_person_sex}</li>
-                                    <li><span>出生日期：</span>${loster_info.lost_person_birth}</li>
-                                    <li><span>失踪时身高：</span>${loster_info.lost_person_height}</li>
-                                    <li><span>失踪时间：</span>${loster_info.lost_person_time}</li>
-                                    <li><span>失踪人所在地：</span>${loster_info.lost_person_live}</li>
-                                    <li><span>失踪地点：</span>${loster_info.lost_person_area}</li>
-                                    <li><span>寻亲者特征描述：</span>${loster_info.lost_person_character}</li>
-                                    <li><span>其他资料：</span>${loster_info.lost_person_others}</li>
-                                    <li><span>注册时间：</span>${loster_info.lost_person_registerTime}</li>
-                                    <li><span>家属联系人：</span>${loster_info.lost_person_family_name}</li>
-                                    <li><span>家属联系方式：</span>${loster_info.lost_person_family_phone}</li>
-                                </ul>
-                                <div class="clear"></div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+    <!---//End-header---->
+    <!---start-content---->
+    <div class="content">
+        <div class="wrap">
+            <div class="contact-info">
+                <div class="contact-grids">
+                    <!-- 宝贝信息开始 -->
+                    <table cellspacing="0" border="0" id="FormView1" style="border-collapse:collapse;">
+                        <tr>
+                            <td colspan="2">
+                                <div id="table_1_normaldivl">
+                                    <ul>
+                                        <li>
+                                            <div id="_table_1_photo">
+                                                <img class="cimg" src="<%=request.getContextPath() %>/style/imgs/app/loster/${loster_info.lost_person_no}.jpg" style="border: 1px solid rgb(217, 217, 217); padding: 2px; width: 266px; height: 360px;"/>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div id="font_red">
+                                                （1）本网站及志愿者提供的寻亲服务均是免费。<br/>
+                                                （2）如信息需修改、补充等情况，请直接通过本站在线咨询联系网站工作人员。<br/>
+                                                （3）本网站不保证登记信息中酬金承诺的有效性，知情人如需要有偿提供线索，请自行与登记人联系确认。
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="table_1_normaldivr" class="reginfo">
+                                    <div class="title"><img src="<%=request.getContextPath() %>/style/imgs/app/djxx.jpg" width="200" height="50" alt=""/></div>
+                                    <ul>
+                                        <li><span>寻亲类别：</span>${loster_info.lost_person_type}</li>
+                                        <li><span>寻亲编号：</span>${loster_info.lost_person_no}</li>
+                                        <li><span>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</span>${loster_info.lost_person_name}</li>
+                                        <li><span>性&nbsp;&nbsp;&nbsp;&nbsp;别：</span>${loster_info.lost_person_sex}</li>
+                                        <li><span>出生日期：</span>${loster_info.lost_person_birth}</li>
+                                        <li><span>失踪时身高：</span>${loster_info.lost_person_height}</li>
+                                        <li><span>失踪时间：</span>${loster_info.lost_person_time}</li>
+                                        <li><span>失踪人所在地：</span>${loster_info.lost_person_live}</li>
+                                        <li><span>失踪地点：</span>${loster_info.lost_person_area}</li>
+                                        <li><span>寻亲者特征描述：</span>${loster_info.lost_person_character}</li>
+                                        <li><span>其他资料：</span>${loster_info.lost_person_others}</li>
+                                        <li><span>注册时间：</span>${loster_info.lost_person_registerTime}</li>
+                                        <li><span>家属联系人：</span>${loster_info.lost_person_family_name}</li>
+                                        <li><span>家属联系方式：</span>${loster_info.lost_person_family_phone}</li>
+                                    </ul>
+                                    <div class="clear"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>
 

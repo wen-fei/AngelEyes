@@ -55,14 +55,6 @@
         and   reply_article_id = article.article_id
     </select>
 
-    <select id="getReplyListForumId" resultType="Reply">
-        select *
-        from reply,article,user
-        where article.article_id = #{forumId}
-        and   reply_author_id = user.user_id
-        and   reply_article_id = article.article_id
-    </select>
-
     <select id="getReplyByReplyId" resultType="Reply">
         select *
         from reply,article,user

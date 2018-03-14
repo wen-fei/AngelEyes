@@ -31,7 +31,7 @@
     <script src="../../../../style/js/app/find/loadimg.js" type="text/javascript"></script>
     <script src="../../../../style/js/app/find/jquery.rollGallery_yeso.js" type="text/javascript"></script>
     <!-- 省市级联动js-->
-    <script src="../../../../style/js/app/find/PCA2SClass.js" type="text/javascript"></script>
+    <script src="../../../../style/js/app/find/PCASClass.js" type="text/javascript"></script>
     <!--日期选择插件-->
     <script src="../../../../style/js/app/find/jquery.dooei.date.js" type="text/javascript"></script>
     <script type="text/javascript">
@@ -59,39 +59,18 @@
     </style>
 </head>
 <body>
-<div class="nav-top">
-    <div class="nav-top_bar">
-        <div class="nav-top_bar1">
-            <span style="padding-top:11px;display:block; width:260px;text-align:center; "><a
-                    href="/down/app/AgeFace.rar" style="font-size:14px;color:#009933;">年龄人像APP下载</a></span>
-            <span>|</span>
-            <span style="padding-top:11px;color:#ff0000;font-size:16px;font-weight:bold;">注意：本站所有寻亲帮助均为免费，宝贝回家不会以任何理由收取费用，请勿上当受骗。</span>
-        </div>
-    </div>
-</div>
-
-<div class="header">
-    <div class="header_logo"><a href="/" style="display:block; width:240px; height:87px">
-        <!--<img src="image/baby_header_logo.jpg" style="width:240px; height:87px; border: none;" />--></a></div>
-</div>
 <div class="nav-main">
     <div class="nav-main_channel">
         <ul id="nav-main">
             <li><a href="/index.aspx">首页</a></li>
             <li><a href="/find.aspx">寻亲登记</a>
                 <ul>
-                    <li><a href="/find.aspx?type=1&amp;step=2">家寻宝贝</a></li>
-                    <li><a href="/find.aspx?type=2&amp;step=2">宝贝寻家</a></li>
-                    <li><a href="/find.aspx?type=3&amp;step=2">流浪乞讨</a></li>
-                    <li><a href="/find.aspx?type=4&amp;step=2">其他寻人</a></li>
-                    <li><a href="/find.aspx?type=5&amp;step=2">海外寻亲</a></li>
+                    <li><a href="/app/module1/list">家寻宝贝</a></li>
+                    <li><a href="/app/module2/list">宝贝寻家</a></li>
+                    <li><a href="/app/module3/list">其他寻人</a></li>
+                    <li><a href="/app/module4/list">关于我们</a></li>
                 </ul>
             </li>
-            <li><a href="/volunteer_reg.aspx">志愿者登记</a></li>
-            <li><a href="http://bbs.baobeihuijia.com/forum.php?mod=forumdisplay&amp;fid=182">社会新闻</a></li>
-            <li><a href="/tv.aspx">相关视频</a></li>
-            <li><a href="http://bbs.baobeihuijia.com/forum.php?mod=forumdisplay&amp;fid=203">紧急求助</a></li>
-            <li><a href="http://bbs.baobeihuijia.com/">论坛</a></li>
         </ul>
         <script type="text/javascript">
             function menuFix() {

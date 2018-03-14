@@ -1,9 +1,6 @@
 package org.angeleyes.web;
 
-import org.angeleyes.entity.Article;
-import org.angeleyes.entity.Counts;
-import org.angeleyes.entity.LostPerson;
-import org.angeleyes.entity.Module;
+import org.angeleyes.entity.*;
 import org.angeleyes.service.ArticleService;
 import org.angeleyes.service.LostPersonService;
 import org.angeleyes.service.ModuleService;
@@ -16,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -55,35 +53,33 @@ public class AppController {
      * @return
      */
     @RequestMapping(value = "/module{moduleId}/list")
-    public String list(@PathVariable("moduleId") int moduleId, Model model){
+    public String list(@PathVariable("moduleId") int moduleId, Model model, HttpSession session){
 
         //得到模块信息
         Module module = moduleService.getModuleInfoById(moduleId);
         model.addAttribute("moduleInfo",module);
 
-        Counts counts_module_info = moduleService.getCountsInfo(2, moduleId);
-        model.addAttribute("moduleCounts",counts_module_info);
         //得到此模块下主题列表
 
         //置顶主题
-        List<Article> articleList_top = moduleService.getArticlesTop(moduleId);
+        List<Article> articleList_top = articleService.getArticlesTop(moduleId);
         articleList_top = articleService.setArticleFromIdToName(articleList_top);
         model.addAttribute("articleList_top",articleList_top);
 
         //火热主题
-        List<Article> articleList_hot = moduleService.getArticlesHot(moduleId);
+        List<Article> articleList_hot = articleService.getArticlesHot(moduleId);
         model.addAttribute("articleList_hot",articleList_hot);
 
         //加精主题
-        List<Article> articleList_jing = moduleService.getArticlesJing(moduleId);
-        model.addAttribute("articleList_jing",articleList_jing);
+        List<Article> articleList_good = articleService.getArticlesGood(moduleId);
+        model.addAttribute("articleList_good",articleList_good);
 
         //除了置顶主题以外的主题
-        List<Article> articleList_common = moduleService.getArticlesCommon(moduleId);
+        List<Article> articleList_common = articleService.getArticlesCommon(moduleId);
         articleList_common = articleService.setArticleFromIdToName(articleList_common);
         model.addAttribute("articleList",articleList_common);
 
-        return "app/article/article_list";
+        return "/app/article/article_list";
     }
 
 

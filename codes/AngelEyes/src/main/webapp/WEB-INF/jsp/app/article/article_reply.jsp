@@ -106,14 +106,13 @@
 <body style="background: #E3E5E8;">
 <!--头部-->
 <div clasa="hd">
-    <div class="navbar navbar-default navbarcolor" style="background-color: #fff;">
+    <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
         <div id="logo" class="col-md-6">
-            <img src="../../../style/imgs/app/forum/logo.png" alt="">
+            <%--<img src="../../../style/imgs/app/forum/logo.png" alt="">--%>
         </div>
         <div class="col-md-3" style="margin-top: 20px">
             <form action="/app/search" id="searchForm">
                 <div class="input-group" style="margin-top:0px; positon:relative" id="search">
-
                     <input type="text" class="form-control" placeholder="请输入搜索内容" name="searchKey">
                     <span class="input-group-btn">
                            <button class="btn btn-info btn-search" type="submit">搜索</button>
@@ -141,9 +140,9 @@
                 <c:if test="${sessionScope.UserInfo_session != null}">
                     <li>
                         <span>欢迎会员：</span>
-                        <input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_info_id}">
-                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/info" title="点击修改个人资料">
-                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.name}
+                        <input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}">
+                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
+                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
                         </a>
                         <button id="logout" class="btn btn-danger">退出</button>
                     </li>
@@ -158,10 +157,9 @@
     <!--面包屑导航-->
     <div id="pt" class="bm cl">
         <div class="z">
-            <a href="" class="nvhm" title="首页">王道论坛,专注于计算机考研的点点滴滴！</a>
+            <a href="/app/index" class="nvhm" title="首页">天使之眼！</a>
             <em>»</em>
             <a href="/app/index">论坛</a> <em>›</em>
-            <a href="/app/index">${articleInfo.article_forum_name}</a><em>»</em>
             <a href="/app/module${articleInfo.article_module_id}/list">${articleInfo.article_module_name}</a>
             <em>›</em> <a href="#">${articleInfo.article_title}</a>
         </div>
@@ -218,7 +216,7 @@
                             </h1>
                             <!--复制当前链接-->
                             <span class="xg1">
-                                <a href="#" onclick="return copyThreadUrl(this, '王道论坛,专注于计算机考研的点点滴滴！')">[复制链接]</a>
+                                <a href="#" onclick="return copyThreadUrl(this, '天使之眼！')">[复制链接]</a>
                             </span>
                         </td>
                     </tr>
@@ -248,7 +246,7 @@
                                 <div class="pi">
                                     <div class="authi">
                                         <!--用户名-->
-                                        <a href="space-uid-${articleAuthorInfo.user_info_id}.html" target="_blank" class="xw1">${articleAuthorInfo.name}</a>
+                                        <a href="space-uid-${articleAuthorInfo.user_id}.html" target="_blank" class="xw1">${articleAuthorInfo.user_name}</a>
                                     </div>
                                 </div>
                                 <div class="p_pop blk bui card_gender_0" id="userinfo${articleInfo.article_id}" style="display: none; margin-top: -11px;">
@@ -258,7 +256,7 @@
                                     <div class="i y">
                                         <div>
                                             <strong>
-                                                <a href="space-uid-7462.html" target="_blank" class="xi2" style="color: black">${articleAuthorInfo.name}</a>
+                                                <a href="space-uid-7462.html" target="_blank" class="xi2" style="color: black">${articleAuthorInfo.user_name}</a>
                                             </strong>
                                         </div>
                                         <dl class="cl">
@@ -302,20 +300,15 @@
                                 <p>
                                     <em>
                                         <a href="#" target="_blank">
-                                            <font color="black">${articleAuthorInfo.user_type_name}</font>
+                                            <%--<font color="black">${articleAuthorInfo.user_type_name}</font>--%>
+                                            <font color="black">用户类型</font>
                                         </a>
                                     </em>
                                 </p>
                                 <!--主题作者信息-->
                                 <dl class="pil cl">
-                                    <dt>考研年份</dt>
-                                    <dd>${articleAuthorInfo.examYear}</dd>
-                                    <dt>报考学校</dt>
-                                    <dd>${articleAuthorInfo.wantschool}</dd>
-                                    <dt>本科学校</dt>
-                                    <dd>${articleAuthorInfo.bkschool}</dd>
-                                    <dt>注册时间</dt>
-                                    <dd>${articleAuthorInfo.registerTime_date}</dd>
+                                    <dt>用户名</dt>
+                                    <dd>${articleAuthorInfo.user_name}</dd>
                                 </dl>
                                 <dl class="pil cl"></dl>
                             </div>
@@ -376,7 +369,7 @@
                                 <a class="sharep" href="#" title="分享推精华" onclick="articleCollcet(3)">
                                     <i>
                                         <img src="../../../../style/imgs/app/forum/oshr.png" alt="分享">分享
-                                        <span>${articleInfo.article_share_count}</span>
+                                        <span>${articleInfo.article_share_counts}</span>
                                     </i>
                                 </a>
                                 <a id="recommend_add" href="#" onclick="articleCollcet(1)" title="顶一下">
@@ -437,7 +430,7 @@
                                 <div class="pi">
                                     <div class="authi">
                                         <a href="space-uid-${rl.reply_id}.html" target="_blank" class="xw1"
-                                           style="color: black">${rl.userInfo.name}</a>
+                                           style="color: black">${rl.userInfo.user_name}</a>
                                     </div>
                                 </div>
                                 <div class="p_pop blk bui card_gender_0" id="userinfo${rl.reply_id}"
@@ -448,7 +441,7 @@
                                     <div class="i y">
                                         <div>
                                             <strong>
-                                                <a href="space-uid-${rl.reply_id}.html" target="_blank" class="xi2" style="color: black">${rl.userInfo.name}</a>
+                                                <a href="space-uid-${rl.reply_id}.html" target="_blank" class="xi2" style="color: black">${rl.userInfo.user_name}</a>
                                             </strong>
                                         </div>
                                     </div>
@@ -456,7 +449,7 @@
                                 <div>
                                     <!--用户头像-->
                                     <div class="avatar" onmouseover="showauthor(this, 'userinfo${rl.reply_id}')">
-                                        <a href="space-uid-${rl.userInfo.user_info_id}.html" class="avtm" target="_blank">
+                                        <a href="space-uid-${rl.userInfo.user_id}.html" class="avtm" target="_blank">
                                             <img src="http://www.cskaoyan.com/uc_server/data/avatar/000/00/23/85_avatar_middle.jpg"
                                             onerror="this.onerror=null;this.src='http://www.cskaoyan.com/uc_server/images/noavatar_middle.gif'">
                                         </a>
@@ -485,19 +478,16 @@
                                 <p>
                                     <em>
                                     <a href="#" target="_blank">
-                                        <font color="black">${rl.userInfo.user_type_name}</font>
+                                        <%--<font color="black">${rl.userInfo.user_type_name}</font>--%>
+                                        <font color="black">用户类型</font>
                                     </a>
                                     </em>
                                 </p>
                                 <dl class="pil cl">
-                                    <dt>考研年份</dt>
-                                    <dd>${rl.userInfo.examYear}</dd>
-                                    <dt>报考学校</dt>
-                                    <dd>${rl.userInfo.bkschool}</dd>
-                                    <dt>本科学校</dt>
-                                    <dd>${rl.userInfo.wantschool}</dd>
+                                    <dt>用户名</dt>
+                                    <dd>${rl.userInfo.user_name}</dd>
                                     <dt>注册时间</dt>
-                                    <dd>${rl.userInfo.registerTime_date}</dd>
+                                    <dd>${rl.userInfo.user_registerTime_date}</dd>
                                 </dl>
                                 <dl class="pil cl"></dl>
                             </div>
@@ -620,34 +610,34 @@
                     background-color: white;
                 }
             </style>
-            <div  class="panel panel-primary recommoned">
-                <div class="panel-heading">
-                    <span class="rec_title" style="font-size: 16px;"><strong>大家都在看</strong></span>
-                </div>
-                <div class="panel-body">
-                    <ul>
-                        <c:forEach items="${recArticleList}" var="ra">
-                            <li>
-                                <div class="panel panel-default">
-                                    <div class="panel-heading bck">
-                                        <div class="hot_img">
-                                        <img src="../../../../style/imgs/app/forum/hot1.gif" alt="">
-                                        </div>
-                                        <p><a href="">${ra.article_title}</a></p>
-                                    </div>
-                                    <div class="panel-body">
-                                        <span>点击：${ra.article_read_number}</span>
-                                        <span>回复：${ra.article_comment_number}</span>
-                                    </div>
-                                    <div class="panel-footer">
-                                        主题热度：${ra.article_scores}
-                                    </div>
-                                </div>
-                            </li>
-                        </c:forEach>
-                    </ul>
-                </div>
-            </div>
+            <%--<div  class="panel panel-primary recommoned">--%>
+                <%--<div class="panel-heading">--%>
+                    <%--<span class="rec_title" style="font-size: 16px;"><strong>大家都在看</strong></span>--%>
+                <%--</div>--%>
+                <%--<div class="panel-body">--%>
+                    <%--<ul>--%>
+                        <%--<c:forEach items="${recArticleList}" var="ra">--%>
+                            <%--<li>--%>
+                                <%--<div class="panel panel-default">--%>
+                                    <%--<div class="panel-heading bck">--%>
+                                        <%--<div class="hot_img">--%>
+                                        <%--<img src="../../../../style/imgs/app/forum/hot1.gif" alt="">--%>
+                                        <%--</div>--%>
+                                        <%--<p><a href="">${ra.article_title}</a></p>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="panel-body">--%>
+                                        <%--<span>点击：${ra.article_read_number}</span>--%>
+                                        <%--<span>回复：${ra.article_comment_number}</span>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="panel-footer">--%>
+                                        <%--主题热度：${ra.article_scores}--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</li>--%>
+                        <%--</c:forEach>--%>
+                    <%--</ul>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </c:if>
         <!--用户已经登录-->
         <c:if test="${sessionScope.UserInfo_session != null}">
@@ -680,34 +670,6 @@
                         background-color: white;
                     }
                 </style>
-            <div  class="panel panel-primary recommoned">
-                    <div class="panel-heading">
-                        <span class="rec_title" style="font-size: 16px;"><strong>你可能还想看</strong></span>
-                    </div>
-                    <div class="panel-body">
-                        <ul>
-                            <c:forEach items="${recArticleList}" var="ra">
-                                <li>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading bck">
-                                            <div class="hot_img">
-                                                <img src="../../../../style/imgs/app/forum/hot1.gif" alt="">
-                                            </div>
-                                            <p><a href="">${ra.article_title}</a></p>
-                                        </div>
-                                        <div class="panel-body">
-                                            <span>点击：${ra.article_read_number}</span>
-                                            <span>回复：${ra.article_comment_number}</span>
-                                        </div>
-                                        <div class="panel-footer">
-                                            主题热度：${ra.article_scores}
-                                        </div>
-                                    </div>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
         </c:if>
         <!--[diy=diyfastposttop]-->
         <div id="diyfastposttop" class="area"></div><!--[/diy]-->
@@ -793,13 +755,6 @@
             $("#save").attr("disabled", "disabled");
         } else {
             $("#save").removeAttr("disabled");
-        }
-
-        if (${sessionScope.UserInfo_session != null}) {
-            if (${sessionScope.UserInfo_session.wantschool == null}) {
-                alert("您尚未完善用户信息，请填写您的资料！");
-                window.location.href = "http://localhost:8080/app/user/user_info${sessionScope.UserInfo_session.user_info_id}/setting";
-            }
         }
     });
     function articleCollcet(typeId){

@@ -5,10 +5,31 @@
     <!--目的:为dao接口方法提供sql语句配置
     即针对dao接口中的方法编写我们的sql语句-->
 
-    <insert id="addArticle">
+    <select id="queryById" resultType="Article" parameterType="long">
+        select *
+        from article
+        where article_id = #{articleId}
+    </select>
+
+    <delete id="deleteArticle" parameterType="long">
+        delete
+        from article
+        where article_id = #{articleId}
+    </delete>
+
+    <delete id="deleteArticleBatch">
+        DELETE
+        FROM article
+        WHERE article_id IN
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+            #{articleIds}
+        </foreach>
+    </delete>
+
+    <insert id="insertOneArticle">
         INSERT
-        INTO article(article_title,article_authorID,article_content,article_module_id)
-        VALUES (#{article_title},#{article_authorID},#{article_content},#{article_module_id})
+        INTO article(article_title,article_authorID,article_content,article_module_id, article_create_time, article_type)
+        VALUES (#{article_title},#{article_authorID},#{article_content},#{article_module_id}, #{article_time}, #{article_type})
     </insert>
 
     <select id="getArticleById" resultType="Article">
@@ -39,29 +60,29 @@
         FROM article
     </select>
 
-    <select id="getAllGood" resultType="Article">
+    <select id="getArticlesHot" resultType="Article">
         SELECT *
         FROM article
-        WHERE article_is_good = 1
+        WHERE article_is_hot = 1 and article_module_id = #{article_module_id}
     </select>
 
-    <select id="getAllHot" resultType="Article">
+    <select id="getArticlesTop" resultType="Article">
         SELECT *
         FROM article
-        WHERE article_is_hot = 1
+        WHERE article_is_top = 1 and article_module_id = #{article_module_id}
     </select>
 
-    <select id="getAllTop" resultType="Article">
+    <select id="getArticlesGood" resultType="Article">
         SELECT *
         FROM article
-        WHERE article_is_top = 1
+        WHERE article_is_good = 1 and article_module_id = #{article_module_id}
     </select>
 
-    <update id="setArticleGood" parameterType="Long">
-        UPDATE article
-        SET article_is_good = 1
-        WHERE article_id = #{article_id}
-    </update>
+    <select id="getArticlesCommon" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_is_good = 0 and article_is_hot=0 and article_is_top=0  and article_module_id = #{article_module_id}
+    </select>
 
     <update id="setArticleHot" parameterType="Long">
         UPDATE article
@@ -72,6 +93,12 @@
     <update id="setArticleTop" parameterType="Long">
         UPDATE article
         SET article_is_top = 1
+        WHERE article_id = #{article_id}
+    </update>
+
+    <update id="setArticleGood" parameterType="Long">
+        UPDATE article
+        SET article_is_good = 1
         WHERE article_id = #{article_id}
     </update>
 
@@ -100,18 +127,72 @@
         from article
     </select>
 
-    <select id="queryByTime" resultType="Article">
+    <select id="articleCounts" resultType="Integer">
+        SELECT COUNT(article_id)
+        FROM article
+    </select>
+    <select id="queryByModuleId" resultType="Article">
         select *
         from article
-        where article_create_time BETWEEN #{startTime} and #{endTime}
-        <if test="isAll == 0">
-            <if test="typeId == 1">
-#                 AND article_forum_id = #{ID}
-            </if>
-            <if test="typeId == 2">
-                AND article_module_id = #{ID}
-            </if>
-        </if>
-        ORDER BY article_create_time
+        where article_module_id = #{moduleId}
     </select>
+
+    <select id="queryByReplyNumbers" resultType="Article">
+        select *
+        from article
+        where article_comment_number > #{number}
+    </select>
+
+    <select id="queryAll" resultType="Article">
+        select *
+        from article
+        ORDER BY article_create_time DESC
+        LIMIT #{offset},#{countLimit}
+    </select>
+
+    <select id="queryByNeeds" resultType="Article">
+        select *
+        FROM article
+        WHERE article_create_time BETWEEN #{startTime} AND #{endTime}
+        <if test="requirement == 0">
+        </if>
+        <if test="requirement == 1">
+            <!--加精帖子-->
+            AND article_is_good = 1
+        </if>
+        <if test="requirement == 2">
+            <!--火帖子-->
+            AND article_is_hot = 1
+        </if>
+        <if test="requirement == 3">
+            <!--置顶帖子-->
+            AND article_is_top = 1
+        </if>
+        AND article.article_title like concat(concat('%',#{titleKey}),'%')
+    </select>
+
+    <select id="queryArticleAuthorInfo" resultType="User" parameterType="Long">
+        SELECT user_name
+        from user
+        where user_id = #{articleAuthorId}
+    </select>
+
+    <select id="queryArticleModuleName" resultType="String">
+        select module_name
+        from module
+        where module_id = #{moduleID}
+    </select>
+    <update id="updateArticle" >
+        update
+        article
+        SET article_title = #{articleTitle},
+#         article_type_id = #{article_type_id},
+        article_module_id = #{article_forum_id}
+    </update>
+
+    <update id="updateArticleClickCounts">
+        update article
+        set article_read_number = article_read_number +1
+        WHERE  article_id = #{articleId}
+    </update>
 </mapper>

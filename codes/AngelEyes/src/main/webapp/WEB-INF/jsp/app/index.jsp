@@ -4,20 +4,18 @@
 
 <html lang="en">
 	<head>
-		<title>天使之眼̨</title>
-		<link href="<%=request.getContextPath() %>/style/css/style.css" rel='stylesheet' type='text/css' />
+		<title>天使之眼</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="<%=request.getContextPath() %>/style/css/style.css" rel='stylesheet' type='text/css' />
+		<link href="<%=request.getContextPath() %>/style/css/bootstrap.css" rel='stylesheet' type='text/css' />
+		<link rel="stylesheet" href="<%=request.getContextPath() %>/style/css/main.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
 		<link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath() %>/style/imgs/fav-icon.png" />
 		<script type="application/x-javascript">
 			addEventListener("load", function() {
 			    setTimeout(hideURLbar, 0); }, false);
 			function hideURLbar(){ window.scrollTo(0,1); }
 		</script>
-
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-		<!-- Global CSS for the page and tiles -->
-  		<link rel="stylesheet" href="<%=request.getContextPath() %>/style/css/main.css">
-
 		<!---start-click-drop-down-menu----->
 		<script src="<%=request.getContextPath() %>/style/js/jquery.min.js"></script>
         <!----start-dropdown--->
@@ -51,6 +49,16 @@
 				margin: 0.6em 0;
 				line-height: 1.5em;
 			}
+			.Hui-userbar > li{
+				margin-right:20px;
+				float: right;
+			}
+			.Hui-userbar{
+				float: right;
+			}
+			#userLogin{
+				float: right;
+			}
 		</style>
 	</head>
 	<body>
@@ -58,52 +66,68 @@
 			<!---start-header---->
 			<div class="header">
 				<div class="wrap">
-				<div class="logo">
-					<h3>网站导航</h3>
-					<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
-				</div>
-				<div class="nav-icon">
-					 <a href="#" class="right_bt" id="activator"><span> </span> </a>
-				</div>
-				 <div class="box" id="box">
-					 <div class="box_content">        					                         
-						<div class="box_content_center">
-						 	<div class="form_content">
-								<div class="menu_box_list">
-									<ul>
-										<li><a href="index.jsp"><span>家寻宝贝</span></a></li>
-										<li><a href="introduction.html"><span>宝贝寻家</span></a></li>
-										<li><a href="/app/loster/registration"><span>走失登记</span></a></li>
-										<li><a href="#"><span>论坛</span></a></li>
-										<li><a href="contact.html"><span>关于我们</span></a></li>
-										<div class="clear"> </div>
-									</ul>
-								</div>
-								<a class="boxclose" id="boxclose">
-									<span>
-									</span>
-								</a>
-							</div>                                  
-						</div> 	
-					</div> 
-				</div>       	  
-				<div class="top-searchbar">
-					<form>
-						<input type="text" /><input type="submit" value="" />
-					</form>
-				</div>
-				<div class="userinfo">
-					<div class="user">
-						<ul>
-							<li>
-								<a href="login.html"><img src="<%=request.getContextPath() %>/style/imgs/user-pic.png" title="user-name" />
-									<span>用户昵称</span>
-								</a>
-							</li>
-						</ul>
+					<div class="logo">
+						<%--<h3>网站导航</h3>--%>
+						<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
 					</div>
+					<div class="nav-icon">
+						 <a href="#" class="right_bt" id="activator"><span> </span> </a>
+					</div>
+					<div class="box" id="box">
+						 <div class="box_content">
+							<div class="box_content_center">
+								<div class="form_content">
+									<div class="menu_box_list">
+										<ul>
+											<li><a href="/app/module1/list"><span>宝贝寻家</span></a></li>
+											<li><a href="/app/module2/list"><span>家寻宝贝</span></a></li>
+											<li><a href="/app/loster/registration"><span>走失登记</span></a></li>
+											<li><a href="/app/contact"><span>关于我们</span></a></li>
+											<div class="clear"> </div>
+										</ul>
+									</div>
+									<a class="boxclose" id="boxclose">
+										<span>
+										</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="top-searchbar">
+						<form>
+							<input type="text" /><input type="submit" value="" />
+						</form>
+					</div>
+					<!--顶部右侧账户-->
+					<div id="userLogin" class="col-md-3">
+							<ul class="Hui-userbar" style="margin-top: 20px;">
+								<c:if test="${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}">
+									<li>
+										<a  href="/app/login/registview" class="btn btn-success">
+											<span class="glyphicon glyphicon-user"></span> 注册
+										</a>
+									</li>
+									<li>
+										<a  href="/app/login/loginview" class="btn btn-primary">
+											<span class="glyphicon glyphicon-log-in"></span> 登录
+										</a>
+									</li>
+								</c:if>
+								<c:if test="${sessionScope.UserInfo_session != null}">
+									<li>
+										<span>欢迎会员：</span>
+										<input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}">
+										<a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
+											<span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
+										</a>
+										<button id="logout" class="btn btn-danger">退出</button>
+									</li>
+								</c:if>
+							</ul>
+						</div>
+					<div class="clear"> </div>
 				</div>
-				<div class="clear"> </div>
 			</div>
 		</div>
 		<!---//End-header---->
@@ -114,7 +138,7 @@
 			      <ul id="tiles">
                       <c:forEach items="${lost_person_info}" var="lost_info">
 						  <li onClick="location.href='/app/loster/person_id/${lost_info.lost_person_id}';">
-							<img src="<%=request.getContextPath() %>/style/imgs/img1.jpg" width="200" height="200">
+							<img src="<%=request.getContextPath() %>/style/imgs/app/loster/${lost_info.lost_person_no}.jpg" width="200" height="200">
 							<div class="post-info">
 								<div class="post-basic-info">
 									<h3><a href="#">走失人姓名：${lost_info.lost_person_name}</a></h3>

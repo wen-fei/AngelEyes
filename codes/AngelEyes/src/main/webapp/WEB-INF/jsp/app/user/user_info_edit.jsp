@@ -10,18 +10,27 @@
         #user_msg{
             border: none;
         }
+        .Hui-userbar > li{
+            margin-right:20px;
+            float: right;
+        }
+        .Hui-userbar{
+            float: right;
+        }
+        #userLogin{
+            float: right;
+        }
     </style>
 </head>
 <body style="background: #E3E5E8;">
 <div clasa="hd">
-    <div class="navbar navbar-default navbarcolor" style="background-color: #fff;">
+    <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
         <div id="logo" class="col-md-6">
-            <img src="../../../../style/imgs/app/forum/logo.png" alt="">
+            <%--<img src="../../../../style/imgs/app/forum/logo.png" alt="">--%>
         </div>
         <div class="col-md-3" style="margin-top: 20px">
             <form action="/app/search" id="searchForm">
                 <div class="input-group" style="margin-top:0px; positon:relative" id="search">
-
                     <input type="text" class="form-control" placeholder="请输入搜索内容" name="searchKey">
                     <span class="input-group-btn">
                            <button class="btn btn-info btn-search" type="submit">搜索</button>
@@ -78,7 +87,7 @@
                             <label for="name" class="col-md-3 control-label">昵称</label>
                             <div class="col-md-9">
                                 <input id="name" class="form-control" type="text"
-                                       placeholder="6-15位字母或数字" name="name" value="${user_info_detail.name}">
+                                       placeholder="6-15位字母或数字" name="name" value="${user_info_detail.user_name}">
                             </div>
                         </div>
                         <div class="form-group col-md-5">
@@ -118,50 +127,8 @@
                                 <select class="city" disabled="disabled" name="user_home_city" id="home_city"></select>
                             </div>
                         </div>
-
-                        <div class="form-group col-md-5">
-                            <label for="selectSchool" class="col-md-3 control-label">本科学校(*)</label>
-                            <input value="${user_info_detail.bkschool}" id="selectSchool" type="text" name="user_ben_school">
-                            <div id="choose-box-wrapper" class="choose-box-wrapper col-md-9">
-                                <div id="choose-box" class="choose-box">
-                                    <div id="choose-box-title" class="choose-box-title">
-                                        <span>选择学校</span>
-                                    </div>
-                                    <p style="font-size:12px;text-indent:1em;"><span>搜索：</span>
-                                        <input id="searchSchool" class="form-control" type="text" value="搜索学校"/></p>
-                                    <div id="choose-a-province" class="choose-a-province">
-                                    </div>
-                                    <div id="choose-a-school" class="choose-a-school" name="user_home_city">
-                                    </div>
-                                    <div id="choose-box-bottom" class="choose-box-bottom">
-                                        <input type="button" id='close' value="关闭" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="selectSchool" class="col-md-3 control-label">报考学校(*)</label>
-                            <input value='${user_info_detail.wantschool}' id='wantSchool' type='text' name="user_want_school">
-                            <div id="choose-box-wrapper-wantschool" class="choose-box-wrapper">
-                                <div id="choose-box-wantschool" class="choose-box clo-md-9">
-                                    <div id="choose-box-title-wantschool" class="choose-box-title">
-                                        <span>选择学校</span>
-                                    </div>
-                                    <p style="font-size:12px;text-indent:1em;"><span>搜索：</span>
-                                        <input id="searchSchool-wantschool" class="form-control" type="text" value="搜索学校"/></p>
-                                    <div id="choose-a-province-wantschool" class="choose-a-province">
-                                    </div>
-                                    <div id="choose-a-school-wantschool" class="choose-a-school">
-                                    </div>
-                                    <div id="choose-box-bottom-wantschool" class="choose-box-bottom">
-                                        <input type="button" id='close-wantschool' value="关闭" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div>
-                            <input type="text" hidden id="user_info_id" name="user_info_id" value="${user_info_detail.user_info_id}">
+                            <input type="text" hidden id="user_info_id" name="user_info_id" value="${user_info_detail.user_id}">
                             <button id="submitBtn" class="btn btn-primary btn-large btn-block" type="submit">提交</button>
                         </div>
                 </form>
@@ -186,7 +153,6 @@
     //初始化数据
     $(document).ready(function() {
         $("#user_gender").children("option[value='${user_info_detail.user_gender}']").attr("selected","true");
-        $("#exam_year").children("option[value='${user_info_detail.examYear}']").attr("selected","true");
     });
      $(function(){
          $("#submitBtn").click(function(){
@@ -194,15 +160,12 @@
                  "user_info_id": $("#user_info_id").val(),
                  "name": $("#name").val(),
                  "user_email": $("#email").val(),
-                 "user_ben_school": $("#selectSchool").val(),
-                 "user_want_school": $("#wantSchool").val(),
                  "user_gender": $("#user_gender option:selected").val(),
-                 "exam_year": $("#exam_year option:selected").val(),
                  "user_home_province": $("#home_prov option:selected").val(),
                  "user_home_city": $("#home_city option:selected").val()
              }
                  $.ajax({
-                     url:"${pageContext.request.contextPath}/app/user/user_info${user_info_detail.user_info_id}/edit",
+                     url:"${pageContext.request.contextPath}/app/user/user_info${user_info_detail.user_id}/edit",
                      type:'post',
                      data: query,
                      dataType:'json',
@@ -212,7 +175,7 @@
 
                              if(data=="1"){
                                  alert("修改成功");
-                                 window.location.href = "http://localhost:8080/app/user/user_info${user_info_detail.user_info_id}/setting";
+                                 window.location.href = "http://localhost:8080/app/user/user_info${user_info_detail.user_id}/setting";
                              }else if (data=="0"){
                                  alert("修改失败");
                              }else if(data=="2"){

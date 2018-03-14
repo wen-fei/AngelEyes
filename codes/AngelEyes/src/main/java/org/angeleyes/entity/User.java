@@ -29,24 +29,24 @@ public class User {
 
     private String user_homeTown_district;
 
-    private Long registerTime;
+    private Long user_registerTime;
 
-    private String registerTime_date;
+    private String user_registerTime_date;
 
-    public Long getRegisterTime() {
-        return registerTime;
+    public Long getUser_registerTime() {
+        return user_registerTime;
     }
 
-    public void setRegisterTime(Long registerTime) {
-        this.registerTime = registerTime;
+    public void setUser_registerTime(Long user_registerTime) {
+        this.user_registerTime = user_registerTime;
     }
 
-    public String getRegisterTime_date() {
-        return registerTime_date;
+    public String getUser_registerTime_date() {
+        return user_registerTime_date;
     }
 
-    public void setRegisterTime_date(String registerTime_date) {
-        this.registerTime_date = registerTime_date;
+    public void setUser_registerTime_date(String user_registerTime_date) {
+        this.user_registerTime_date = user_registerTime_date;
     }
 
     public int getUser_age() {

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.angeleyes.utils.CodeUtils.EncodeByMd5;
@@ -73,4 +74,10 @@ public class UserServiceImpl implements UserService{
     public User check_email(String email) {
         return userDao.checkUser_email(email);
     }
+
+    public int insertToUserRecord_click(long uid, long aid) {
+        long time = (new Date()).getTime();
+        return userDao.insertToUserArticleRecords_click(uid, aid,time) ;
+    }
+
 }

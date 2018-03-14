@@ -6,6 +6,7 @@ import org.angeleyes.dao.ReplyDao;
 import org.angeleyes.entity.Article;
 import org.angeleyes.entity.Module;
 import org.angeleyes.entity.Reply;
+import org.angeleyes.entity.User;
 import org.angeleyes.service.ArticleService;
 import org.angeleyes.utils.ExcelUitl;
 import org.slf4j.Logger;
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -81,82 +84,35 @@ public class ArticleServiceImpl implements ArticleService{
     }
 
     public List<Article> setArticleFromIdToName(List<Article> articleList) {
-        return null;
+        for(Article article:articleList){
+
+            //设置模块名称
+            String moduleName = articleDao.queryArticleModuleName(article.getArticle_module_id());
+            article.setArticle_module_name(moduleName);
+
+
+            //主题作者信息
+            User authorInfos = articleDao.queryArticleAuthorInfo(article.getArticle_authorID());
+            article.setArticle_author_name(authorInfos.getUser_name());
+//            String authorTypeName = articleDao.queryArticleAuthorTypeName(authorInfos.getUser_type());
+//            article.setArticle_author_type_name(authorTypeName);
+
+            //设置最后回复用户信息
+            User lastUserInfos = articleDao.queryArticleAuthorInfo(article.getArticle_last_reply_userID());
+            article.setArticle_last_reply_username(lastUserInfos.getUser_name());
+
+
+            //板块时间转换，时间戳转换成Data格式
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            article.setArticle_create_time_date(dateFormat.format(article.getArticle_create_time()));
+            article.setArticle_last_reply_time_date(dateFormat.format(article.getArticle_last_reply_time()));
+        }
+        return articleList;
     }
 
     public Article setArticleFromIdToName(Article articleList) {
         return null;
     }
-
-//    public List<Article> setArticleFromIdToName(List<Article> articleList) {
-//        for(Article article:articleList){
-//            //设置板块名称
-//            String forumName = articleDao.queryArticleForumName(article.getArticle_forum_id());
-//            article.setArticle_forum_name(forumName);
-//
-//            //设置模块名称
-//            String moduleName = articleDao.queryArticleModuleName(article.getArticle_module_id());
-//            article.setArticle_module_name(moduleName);
-//
-//            //设置主题类型
-//            String articleTypeName =  articleDao.queryArticleType(article.getArticle_type_id());
-//            article.setArticle_type_name(articleTypeName);
-//
-//            //主题作者信息
-//            UserInfo authorInfos = articleDao.queryArticleAuthorInfo(article.getArticle_authorID());
-//            article.setArticle_author_name(authorInfos.getName());
-//            String authorTypeName = articleDao.queryArticleAuthorTypeName(authorInfos.getUser_type());
-//            article.setArticle_author_type_name(authorTypeName);
-//
-//            //设置最后回复用户信息
-//            UserInfo lastUserInfos = articleDao.queryArticleAuthorInfo(article.getArticle_last_reply_userID());
-//            article.setArticle_last_reply_username(lastUserInfos.getName());
-//
-//
-//            //板块时间转换，时间戳转换成Data格式
-//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//            article.setArticle_create_time_date(dateFormat.format(article.getArticle_create_time()));
-//            article.setArticle_last_reply_time_date(dateFormat.format(article.getArticle_last_reply_time()));
-//
-//            //设置发布状态
-//            String article_type = articleDao.queryArticleStatus(article.getStatus());
-//            article.setArticle_status_name(article_type);
-//
-//            //设置主题数量
-//            article.setArticle_counts(articleDao.articleCounts());
-//        }
-//        return articleList;
-//    }
-
-//    public Article setArticleFromIdToName(Article article) {
-//        //设置板块名称
-//        String forumName = articleDao.queryArticleForumName(article.getArticle_forum_id());
-//        article.setArticle_forum_name(forumName);
-//
-//        //设置模块名称
-//        String moduleName = articleDao.queryArticleModuleName(article.getArticle_module_id());
-//        article.setArticle_module_name(moduleName);
-//
-//        //设置主题类型
-//        String articleTypeName = articleDao.queryArticleType(article.getArticle_type_id());
-//        article.setArticle_type_name(articleTypeName);
-//
-//        //主题作者信息
-//        UserInfo authorInfos = articleDao.queryArticleAuthorInfo(article.getArticle_authorID());
-//        article.setArticle_author_name(authorInfos.getName());
-//        String authorTypeName = articleDao.queryArticleAuthorTypeName(authorInfos.getUser_type());
-//        article.setArticle_author_type_name(authorTypeName);
-//
-//        //板块时间转换，时间戳转换成Data格式
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-//        article.setArticle_create_time_date(dateFormat.format(article.getArticle_create_time()));
-////        article.setArticle_last_reply_time_date(dateFormat.format(article.getArticle_last_reply_time()));
-//
-//        //设置发布状态
-//        String article_type = articleDao.queryArticleStatus(article.getStatus());
-//        article.setArticle_status_name(article_type);
-//        return article;
-//    }
 
 
     public List<Module> getAtricleModuleList(int forumId) {
@@ -218,6 +174,22 @@ public class ArticleServiceImpl implements ArticleService{
         long endTime = (new Date()).getTime();
         long startTime = endTime - 7*24*60*60*1000;
         return articleDao.getArticleListHotByRead(startTime,endTime);
+    }
+
+    public List<Article> getArticlesGood(int moduleID) {
+        return articleDao.getArticlesGood(moduleID);
+    }
+
+    public List<Article> getArticlesTop(int moduleID) {
+        return articleDao.getArticlesTop(moduleID);
+    }
+
+    public List<Article> getArticlesHot(int moduleID) {
+        return articleDao.getArticlesHot(moduleID);
+    }
+
+    public List<Article> getArticlesCommon(int moduleID) {
+        return articleDao.getArticlesCommon(moduleID);
     }
 
 

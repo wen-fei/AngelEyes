@@ -27,54 +27,6 @@
     </delete>
 
 
-    <select id="getArticleListByModuleID"  resultType="Article">
-        select *
-        from article
-        where article_module_id = #{moduleId}
-    </select>
-
-    <select id="getArticlesHot" resultType="Article">
-        select *
-        from module,article,article_scores
-        where module_id = #{moduleId}
-        and article_is_hot = 1
-              and module.module_id = article.article_module_id
-              and article.article_id = article_scores.article_scores_id
-        ORDER BY article_scores.article_scores DESC, article_create_time desc
-
-    </select>
-
-    <select id="getArticlesJing" resultType="Article">
-        select *
-        from module,article,article_scores
-        where module_id = #{moduleId}
-        and article_is_good = 1
-              and module.module_id = article.article_module_id
-              and article.article_id = article_scores.article_scores_id
-        ORDER BY article_scores.article_scores DESC, article_create_time desc
-
-    </select>
-
-    <select id="getArticlesTop" resultType="Article">
-        select *
-        from module,article,article_scores
-        where module_id = #{moduleId}
-        and article_is_top = 1
-        and module.module_id = article.article_module_id
-        and article.article_id = article_scores.article_scores_id
-        ORDER BY article_scores.article_scores desc, article_create_time desc
-    </select>
-
-    <select id="getArticlesCommon"  resultType="Article">
-        select *
-        from article,article_scores
-        where article_module_id = #{moduleId}
-        and article.article_is_top=0
-        and article.article_id = article_scores.article_scores_id
-        ORDER BY article_scores.article_scores DESC, article_create_time desc
-
-    </select>
-
     <select id="getModuleAll" resultType="Module">
         select * from module
     </select>

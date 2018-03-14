@@ -31,7 +31,7 @@ public class UserController {
         //根据用户查找用户信息
         User userInfo = userService.getUserInfoById(user_info_id);
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        userInfo.setRegisterTime_date(dateFormat.format(userInfo.getRegisterTime()));
+        userInfo.setUser_registerTime_date(dateFormat.format(userInfo.getUser_registerTime()));
         model.addAttribute("user_info_detail",userInfo);
         return "/app/user/user_info";
     }

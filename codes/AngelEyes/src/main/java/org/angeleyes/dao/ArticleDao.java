@@ -31,23 +31,8 @@ public interface ArticleDao {
      */
     List<Article> queryByArticleType(int articleTypeId);
 
-    /**4.
-     * 通过时间段查找帖子
-     * @param startTime 开始时间
-     * @param endTime 结束时间,默认时间为系统当前时间
-     * @return
-     */
-    List<Article> queryByTime(@Param("startTime")Long startTime,
-                              @Param("endTime")Long endTime,
-                              @Param("typeId") Integer typeId,
-                              @Param("ID") Integer ID,
-                              @Param("isAll")Integer isAll);
 
-    /**5.
-     * 批量删除帖子
-     * @param articleIds
-     * @return
-     */
+
     int deleteArticleBatch(long[] articleIds);
 
     /**6.
@@ -144,10 +129,10 @@ public interface ArticleDao {
      * @param articleType
      * @return
      */
-    int insertOneArticle(@Param("articleTitle")String articleTitle,
-                         @Param("articleContent") String articleContent,
-                         @Param("articleAuthor") long articleAuthor,
-                         @Param("moduleId") int moduleId,
+    int insertOneArticle(@Param("article_title")String articleTitle,
+                         @Param("article_content") String articleContent,
+                         @Param("article_authorID") long articleAuthor,
+                         @Param("article_module_id") int moduleId,
                          @Param("article_time") long articleTime,
                          @Param("article_type") int articleType
                          );
@@ -316,4 +301,13 @@ public interface ArticleDao {
      * @return
      */
     Counts getCountsInfo();
+
+    List<Article> getArticlesGood(int moduleID);
+
+    List<Article> getArticlesTop(int moduleID);
+
+    List<Article> getArticlesHot(int moduleID);
+
+    List<Article> getArticlesCommon(int moduleID);
+
 }
