@@ -45,11 +45,12 @@ body{
 }
 .logo{
 	float:left;
+	margin-left: 10px;
 }
 .logo img{
 	display:inline-block;
 	width:154px;
-	height:52px;
+	height:70px;
 }
 .nav-icon{
 	float: left;

@@ -59,6 +59,9 @@
         #userLogin{
             float: right;
         }
+        body{
+            background-color: none !important;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +71,7 @@
         <div class="wrap">
             <div class="logo">
                 <%--<h3>网站导航</h3>--%>
-                <a href="#"><span>网站导航</span><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
+                <a href="#"><img src="<%=request.getContextPath() %>/style/imgs/angeleyes_logo.png" width="150" height="70" title="pinbal" /></a>
             </div>
             <div class="nav-icon">
                 <a href="#" class="right_bt" id="activator"><span> </span> </a>
@@ -94,7 +97,7 @@
                     </div>
                 </div>
             </div>
-            <div class="top-searchbar">
+             <div class="top-searchbar">
                 <form>
                     <input type="text" /><input type="submit" value="" />
                 </form>

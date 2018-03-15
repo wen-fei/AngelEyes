@@ -47,6 +47,47 @@ public class Article {
 
     private String article_create_time_date;
 
+    //web表单name实体对象, 用于方便后台查询
+    private String startTime;
+
+    private String endTime;
+
+    private String titleKey;
+
+    private int needId;
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getTitleKey() {
+        return titleKey;
+    }
+
+    public void setTitleKey(String titleKey) {
+        this.titleKey = titleKey;
+    }
+
+    public int getNeedId() {
+        return needId;
+    }
+
+    public void setNeedId(int needId) {
+        this.needId = needId;
+    }
+
     public String getArticle_last_reply_username() {
         return article_last_reply_username;
     }

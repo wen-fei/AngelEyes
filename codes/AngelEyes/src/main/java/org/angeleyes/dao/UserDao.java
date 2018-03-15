@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface UserDao {
 
+    /***************************** 前台函数接口 ***************************************
+     */
+
     /**
      * 通过用户ID查询用户信息
      * @param userId
@@ -106,12 +109,6 @@ public interface UserDao {
                       @Param("new_password") String new_password,
                       @Param("user_email") String user_email);
 
-    /**
-     * 设置管理员
-     * @param user_email
-     * @return
-     */
-    int setUserController(@Param("user_email")Long user_email);
 
     /**
      * 用户登陆
@@ -141,4 +138,28 @@ public interface UserDao {
     int insertToUserArticleRecords_click(@Param("userId") Long userId,
                                          @Param("articleId") Long articleId,
                                          @Param("time") Long time);
+
+    /***************************** 后台管理函数接口 ***************************************
+     */
+
+    /**
+     * 后台管理员登陆
+     * @param userId
+     * @param password
+     * @return
+     */
+    User adminUserLogin(@Param("user_id") Long userId,
+                        @Param("password") String password);
+
+
+    /**
+     * 设置某模块管理员
+     * @param user_id
+     * @param module_id
+     * @return
+     */
+    int setController(@Param("module_id") int module_id,
+                      @Param("user_id") long user_id);
+
+
 }

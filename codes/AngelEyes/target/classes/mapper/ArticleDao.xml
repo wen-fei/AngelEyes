@@ -155,6 +155,8 @@
         FROM article
         WHERE article_create_time BETWEEN #{startTime} AND #{endTime}
         <if test="requirement == 0">
+            <!--普通帖子-->
+            AND article_is_top = 0 and article_is_hot = 0 AND article_is_top = 0
         </if>
         <if test="requirement == 1">
             <!--加精帖子-->

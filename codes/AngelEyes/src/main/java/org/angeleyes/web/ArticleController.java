@@ -1,6 +1,7 @@
 package org.angeleyes.web;
 
 import org.angeleyes.entity.Article;
+import org.angeleyes.entity.Module;
 import org.angeleyes.entity.Reply;
 import org.angeleyes.entity.User;
 import org.angeleyes.service.ArticleService;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -189,6 +191,68 @@ public class ArticleController {
                 result = "8";
         }
         return result;
+    }
+
+    /**
+     * 后台主题列表
+     * @param model
+     * @param article
+     * @return
+     */
+    @RequestMapping(value="admin/article/list")
+    public String list(Model model, Article article){
+        int needId = article.getNeedId();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String startTimeFromWeb = article.getStartTime();
+        String endTimeFromWeb   = article.getEndTime();
+        String titleKey = article.getTitleKey();
+        Date now = new Date();
+        //获取列表页
+        if(needId == 0 && startTimeFromWeb==null && endTimeFromWeb==null && titleKey==null){
+            List<Article> articleList = articleService.getArticleList();
+            model.addAttribute("articleList",articleList);
+        }
+        else{
+            //如果搜索时间为空，则默认开始时间为最小时间，即1970年，最大时间为系统当前时间，即查询所有帖子
+            if(startTimeFromWeb.equals("")){
+                startTimeFromWeb = dateFormat.format(0);
+            }
+            if(endTimeFromWeb.equals("")){
+                endTimeFromWeb = dateFormat.format(now.getTime());
+            }
+            try{
+                Long startTime = dateFormat.parse(" "+ startTimeFromWeb +" 00:00:00.000 ").getTime();
+                Long endTime = dateFormat.parse(" "+ endTimeFromWeb +" 00:00:00.000 ").getTime() ;
+                List<Article> articleList = articleService.getArticleByNeeds(needId,startTime,endTime,titleKey);
+                model.addAttribute("articleList",articleList);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return "admin/article/article_list";
+
+    }
+
+
+    /**
+     * 后台主题管理
+     * @param model
+     * @param article
+     * @return
+     */
+    @RequestMapping(value="admin/article/control")
+    public String control(Model model, Article article){
+        Article article_detail = articleService.getArticleById(article.getArticle_id());
+        article_detail = articleService.setArticleFromIdToName(article_detail);
+        model.addAttribute("article_detail",article_detail);
+
+        //List<ArticleType> articleTypeList = articleService.getArticleTypeList();
+        //List<Module> moduleList = articleService.getAtricleModuleList(forumId);
+
+        //model.addAttribute("articleTypeList",articleTypeList);
+        //model.addAttribute("moduleList",moduleList);
+        return "admin/article/article_control";
     }
 
 }

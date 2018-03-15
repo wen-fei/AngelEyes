@@ -59,6 +59,12 @@
 			#userLogin{
 				float: right;
 			}
+			body{
+				background-color: none;
+			}
+			#menu{
+				margin-top:7px;
+			}
 		</style>
 	</head>
 	<body>
@@ -67,33 +73,47 @@
 			<div class="header">
 				<div class="wrap">
 					<div class="logo">
-						<%--<h3>网站导航</h3>--%>
-						<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/login_logo.png" width="150" height="70" title="pinbal" /></a>
+						<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/angeleyes_logo.png" width="150" height="70" title="pinbal" /></a>
 					</div>
-					<div class="nav-icon">
-						 <a href="#" class="right_bt" id="activator"><span> </span> </a>
-					</div>
-					<div class="box" id="box">
-						 <div class="box_content">
-							<div class="box_content_center">
-								<div class="form_content">
-									<div class="menu_box_list">
-										<ul>
-											<li><a href="/app/module1/list"><span>宝贝寻家</span></a></li>
-											<li><a href="/app/module2/list"><span>家寻宝贝</span></a></li>
-											<li><a href="/app/loster/registration"><span>走失登记</span></a></li>
-											<li><a href="/app/contact"><span>关于我们</span></a></li>
-											<div class="clear"> </div>
-										</ul>
-									</div>
-									<a class="boxclose" id="boxclose">
-										<span>
-										</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
+					<%--<div class="nav-icon">--%>
+						 <%--<a href="#" class="right_bt" id="activator"><span> </span> </a>--%>
+					<%--</div>--%>
+					<%--<div class="box" id="box">--%>
+						 <%--<div class="box_content">--%>
+							<%--<div class="box_content_center">--%>
+								<%--<div class="form_content">--%>
+									<%--<div class="menu_box_list">--%>
+										<%--<ul>--%>
+											<%--<li><a href="/app/module1/list"><span>宝贝寻家</span></a></li>--%>
+											<%--<li><a href="/app/module2/list"><span>家寻宝贝</span></a></li>--%>
+											<%--<li><a href="/app/loster/registration"><span>走失登记</span></a></li>--%>
+											<%--<li><a href="/app/contact"><span>关于我们</span></a></li>--%>
+											<%--<div class="clear"> </div>--%>
+										<%--</ul>--%>
+									<%--</div>--%>
+									<%--<a class="boxclose" id="boxclose">--%>
+										<%--<span>--%>
+										<%--</span>--%>
+									<%--</a>--%>
+								<%--</div>--%>
+							<%--</div>--%>
+						<%--</div>--%>
+					<%--</div>--%>
+					<ul class="nav nav-pills btn-info" style="float: left;" id="nav-menu">
+						<li class="dropdown all-camera-dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								菜单
+								<b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li data-filter-camera-type="all"><a data-toggle="tab" href="#">主页</a></li>
+								<li data-filter-camera-type="Alpha"><a data-toggle="tab" href="#">宝贝寻家</a></li>
+								<li data-filter-camera-type="Zed"><a data-toggle="tab" href="#">家寻宝贝</a></li>
+								<li data-filter-camera-type="Bravo"><a data-toggle="tab" href="#">走失登记</a></li>
+
+							</ul>
+						</li>
+					</ul>
 					<div class="top-searchbar">
 						<form>
 							<input type="text" /><input type="submit" value="" />
@@ -138,7 +158,7 @@
 			      <ul id="tiles">
                       <c:forEach items="${lost_person_info}" var="lost_info">
 						  <li onClick="location.href='/app/loster/person_id/${lost_info.lost_person_id}';">
-							<img src="<%=request.getContextPath() %>/style/imgs/app/loster/${lost_info.lost_person_no}.jpg" width="200" height="200">
+							<img src="<%=request.getContextPath() %>/style/imgs/app/loster/${lost_info.lost_person_no}.jpg" style="border: 1px solid rgb(217, 217, 217);padding: 2px;width: 270px;height: 311.657px;">
 							<div class="post-info">
 								<div class="post-basic-info">
 									<h3><a href="#">走失人姓名：${lost_info.lost_person_name}</a></h3>
@@ -221,5 +241,7 @@
 		  </script>
 		<!---//End-wrap---->
 	</body>
+	<script src="<%=request.getContextPath() %>/style/js/bootstrap.js"></script>
+
 </html>
 

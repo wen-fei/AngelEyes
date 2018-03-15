@@ -80,4 +80,12 @@ public class UserServiceImpl implements UserService{
         return userDao.insertToUserArticleRecords_click(uid, aid,time) ;
     }
 
+    public User adminUserLogin(Long userId, String password) {
+        return userDao.adminUserLogin(userId, password);
+    }
+
+    public int setController(int module_id, long user_id) {
+        return userDao.setController(module_id, user_id);
+    }
+
 }

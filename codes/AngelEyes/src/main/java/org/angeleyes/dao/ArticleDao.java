@@ -9,6 +9,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ArticleDao {
+
+
+    /***************************** 用户界面接口 ***************************************
+     */
     /**1.
      * 通过帖子ID查找某个帖子信息
      * @param articleId
@@ -309,5 +313,11 @@ public interface ArticleDao {
     List<Article> getArticlesHot(int moduleID);
 
     List<Article> getArticlesCommon(int moduleID);
+
+
+/***************************** 后台管理函数接口 ***************************************
+ */
+
+
 
 }

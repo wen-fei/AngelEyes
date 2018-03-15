@@ -1,6 +1,7 @@
 package org.angeleyes.service;
 
 import org.angeleyes.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -97,5 +98,25 @@ public interface UserService {
      * @return
      */
     int insertToUserRecord_click(long uid, long aid);
+
+//    ***************************** 后台管理函数接口 ***************************************
+
+    /**
+     * 后台管理员登陆
+     * @param userId
+     * @param password
+     * @return
+     */
+    User adminUserLogin(Long userId, String password);
+
+
+    /**
+     * 设置某模块管理员
+     * @param user_id
+     * @param module_id
+     * @return
+     */
+    int setController(int module_id, long user_id);
+
 
 }

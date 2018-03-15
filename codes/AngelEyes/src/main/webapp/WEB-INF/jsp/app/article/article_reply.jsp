@@ -108,7 +108,7 @@
 <div clasa="hd">
     <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
         <div id="logo" class="col-md-6">
-            <%--<img src="../../../style/imgs/app/forum/logo.png" alt="">--%>
+            <img src="../../../../style/imgs/angeleyes_logo.png" alt="">
         </div>
         <div class="col-md-3" style="margin-top: 20px">
             <form action="/app/search" id="searchForm">

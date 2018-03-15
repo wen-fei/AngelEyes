@@ -95,7 +95,7 @@ public class ArticleServiceImpl implements ArticleService{
             User authorInfos = articleDao.queryArticleAuthorInfo(article.getArticle_authorID());
             article.setArticle_author_name(authorInfos.getUser_name());
 //            String authorTypeName = articleDao.queryArticleAuthorTypeName(authorInfos.getUser_type());
-//            article.setArticle_author_type_name(authorTypeName);
+  //          article.setArticle_author_type_name(authorTypeName);
 
             //设置最后回复用户信息
             User lastUserInfos = articleDao.queryArticleAuthorInfo(article.getArticle_last_reply_userID());
