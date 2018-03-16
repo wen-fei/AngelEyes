@@ -101,26 +101,47 @@
             margin-left:20px;
 
         }
+        .wrap {
+            width: 80%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body style="background: #E3E5E8;">
 <!--头部-->
-<div clasa="hd">
-    <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
-        <div id="logo" class="col-md-6">
-            <img src="../../../../style/imgs/angeleyes_logo.png" alt="">
-        </div>
-        <div class="col-md-3" style="margin-top: 20px">
-            <form action="/app/search" id="searchForm">
-                <div class="input-group" style="margin-top:0px; positon:relative" id="search">
-                    <input type="text" class="form-control" placeholder="请输入搜索内容" name="searchKey">
-                    <span class="input-group-btn">
+<div class="hd">
+    <div class="warp">
+        <div class="navbar navbar-default navbarcolor" style="background-color: #fff; height: 100px;">
+        <div id="logo" class="col-md-2">
+                <a href="#"><img src="<%=request.getContextPath() %>/style/imgs/angeleyes_logo.png" width="150" height="70" title="pinbal" /></a>
+            </div>
+        <%--导航菜单--%>
+        <div class="col-md-2">
+                <ul class="nav nav-pills" style="float: left; margin-top: 19px;" id="nav-menu">
+                    <li class="dropdown all-camera-dropdown">
+                        <a class="dropdown-toggle btn-default" data-toggle="dropdown">
+                            网站导航
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a  href="/app/index">主页</a></li>
+                            <li><a  href="/app/module1/list">宝贝寻家</a></li>
+                            <li><a  href="/app/module2/list">家寻宝贝</a></li>
+                            <li><a  href="/app/loster/registration">走失登记</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        <div class="col-md-4" style="margin-top: 20px">
+                <form action="/app/search" id="searchForm">
+                    <div class="input-group" style="margin-top:0px; positon:relative" id="search">
+                        <input type="text" class="form-control" placeholder="请输入搜索内容" name="searchKey">
+                        <span class="input-group-btn">
                            <button class="btn btn-info btn-search" type="submit">搜索</button>
                         </span>
-
-                </div>
-            </form>
-        </div>
+                    </div>
+                </form>
+            </div>
         <!--顶部右侧账户-->
         <div id="userLogin" class="col-md-3">
             <ul class="Hui-userbar" style="margin-top: 20px;">
@@ -150,6 +171,7 @@
             </ul>
         </div>
 
+    </div>
     </div>
 </div>
 </div>

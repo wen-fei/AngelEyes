@@ -67,58 +67,43 @@
 			}
 		</style>
 	</head>
-	<body>
-		<!---start-wrap---->
-			<!---start-header---->
-			<div class="header">
-				<div class="wrap">
-					<div class="logo">
+	<body style="background: rgb(227, 229, 232);">
+		<!---start-header---->
+		<div class="header">
+			<div class="wrap">
+					<div class="logo col-md-2">
 						<a href="#"><img src="<%=request.getContextPath() %>/style/imgs/angeleyes_logo.png" width="150" height="70" title="pinbal" /></a>
 					</div>
-					<%--<div class="nav-icon">--%>
-						 <%--<a href="#" class="right_bt" id="activator"><span> </span> </a>--%>
-					<%--</div>--%>
-					<%--<div class="box" id="box">--%>
-						 <%--<div class="box_content">--%>
-							<%--<div class="box_content_center">--%>
-								<%--<div class="form_content">--%>
-									<%--<div class="menu_box_list">--%>
-										<%--<ul>--%>
-											<%--<li><a href="/app/module1/list"><span>宝贝寻家</span></a></li>--%>
-											<%--<li><a href="/app/module2/list"><span>家寻宝贝</span></a></li>--%>
-											<%--<li><a href="/app/loster/registration"><span>走失登记</span></a></li>--%>
-											<%--<li><a href="/app/contact"><span>关于我们</span></a></li>--%>
-											<%--<div class="clear"> </div>--%>
-										<%--</ul>--%>
-									<%--</div>--%>
-									<%--<a class="boxclose" id="boxclose">--%>
-										<%--<span>--%>
-										<%--</span>--%>
-									<%--</a>--%>
-								<%--</div>--%>
-							<%--</div>--%>
-						<%--</div>--%>
-					<%--</div>--%>
-					<ul class="nav nav-pills btn-info" style="float: left;" id="nav-menu">
-						<li class="dropdown all-camera-dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-								菜单
-								<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li data-filter-camera-type="all"><a data-toggle="tab" href="#">主页</a></li>
-								<li data-filter-camera-type="Alpha"><a data-toggle="tab" href="#">宝贝寻家</a></li>
-								<li data-filter-camera-type="Zed"><a data-toggle="tab" href="#">家寻宝贝</a></li>
-								<li data-filter-camera-type="Bravo"><a data-toggle="tab" href="#">走失登记</a></li>
-
-							</ul>
-						</li>
-					</ul>
-					<div class="top-searchbar">
-						<form>
-							<input type="text" /><input type="submit" value="" />
-						</form>
+                    <%--导航菜单--%>
+					<div class="col-md-2">
+						<ul class="nav nav-pills" style="float: left; margin-top: 19px;" id="nav-menu">
+							<li class="dropdown all-camera-dropdown">
+								<a class="dropdown-toggle btn-default" data-toggle="dropdown">
+									网站导航
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a  href="/app/index">主页</a></li>
+									<li><a  href="/app/module1/list">宝贝寻家</a></li>
+									<li><a  href="/app/module2/list">家寻宝贝</a></li>
+									<li><a  href="/app/loster/registration">走失登记</a></li>
+								</ul>
+							</li>
+						</ul>
 					</div>
+					<%--搜索框--%>
+                    <div class="col-md-4" style="margin-top: 20px">
+                        <form action="/app/search" id="searchForm">
+                            <div class="input-group" style="margin-top:0px; positon:relative" id="search">
+
+                                <input type="text" class="form-control" placeholder="请输入搜索内容" name="searchKey">
+                                <span class="input-group-btn">
+                           <button class="btn btn-info btn-search" type="submit">搜索</button>
+                        </span>
+
+                            </div>
+                        </form>
+                    </div>
 					<!--顶部右侧账户-->
 					<div id="userLogin" class="col-md-3">
 							<ul class="Hui-userbar" style="margin-top: 20px;">
@@ -137,7 +122,7 @@
 								<c:if test="${sessionScope.UserInfo_session != null}">
 									<li>
 										<span>欢迎会员：</span>
-										<input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}">
+										<input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}" />
 										<a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
 											<span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
 										</a>
@@ -148,7 +133,6 @@
 						</div>
 					<div class="clear"> </div>
 				</div>
-			</div>
 		</div>
 		<!---//End-header---->
 		<!---start-content---->

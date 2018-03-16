@@ -13,6 +13,8 @@
     <link href="../../../../style/css/app/find/style.css" rel="stylesheet" type="text/css"/>
     <link href="../../../../style/css/app/find/global.css" rel="stylesheet" type="text/css"/>
     <link href="../../../../style/css/app/find/nivoslider.css" rel="stylesheet" type="text/css"/>
+    <link href="<%=request.getContextPath() %>/style/css/bootstrap.css" rel='stylesheet' type='text/css' />
+
     <script type="text/javascript">
         <!--
         window.onerror = function () {
@@ -20,7 +22,8 @@
         }
         -->
     </script>
-    <script src="../../../../style/js/app/find/jquery-1.5.1.min.js" type="text/javascript"></script>
+    <%--<script src="../../../../style/js/app/find/jquery-1.5.1.min.js" type="text/javascript"></script>--%>
+    <script src="../../../../style/js/jquery.min.js"></script>
     <script src="../../../../style/js/app/find/jquery.nivo.slider.pack.js" type="text/javascript"></script>
     <script src="../../../../style/js/app/find/formValidator-4.0.1.js" type="text/javascript" charset="UTF-8"></script>
     <script src="../../../../style/js/app/find/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
@@ -30,6 +33,7 @@
     <script src="../../../../style/js/app/find/popImg.js" type="text/javascript"></script>
     <script src="../../../../style/js/app/find/loadimg.js" type="text/javascript"></script>
     <script src="../../../../style/js/app/find/jquery.rollGallery_yeso.js" type="text/javascript"></script>
+    <script src="<%=request.getContextPath() %>/style/js/bootstrap.js"></script>
     <!-- 省市级联动js-->
     <script src="../../../../style/js/app/find/PCASClass.js" type="text/javascript"></script>
     <!--日期选择插件-->
@@ -56,70 +60,92 @@
             height: 150px;
             vertical-align: middle;
         }
+        .Hui-userbar > li{
+            margin-right:20px;
+            float: right;
+        }
+        .Hui-userbar{
+            float: right;
+        }
+        #userLogin{
+            float: right;
+        }
+        .wrap{
+            font-size: 14px;
+        }
+        #login_2 input{
+            line-height: normal;
+        }
+        #menu_li{
+            margin-top: -20px;
+        }
     </style>
 </head>
 <body>
-<div class="nav-main">
-    <div class="nav-main_channel">
-        <ul id="nav-main">
-            <li><a href="/index.aspx">首页</a></li>
-            <li><a href="/find.aspx">寻亲登记</a>
-                <ul>
-                    <li><a href="/app/module1/list">家寻宝贝</a></li>
-                    <li><a href="/app/module2/list">宝贝寻家</a></li>
-                    <li><a href="/app/module3/list">其他寻人</a></li>
-                    <li><a href="/app/module4/list">关于我们</a></li>
-                </ul>
-            </li>
-        </ul>
-        <script type="text/javascript">
-            function menuFix() {
-                var sfEls = document.getElementById("nav-main").getElementsByTagName("li");
-                for (var i = 0; i < sfEls.length; i++) {
-                    sfEls[i].onmouseover = function () {
-                        this.className += (this.className.length > 0 ? " " : "") + "sfhover";
-                    };
-                    sfEls[i].onMouseDown = function () {
-                        this.className += (this.className.length > 0 ? " " : "") + "sfhover";
-                    };
-                    sfEls[i].onMouseUp = function () {
-                        this.className += (this.className.length > 0 ? " " : "") + "sfhover";
-                    };
-                    sfEls[i].onmouseout = function () {
-                        this.className = this.className.replace(new RegExp("( ?|^)sfhover\\b"), "");
-                    };
-                }
-            }
 
-            window.onload = menuFix;
-        </script>
-    </div>
-    <div class="nav-main_report">
-        <div class="nav-main_report1">
-            <span><a href=""><img src="../../../../style/imgs/app/find/baby_nav_main_report_lb.gif"
-                                  style="width: 25px;height: 25px;border: none;" alt=""/></a></span>
+<div class="header">
+    <div class="wrap">
+        <div class="logo col-md-2">
+            <a href="#"><img src="<%=request.getContextPath() %>/style/imgs/angeleyes_logo.png" width="150" height="70" title="pinbal" /></a>
         </div>
-        <form action="/result.aspx" method="POST" name="form_nav" id="form_nav">
-            <div class="nav-main_report3">
-        <span>
-            <input type="hidden" name="type" value="1">
-            <input type="text" name='key' id="query" value=""/>
-        </span>
-            </div>
-            <div class="nav-main_report4">
-                <span>&nbsp;&nbsp;<input id="subn" value="      " type="submit" class="scorll_subn"
-                                         style="cursor:pointer;"/></span>
-                <span>&nbsp;<a href="/so.aspx"><img src="../../../../style/imgs/app/find/baby_nav_main_gjss.jpg" alt="" border="0"/></a> </span>
-            </div>
-        </form>
-        <script src="../../../../style/js/app/find/jquery.autocomplete-min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            var options, a;
-            jQuery(function () {
-                options = {serviceUrl: 'look.aspx'};
-                a = $('#query').autocomplete(options);
-            });
-        </script>
+        <%--导航菜单--%>
+        <div class="col-md-2">
+            <ul class="nav nav-pills" style="float: left; margin-top: 19px;" id="nav-menu">
+                <li class="dropdown all-camera-dropdown">
+                    <a class="dropdown-toggle btn-default" data-toggle="dropdown">
+                        网站导航
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a  href="/app/index">主页</a></li>
+                        <li><a  href="/app/module1/list">宝贝寻家</a></li>
+                        <li><a  href="/app/module2/list">家寻宝贝</a></li>
+                        <li><a  href="/app/loster/registration">走失登记</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <%--搜索框--%>
+        <div class="col-md-4" style="margin-top: 20px">
+            <form action="/app/search" id="searchForm">
+                <div class="input-group" style="margin-top:0px; positon:relative" id="search">
+
+                    <input type="text" class="form-control" placeholder="请输入搜索内容" name="searchKey">
+                    <span class="input-group-btn">
+                           <button class="btn btn-info btn-search" type="submit">搜索</button>
+                        </span>
+
+                </div>
+            </form>
+        </div>
+        <!--顶部右侧账户-->
+        <div id="userLogin" class="col-md-3">
+            <ul class="Hui-userbar" style="margin-top: 20px;">
+                <c:if test="${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}">
+                    <li>
+                        <a  href="/app/login/registview" class="btn btn-success">
+                            <span class="glyphicon glyphicon-user"></span> 注册
+                        </a>
+                    </li>
+                    <li>
+                        <a  href="/app/login/loginview" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-log-in"></span> 登录
+                        </a>
+                    </li>
+                </c:if>
+                <c:if test="${sessionScope.UserInfo_session != null}">
+                    <li>
+                        <span>欢迎会员：</span>
+                        <input type="text" hidden id="user_id" value="${sessionScope.UserInfo_session.user_id}" />
+                        <a class="btn btn-info" href="/app/user/user_info${sessionScope.UserInfo_session.user_id}/info" title="点击修改个人资料">
+                            <span class="glyphicon glyphicon-user"></span> ${sessionScope.UserInfo_session.user_name}
+                        </a>
+                        <button id="logout" class="btn btn-danger">退出</button>
+                    </li>
+                </c:if>
+            </ul>
+        </div>
+        <div class="clear"> </div>
     </div>
 </div>
 <div class="page-space">&nbsp;</div>
@@ -136,7 +162,7 @@
 
     <div class="main_cube">
         <div class="main_step" style="position:relative;">
-            <ul>
+            <ul id="menu_li">
                 <li id="select">1.选择登记类型</li>
                 <li id="normal">2.填写信息登记</li>
                 <li id="norma2">3.上传照片</li>
@@ -265,29 +291,29 @@
                             <td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>选择要上传的照片文件：</td>
                             <td> <input type="file" name="fuPhoto" id="fuPhoto" class="text_a" FileType=".jpg|.gif|.png" /></td></tr>
                         </tr>
-                        <tr>
-                            <td colspan="2" id="blood"></td>
-                        </tr>
+                        <%--<tr>--%>
+                            <%--<td colspan="2" id="blood"></td>--%>
+                        <%--</tr>--%>
 
-                        <script type="text/javascript">
-                            function add_blood() {
-                                $("#blood").html("<table id='add_blood' width=\"100%\"><tr><td align=\"right\" width=\"33%\">父亲姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_fad\"/></td></tr><tr><td align=\"right\" width=\"33%\">母亲姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_mad\"/></td></tr><tr><td align=\"right\" width=\"33%\">其他人姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_name\"/></td></tr><tr><td align=\"right\" width=\"33%\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>采血地点：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"blood_address\"/></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>采血时间：</td><td><select name=\"yearblood_time\" id=\"yearblood_time\"></select><select name=\"monblood_time\" id=\"monblood_time\"></select><select name=\"dayblood_time\" id=\"dayblood_time\"></select></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>DNA是否入全国打拐数据库：</td><td>是<input type=\"radio\"  name=\"blood_is_add\"   value=\"1\" /> 否<input type=\"radio\" name=\"blood_is_add\" checked=checked value=\"0\" /></td></tr></table>");
-                                InitDooeiDate("yearblood_time", "monblood_time", "dayblood_time");
-                            }
-                            function clean_blood() { $("#add_blood").empty();}
-                        </script>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>是否报案：</td>
-                            <td>是<input type="radio" name="is_report" value="1"  onclick="add_report();"/> 否<input type="radio" name="is_report" value="0"   onclick="clean_report();" checked='checked'/></td>
+                        <%--<script type="text/javascript">--%>
+                            <%--function add_blood() {--%>
+                                <%--$("#blood").html("<table id='add_blood' width=\"100%\"><tr><td align=\"right\" width=\"33%\">父亲姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_fad\"/></td></tr><tr><td align=\"right\" width=\"33%\">母亲姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_mad\"/></td></tr><tr><td align=\"right\" width=\"33%\">其他人姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_name\"/></td></tr><tr><td align=\"right\" width=\"33%\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>采血地点：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"blood_address\"/></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>采血时间：</td><td><select name=\"yearblood_time\" id=\"yearblood_time\"></select><select name=\"monblood_time\" id=\"monblood_time\"></select><select name=\"dayblood_time\" id=\"dayblood_time\"></select></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>DNA是否入全国打拐数据库：</td><td>是<input type=\"radio\"  name=\"blood_is_add\"   value=\"1\" /> 否<input type=\"radio\" name=\"blood_is_add\" checked=checked value=\"0\" /></td></tr></table>");--%>
+                                <%--InitDooeiDate("yearblood_time", "monblood_time", "dayblood_time");--%>
+                            <%--}--%>
+                            <%--function clean_blood() { $("#add_blood").empty();}--%>
+                        <%--</script>--%>
+                        <%--<tr>--%>
+                            <%--<td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>是否报案：</td>--%>
+                            <%--<td>是<input type="radio" name="is_report" value="1"  onclick="add_report();"/> 否<input type="radio" name="is_report" value="0"   onclick="clean_report();" checked='checked'/></td>--%>
 
-                        </tr>
+                        <%--</tr>--%>
                         <tr><td colspan="2" id="report"></td></tr>
-                        <script type="text/javascript">
-                            function add_report() {
-                                $("#report").html("<table id='add_report' width=\"100%\"><tr><td align=\"right\" width=\"33%\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>报案机关名称：</td><td><input type=\"text\" class=\"text_a\" name=\"report_name\" value=\"\"/></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>是否立案：</td><td>是<input type=\"radio\" name=\"report_is_add\" value=\"1\" /> 否<input type=\"radio\" name=\"report_is_add\" value=\"0\" checked=checked/></td></tr></table>");
-                            }
-                            function clean_report() {$("#add_report").empty();}
-                        </script>
+                        <%--<script type="text/javascript">--%>
+                            <%--function add_report() {--%>
+                                <%--$("#report").html("<table id='add_report' width=\"100%\"><tr><td align=\"right\" width=\"33%\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>报案机关名称：</td><td><input type=\"text\" class=\"text_a\" name=\"report_name\" value=\"\"/></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>是否立案：</td><td>是<input type=\"radio\" name=\"report_is_add\" value=\"1\" /> 否<input type=\"radio\" name=\"report_is_add\" value=\"0\" checked=checked/></td></tr></table>");--%>
+                            <%--}--%>
+                            <%--function clean_report() {$("#add_report").empty();}--%>
+                        <%--</script>--%>
                         <tr>
                             <td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>失踪人籍贯：</td>
                             <td><input type="text" class="text_a"  id="birth_address"  name="birth_address"
@@ -321,42 +347,42 @@
                                 <span id="lost_person_featureTip"></span>
                             </td>
                         </tr>
-                        <tr>
-                            <td align="right"  style="vertical-align: top;"><span class="s1">
-                                <strong>　*&nbsp;</strong></span>失踪经过：
-                            </td>
-                            <td><textarea rows="3" cols="30" name="lost_intro" id="lost_intro"></textarea>  <span id="lost_introTip"></span></td>
-                        </tr>
-                        <tr>
-                            <td align="right"  style="vertical-align: top;"><span class="s1">
-                                <strong>&nbsp;</strong></span>家庭背景以及线索资料：</td>
-                            <td>
-                                <textarea rows="3" cols="30" name="family" id="family"></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>有无唤起孩子记忆信息：</td>
-                            <td>
-                                是<input type="radio" name="is_memory"  value="1" onclick="add_ismemory();" />
-                                否<input type="radio" name="is_memory" value="0" checked=checked  onclick="clean_ismemory();" />
-                            </td>
-                        </tr>
-                        <tr><td colspan="2" id="ismemory"></td></tr>
-                        <script type="text/javascript">
-                            function add_ismemory() {
-                                $("#ismemory").html("<table id='add_ismemory' width=\"100%\"><tr><td align=\"right\" width=\"33%\" style=\"vertical-align: top;\"><span class=\"s1\"><strong>&nbsp;</strong></span>信息内容描述：</td> <td><textarea rows=\"3\" cols=\"30\" name=\"memory\"></textarea></td></tr></table>");
-                            }
-                            function clean_ismemory() { $("#add_ismemory").empty(); }
-                        </script>
+                        <%--<tr>--%>
+                            <%--<td align="right"  style="vertical-align: top;"><span class="s1">--%>
+                                <%--<strong>　*&nbsp;</strong></span>失踪经过：--%>
+                            <%--</td>--%>
+                            <%--<td><textarea rows="3" cols="30" name="lost_intro" id="lost_intro"></textarea>  <span id="lost_introTip"></span></td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td align="right"  style="vertical-align: top;"><span class="s1">--%>
+                                <%--<strong>&nbsp;</strong></span>家庭背景以及线索资料：</td>--%>
+                            <%--<td>--%>
+                                <%--<textarea rows="3" cols="30" name="family" id="family"></textarea>--%>
+                            <%--</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>有无唤起孩子记忆信息：</td>--%>
+                            <%--<td>--%>
+                                <%--是<input type="radio" name="is_memory"  value="1" onclick="add_ismemory();" />--%>
+                                <%--否<input type="radio" name="is_memory" value="0" checked=checked  onclick="clean_ismemory();" />--%>
+                            <%--</td>--%>
+                        <%--</tr>--%>
+                        <%--<tr><td colspan="2" id="ismemory"></td></tr>--%>
+                        <%--<script type="text/javascript">--%>
+                            <%--function add_ismemory() {--%>
+                                <%--$("#ismemory").html("<table id='add_ismemory' width=\"100%\"><tr><td align=\"right\" width=\"33%\" style=\"vertical-align: top;\"><span class=\"s1\"><strong>&nbsp;</strong></span>信息内容描述：</td> <td><textarea rows=\"3\" cols=\"30\" name=\"memory\"></textarea></td></tr></table>");--%>
+                            <%--}--%>
+                            <%--function clean_ismemory() { $("#add_ismemory").empty(); }--%>
+                        <%--</script>--%>
 
-                        <tr>
-                            <td align="right"  style="vertical-align: top;"><span class="s1"><strong>&nbsp;</strong></span>其他资料：</td>
-                            <td><textarea rows="3" cols="30" name="other_intro"></textarea></td>
-                        </tr>
-                        <tr>
-                            <td align="right"  style="vertical-align: top;"><span class="s1"><strong>　&nbsp;</strong></span>其他说明：</td>
-                            <td><textarea rows="3" cols="30" name="explain" id="explain"></textarea></td>
-                        </tr>
+                        <%--<tr>--%>
+                            <%--<td align="right"  style="vertical-align: top;"><span class="s1"><strong>&nbsp;</strong></span>其他资料：</td>--%>
+                            <%--<td><textarea rows="3" cols="30" name="other_intro"></textarea></td>--%>
+                        <%--</tr>--%>
+                        <%--<tr>--%>
+                            <%--<td align="right"  style="vertical-align: top;"><span class="s1"><strong>　&nbsp;</strong></span>其他说明：</td>--%>
+                            <%--<td><textarea rows="3" cols="30" name="explain" id="explain"></textarea></td>--%>
+                        <%--</tr>--%>
                         <tr>
                             <td  align="right"><h2>联系人信息</h2></td><td></td>
                         </tr>
@@ -812,4 +838,33 @@
     });
 </script>
 </body>
+<script src="../../../../style/js/app/find/jquery.autocomplete-min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var options, a;
+    jQuery(function () {
+        options = {serviceUrl: 'look.aspx'};
+        a = $('#query').autocomplete(options);
+    });
+</script>
+<script type="text/javascript">
+    function menuFix() {
+        var sfEls = document.getElementById("nav-main").getElementsByTagName("li");
+        for (var i = 0; i < sfEls.length; i++) {
+            sfEls[i].onmouseover = function () {
+                this.className += (this.className.length > 0 ? " " : "") + "sfhover";
+            };
+            sfEls[i].onMouseDown = function () {
+                this.className += (this.className.length > 0 ? " " : "") + "sfhover";
+            };
+            sfEls[i].onMouseUp = function () {
+                this.className += (this.className.length > 0 ? " " : "") + "sfhover";
+            };
+            sfEls[i].onmouseout = function () {
+                this.className = this.className.replace(new RegExp("( ?|^)sfhover\\b"), "");
+            };
+        }
+    }
+
+    window.onload = menuFix;
+</script>
 </html>
