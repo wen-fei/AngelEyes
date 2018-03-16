@@ -83,7 +83,7 @@ public interface LostPersonDao {
                          @Param("sex") String sex,
                          @Param("age") String age,
                          @Param("height") String height,
-                         @Param("arae") String area,
+                         @Param("area") String area,
                          @Param("live") String live,
                          @Param("character") String character,
                          @Param("others") String others,

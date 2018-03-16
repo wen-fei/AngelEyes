@@ -83,8 +83,8 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="wrap">
+<div class="header" style="height: 100px;">
+    <div class="wrap" style="margin: 0 auto">
         <div class="logo col-md-2">
             <a href="#"><img src="<%=request.getContextPath() %>/style/imgs/angeleyes_logo.png" width="150" height="70" title="pinbal" /></a>
         </div>
@@ -119,7 +119,7 @@
             </form>
         </div>
         <!--顶部右侧账户-->
-        <div id="userLogin" class="col-md-3">
+        <div id="userLogin" class="col-md-4">
             <ul class="Hui-userbar" style="margin-top: 20px;">
                 <c:if test="${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}">
                     <li>
@@ -171,7 +171,15 @@
         </div>
 
         <!--start选择登记类型-->
-        <script type="text/javascript">    function register() { $("#registion").hide(); $("#pronouncement").show(); }</script>
+        <script type="text/javascript">
+            function register() {
+                if (${sessionScope.UserInfo_session == '用户退出成功' || empty sessionScope.UserInfo_session}) {
+                    alert("登记需要登陆，请您先登陆！")
+                } else {
+                    $("#registion").hide();
+                    $("#pronouncement").show();
+                }
+        }</script>
         <div class="main_step_text" style="position:relative;" id="registion">
             <div id="login_9">
                 <img src="../../../../style/imgs/app/find/d_login10.gif" width="220" height="40"/>
@@ -202,7 +210,9 @@
         </div>
         <!--end填写表格-->
         <!--start登记说明-->
-        <script type="text/javascript">    function agree() { $("#pronouncement").hide(); $("#regform").show(); }</script>
+        <script type="text/javascript">
+            function agree() { $("#pronouncement").hide(); $("#regform").show(); }
+        </script>
         <div class="main_step_text" style="position:relative;font-size: 14px;line-height: 28px; display: none;" id="pronouncement">
             <p>
             <center style="font-weight: bold;font-size: 16px;">寻亲登记说明</center>
@@ -288,33 +298,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>选择要上传的照片文件：</td>
-                            <td> <input type="file" name="fuPhoto" id="fuPhoto" class="text_a" FileType=".jpg|.gif|.png" /></td></tr>
-                        </tr>
-                        <%--<tr>--%>
-                            <%--<td colspan="2" id="blood"></td>--%>
-                        <%--</tr>--%>
-
-                        <%--<script type="text/javascript">--%>
-                            <%--function add_blood() {--%>
-                                <%--$("#blood").html("<table id='add_blood' width=\"100%\"><tr><td align=\"right\" width=\"33%\">父亲姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_fad\"/></td></tr><tr><td align=\"right\" width=\"33%\">母亲姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_mad\"/></td></tr><tr><td align=\"right\" width=\"33%\">其他人姓名：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"take_blood_name\"/></td></tr><tr><td align=\"right\" width=\"33%\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>采血地点：</td><td><input type=\"text\" value=\"\" class=\"text_a\" name=\"blood_address\"/></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>采血时间：</td><td><select name=\"yearblood_time\" id=\"yearblood_time\"></select><select name=\"monblood_time\" id=\"monblood_time\"></select><select name=\"dayblood_time\" id=\"dayblood_time\"></select></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>DNA是否入全国打拐数据库：</td><td>是<input type=\"radio\"  name=\"blood_is_add\"   value=\"1\" /> 否<input type=\"radio\" name=\"blood_is_add\" checked=checked value=\"0\" /></td></tr></table>");--%>
-                                <%--InitDooeiDate("yearblood_time", "monblood_time", "dayblood_time");--%>
-                            <%--}--%>
-                            <%--function clean_blood() { $("#add_blood").empty();}--%>
-                        <%--</script>--%>
-                        <%--<tr>--%>
-                            <%--<td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>是否报案：</td>--%>
-                            <%--<td>是<input type="radio" name="is_report" value="1"  onclick="add_report();"/> 否<input type="radio" name="is_report" value="0"   onclick="clean_report();" checked='checked'/></td>--%>
-
-                        <%--</tr>--%>
-                        <tr><td colspan="2" id="report"></td></tr>
-                        <%--<script type="text/javascript">--%>
-                            <%--function add_report() {--%>
-                                <%--$("#report").html("<table id='add_report' width=\"100%\"><tr><td align=\"right\" width=\"33%\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>报案机关名称：</td><td><input type=\"text\" class=\"text_a\" name=\"report_name\" value=\"\"/></td></tr><tr><td align=\"right\"><span class=\"s1\"><strong>　*&nbsp;</strong></span>是否立案：</td><td>是<input type=\"radio\" name=\"report_is_add\" value=\"1\" /> 否<input type=\"radio\" name=\"report_is_add\" value=\"0\" checked=checked/></td></tr></table>");--%>
-                            <%--}--%>
-                            <%--function clean_report() {$("#add_report").empty();}--%>
-                        <%--</script>--%>
-                        <tr>
                             <td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>失踪人籍贯：</td>
                             <td><input type="text" class="text_a"  id="birth_address"  name="birth_address"
                                        value="" maxlength="200"/>  <span id="birth_addressTip"  ></span></td>
@@ -347,42 +330,6 @@
                                 <span id="lost_person_featureTip"></span>
                             </td>
                         </tr>
-                        <%--<tr>--%>
-                            <%--<td align="right"  style="vertical-align: top;"><span class="s1">--%>
-                                <%--<strong>　*&nbsp;</strong></span>失踪经过：--%>
-                            <%--</td>--%>
-                            <%--<td><textarea rows="3" cols="30" name="lost_intro" id="lost_intro"></textarea>  <span id="lost_introTip"></span></td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td align="right"  style="vertical-align: top;"><span class="s1">--%>
-                                <%--<strong>&nbsp;</strong></span>家庭背景以及线索资料：</td>--%>
-                            <%--<td>--%>
-                                <%--<textarea rows="3" cols="30" name="family" id="family"></textarea>--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td align="right"><span class="s1"><strong>　*&nbsp;</strong></span>有无唤起孩子记忆信息：</td>--%>
-                            <%--<td>--%>
-                                <%--是<input type="radio" name="is_memory"  value="1" onclick="add_ismemory();" />--%>
-                                <%--否<input type="radio" name="is_memory" value="0" checked=checked  onclick="clean_ismemory();" />--%>
-                            <%--</td>--%>
-                        <%--</tr>--%>
-                        <%--<tr><td colspan="2" id="ismemory"></td></tr>--%>
-                        <%--<script type="text/javascript">--%>
-                            <%--function add_ismemory() {--%>
-                                <%--$("#ismemory").html("<table id='add_ismemory' width=\"100%\"><tr><td align=\"right\" width=\"33%\" style=\"vertical-align: top;\"><span class=\"s1\"><strong>&nbsp;</strong></span>信息内容描述：</td> <td><textarea rows=\"3\" cols=\"30\" name=\"memory\"></textarea></td></tr></table>");--%>
-                            <%--}--%>
-                            <%--function clean_ismemory() { $("#add_ismemory").empty(); }--%>
-                        <%--</script>--%>
-
-                        <%--<tr>--%>
-                            <%--<td align="right"  style="vertical-align: top;"><span class="s1"><strong>&nbsp;</strong></span>其他资料：</td>--%>
-                            <%--<td><textarea rows="3" cols="30" name="other_intro"></textarea></td>--%>
-                        <%--</tr>--%>
-                        <%--<tr>--%>
-                            <%--<td align="right"  style="vertical-align: top;"><span class="s1"><strong>　&nbsp;</strong></span>其他说明：</td>--%>
-                            <%--<td><textarea rows="3" cols="30" name="explain" id="explain"></textarea></td>--%>
-                        <%--</tr>--%>
                         <tr>
                             <td  align="right"><h2>联系人信息</h2></td><td></td>
                         </tr>
@@ -417,349 +364,325 @@
                                        maxlength="50"/>
                             </td>
                         </tr>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　&nbsp;</strong></span>电话：</td>
-                            <td>
-                                <input type="text" class="text_a" name="tel" value="" maxlength="50"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　&nbsp;</strong></span>邮箱：</td>
-                            <td><input type="text" class="text_a" name="email" value="" maxlength="50"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　&nbsp;</strong></span>QQ号：</td>
-                            <td><input type="text" class="text_a" name="qq" value="" maxlength="15"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　&nbsp;</strong></span>地址：</td>
-                            <td><input type="text" class="text_a" name="address" value="" maxlength="200"/></td>
-                        </tr>
-                        <tr>
-                            <td align="right"><span class="s1"><strong>　&nbsp;</strong></span>其他联系方式：</td>
-                            <td><input type="text" class="text_a" name="other_contact" value=""
-                                       maxlength="200"/></td>
-                        </tr>
                     </table>
                     <div class="sctn21_1_3_2" style="width:700px; margin:0 auto; float:none">
-                        <input style="float:none; margin:15px auto" onclick="return checkdate();" type="submit" value="下一步" class="sctn21_1_3_1" />
+                        <%--<input type="text" class="sctn21_1_3_1" onclick="return checkdate();" value="验证数据">--%>
+                        <input style="float:none; margin:15px auto" type="button" value="提交结果"  class="sctn21_1_3_1" id="submitBtn"/>
                     </div>
                 </form>
             </div>
 
             <div id="background" class="background" style="display:none"></div>
             <div id="progressBar" class="progressBar" style="display:none">数据加载中，请稍等...</div>
-            <script type="text/javascript">
-                $(document).ready(function () {
-                    $.formValidator.initConfig({
-                        formID: "form1",
-                        onError: function () {
-                            alert("信息填写不完善，点击确定，定位到不完善位置");
-                        },
-                        onSuccess: function () {
-                            showdiv();
-                        }
-                    });
 
-                    $("#name").formValidator({
-
-                        onShow: "请输入姓名",
-
-                        onFocus: "请输入姓名,1~10个字符",
-
-                        onCorrect: "通过"
-                    }).regexValidator({
-
-                        regExp: "notempty",
-
-                        dataType: "enum",
-
-                        onError: "<span style=\"color:#ff0000;\">姓名不能为空<\span>"
-
-                    });
-                    $("#birth_address").formValidator({
-                        onShow: "请填写所在地",
-                        onFocus: "请填写所在地",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-
-                    $("#birth_address_1").formValidator({
-
-                        onShow: "请填写详细地点",
-
-                        onFocus: "请填写详细地点",
-
-                        onCorrect: "通过"
-                    }).regexValidator({
-
-                        regExp: "notempty",
-
-                        dataType: "enum",
-
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-
-                    });
-                    $("#lost_person_feature").formValidator({
-                        onShow: "请填写特征描述",
-                        onFocus: "请填写失踪人特征描述",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-                    $("#lost_intro").formValidator({
-                        onShow: "请填写失踪经过",
-                        onFocus: "请填写失踪经过",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-                    $("#lost_address").formValidator({
-                        onShow: "请填写详细地址",
-                        onFocus: "请填写详细地址",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-                    $("#contact_name").formValidator({
-                        onShow: "请填写联系人姓名",
-                        onFocus: "请填写联系人姓名",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-                    $("#contact_relation").formValidator({
-                        onShow: "请填写",
-                        onFocus: "请填写",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-                    $("#write_relation").formValidator({
-                        onShow: "请填写",
-                        onFocus: "请填写",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "notempty",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-                    $("#qq").formValidator({
-                        onShow: "请填写QQ号",
-                        onFocus: "请填写QQ号",
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "qq",
-                        dataType: "enum",
-                        onError: "<span style=\"color:#ff0000;\">不通过<\span>"
-                    });
-
-                    $("#file_1").formValidator({
-                        onShow: "支持doc,docx,jpeg,jpg,zip,rar",
-                        onFocus: "支持doc,docx,jpeg,jpg,zip,rar",
-                        empty: true,
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "picture",
-                        dataType: "enum",
-                        onError: "支持doc,docx,jpeg,jpg,,zip,rar类型错误"
-                    });
-                    $("#file_2").formValidator({
-                        onShow: "支持doc,docx,jpeg,jpg,zip,rar",
-                        onFocus: "支持doc,docx,jpeg,jpg,zip,rar",
-                        empty: true,
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "picture",
-                        dataType: "enum",
-                        onError: "支持doc,docx,jpeg,jpg,,zip,rar类型错误"
-                    });
-
-                    $("#file_3").formValidator({
-                        onShow: "支持doc,docx,jpeg,jpg,zip,rar",
-                        onFocus: "支持doc,docx,jpeg,jpg,zip,rar",
-                        empty: true,
-                        onCorrect: "通过"
-                    }).regexValidator({
-                        regExp: "picture",
-                        dataType: "enum",
-                        onError: "支持doc,docx,jpeg,jpg,zip,rar类型错误"
-                    });
-                });
-                function checkdate() {
-                    var birth_year = $("#yearbirth_day").val();
-                    if ($("#monbirth_day").val() < 10) {
-                        var birth_mon = "0" + $("#monbirth_day").val();
-                    } else {
-                        var birth_mon = $("#monbirth_day").val();
-                    }
-                    if ($("#daybirth_day").val() < 10) {
-                        var birth_days = "0" + $("#daybirth_day").val();
-                    } else {
-                        var birth_days = $("#daybirth_day").val();
-                    }
-                    var birth_day = birth_year + "-" + birth_mon + "-" + birth_days;
-                    var lost_year = $("#yearlost_day").val();
-                    if ($("#monlost_day").val() < 10) {
-                        var lost_mon = "0" + $("#monlost_day").val();
-                    } else {
-                        var lost_mon = $("#monlost_day").val();
-                    }
-                    if ($("#daylost_day").val() < 10) {
-                        var lost_days = "0" + $("#daylost_day").val();
-                    } else {
-                        var lost_days = $("#daylost_day").val();
-                    }
-                    var lost_day = lost_year + "-" + lost_mon + "-" + lost_days;
-
-                    var date = new Date();
-                    var years = date.getFullYear();
-                    if ((date.getMonth() + 1) < 10) {
-                        var month = "0" + (date.getMonth() + 1);
-                    } else {
-                        var month = date.getMonth() + 1;
-                    }
-
-                    if (date.getDate() < 10) {
-                        var days = "0" + date.getDate();
-                    } else {
-                        var days = date.getDate();
-                    }
-
-                    var now = years + "-" + month + "-" + days;
-
-                    if ($("#yearbirth_day").val()) {
-                        if (lost_day > now) {
-                            alert("失踪日期不能大于现在时间");
-                            return false;
-                        }
-                    }
-                    if ($("#yearbirth_day").val()) {
-                        if (birth_day > now) {
-                            alert("出生日期不能大于现在时间");
-                            return false;
-                        }
-                    }
-
-                    if ($("#yearbirth_day").val() && $("#yearlost_day").val()) {
-                        if (lost_day < birth_day) {
-                            alert("失踪日期不能小于出生日期");
-                            return false;
-                        }
-                    }
-
-                    if ($("#province").val() != 'undefined') {
-                        if ($("#province").val() == "") {
-                            if (1 == 3) {
-                                alert("请选择发现地点");
-                            } else {
-                                alert("请选择所在地");
-                            }
-
-                            return false;
-                        }
-                    }
-                    if ($("#province1").val() != 'undefined') {
-                        if ($("#province1").val() == "") {
-                            alert("请选择失踪地");
-                            return false;
-                        }
-                    }
-                }
-                function showdiv() {
-                    $("#background").show();
-                    $("#progressBar").show();
-                }
-                function hiddendiv() {
-                    $("#background").hide();
-                    $("#progressBar").hide();
-                }
-                function checkday(year, id) {
-                    var mon = $("#mon" + id).val();
-                    var str = '';
-                    if (mon % 2 != 0) {
-                        for (i = 1; i <= 31; i++) {
-                            str += '<option name="' + i + '">' + i + '</option>';
-                        }
-                    } else {
-                        if (mon % 2 == 0 && mon != 2) {
-                            for (i = 1; i <= 30; i++) {
-                                str += '<option name="' + i + '">' + i + '</option>';
-                            }
-                        } else {
-                            if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) {
-                                for (i = 1; i <= 29; i++) {
-                                    str += '<option name="' + i + '">' + i + '</option>';
-                                }
-                            } else {
-                                for (i = 1; i <= 28; i++) {
-                                    str += '<option name="' + i + '">' + i + '</option>';
-                                }
-                            }
-                        }
-                    }
-                    $('#day' + id).html(str);
-                }
-                function checkmon(mon, id) {
-
-                    var year = $("#year" + id).val();
-                    var str = '';
-                    if (mon % 2 != 0) {
-                        for (i = 1; i <= 31; i++) {
-                            str += '<option name="' + i + '">' + i + '</option>';
-                        }
-                    } else {
-                        if (mon % 2 == 0 && mon != 2) {
-                            for (i = 1; i <= 30; i++) {
-                                str += '<option name="' + i + '">' + i + '</option>';
-                            }
-                        } else {
-                            if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) {
-                                for (i = 1; i <= 29; i++) {
-                                    str += '<option name="' + i + '">' + i + '</option>';
-                                }
-                            } else {
-                                for (i = 1; i <= 28; i++) {
-                                    str += '<option name="' + i + '">' + i + '</option>';
-                                }
-                            }
-                        }
-                    }
-                    $('#day' + id).html(str);
-                }
-
-            </script>
         </div>
         <!--end填写表格-->
-        <!-- start上传结果 -->
-
-        <div class="main_step_text" style="padding-bottom:200px; display: none;" id="registResult">
-            <div class="login_su"><div class="zhucechenggong">确认提交结果！</div>
-                <button class="btn btn-primary" id="submitBtn">提交</button>
-            </div>
-        </div>
-        <!--end上传结果-->
 
     </div>
     <div style="margin:0 auto; height:50px;"></div>
 </div>
 <div class="sctn21_2"> &nbsp;</div>
 
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.formValidator.initConfig({
+            formID: "form1",
+            onError: function () {
+                alert("信息填写不完善，点击确定，定位到不完善位置");
+            },
+            onSuccess: function () {
+                showdiv();
+            }
+        });
+
+        $("#name").formValidator({
+
+            onShow: "请输入姓名",
+
+            onFocus: "请输入姓名,1~10个字符",
+
+            onCorrect: "通过"
+        }).regexValidator({
+
+            regExp: "notempty",
+
+            dataType: "enum",
+
+            onError: "<span style=\"color:#ff0000;\">姓名不能为空<\span>"
+
+        });
+        $("#birth_address").formValidator({
+            onShow: "请填写所在地",
+            onFocus: "请填写所在地",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+
+        $("#birth_address_1").formValidator({
+
+            onShow: "请填写详细地点",
+
+            onFocus: "请填写详细地点",
+
+            onCorrect: "通过"
+        }).regexValidator({
+
+            regExp: "notempty",
+
+            dataType: "enum",
+
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+
+        });
+        $("#lost_person_feature").formValidator({
+            onShow: "请填写特征描述",
+            onFocus: "请填写失踪人特征描述",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+        $("#lost_intro").formValidator({
+            onShow: "请填写失踪经过",
+            onFocus: "请填写失踪经过",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+        $("#lost_address").formValidator({
+            onShow: "请填写详细地址",
+            onFocus: "请填写详细地址",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+        $("#contact_name").formValidator({
+            onShow: "请填写联系人姓名",
+            onFocus: "请填写联系人姓名",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+        $("#contact_relation").formValidator({
+            onShow: "请填写",
+            onFocus: "请填写",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+        $("#write_relation").formValidator({
+            onShow: "请填写",
+            onFocus: "请填写",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "notempty",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+        $("#qq").formValidator({
+            onShow: "请填写QQ号",
+            onFocus: "请填写QQ号",
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "qq",
+            dataType: "enum",
+            onError: "<span style=\"color:#ff0000;\">不通过<\span>"
+        });
+
+        $("#file_1").formValidator({
+            onShow: "支持doc,docx,jpeg,jpg,zip,rar",
+            onFocus: "支持doc,docx,jpeg,jpg,zip,rar",
+            empty: true,
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "picture",
+            dataType: "enum",
+            onError: "支持doc,docx,jpeg,jpg,,zip,rar类型错误"
+        });
+        $("#file_2").formValidator({
+            onShow: "支持doc,docx,jpeg,jpg,zip,rar",
+            onFocus: "支持doc,docx,jpeg,jpg,zip,rar",
+            empty: true,
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "picture",
+            dataType: "enum",
+            onError: "支持doc,docx,jpeg,jpg,,zip,rar类型错误"
+        });
+
+        $("#file_3").formValidator({
+            onShow: "支持doc,docx,jpeg,jpg,zip,rar",
+            onFocus: "支持doc,docx,jpeg,jpg,zip,rar",
+            empty: true,
+            onCorrect: "通过"
+        }).regexValidator({
+            regExp: "picture",
+            dataType: "enum",
+            onError: "支持doc,docx,jpeg,jpg,zip,rar类型错误"
+        });
+    });
+    function checkdate() {
+        var birth_year = $("#yearbirth_day").val();
+        if ($("#monbirth_day").val() < 10) {
+            var birth_mon = "0" + $("#monbirth_day").val();
+        } else {
+            var birth_mon = $("#monbirth_day").val();
+        }
+        if ($("#daybirth_day").val() < 10) {
+            var birth_days = "0" + $("#daybirth_day").val();
+        } else {
+            var birth_days = $("#daybirth_day").val();
+        }
+        var birth_day = birth_year + "-" + birth_mon + "-" + birth_days;
+        var lost_year = $("#yearlost_day").val();
+        if ($("#monlost_day").val() < 10) {
+            var lost_mon = "0" + $("#monlost_day").val();
+        } else {
+            var lost_mon = $("#monlost_day").val();
+        }
+        if ($("#daylost_day").val() < 10) {
+            var lost_days = "0" + $("#daylost_day").val();
+        } else {
+            var lost_days = $("#daylost_day").val();
+        }
+        var lost_day = lost_year + "-" + lost_mon + "-" + lost_days;
+
+        var date = new Date();
+        var years = date.getFullYear();
+        if ((date.getMonth() + 1) < 10) {
+            var month = "0" + (date.getMonth() + 1);
+        } else {
+            var month = date.getMonth() + 1;
+        }
+
+        if (date.getDate() < 10) {
+            var days = "0" + date.getDate();
+        } else {
+            var days = date.getDate();
+        }
+
+        var now = years + "-" + month + "-" + days;
+
+        if ($("#yearbirth_day").val()) {
+            if (lost_day > now) {
+                alert("失踪日期不能大于现在时间");
+                return false;
+            }
+        }
+        if ($("#yearbirth_day").val()) {
+            if (birth_day > now) {
+                alert("出生日期不能大于现在时间");
+                return false;
+            }
+        }
+
+        if ($("#yearbirth_day").val() && $("#yearlost_day").val()) {
+            if (lost_day < birth_day) {
+                alert("失踪日期不能小于出生日期");
+                return false;
+            }
+        }
+
+        if ($("#province").val() != 'undefined') {
+            if ($("#province").val() == "") {
+                if (1 == 3) {
+                    alert("请选择发现地点");
+                } else {
+                    alert("请选择所在地");
+                }
+
+                return false;
+            }
+        }
+        if ($("#province1").val() != 'undefined') {
+            if ($("#province1").val() == "") {
+                alert("请选择失踪地");
+                return false;
+            }
+        }
+    }
+    function showdiv() {
+        $("#background").show();
+        $("#progressBar").show();
+    }
+    function hiddendiv() {
+        $("#background").hide();
+        $("#progressBar").hide();
+    }
+    function checkday(year, id) {
+        var mon = $("#mon" + id).val();
+        var str = '';
+        if (mon % 2 != 0) {
+            for (i = 1; i <= 31; i++) {
+                str += '<option name="' + i + '">' + i + '</option>';
+            }
+        } else {
+            if (mon % 2 == 0 && mon != 2) {
+                for (i = 1; i <= 30; i++) {
+                    str += '<option name="' + i + '">' + i + '</option>';
+                }
+            } else {
+                if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) {
+                    for (i = 1; i <= 29; i++) {
+                        str += '<option name="' + i + '">' + i + '</option>';
+                    }
+                } else {
+                    for (i = 1; i <= 28; i++) {
+                        str += '<option name="' + i + '">' + i + '</option>';
+                    }
+                }
+            }
+        }
+        $('#day' + id).html(str);
+    }
+    function checkmon(mon, id) {
+
+        var year = $("#year" + id).val();
+        var str = '';
+        if (mon % 2 != 0) {
+            for (i = 1; i <= 31; i++) {
+                str += '<option name="' + i + '">' + i + '</option>';
+            }
+        } else {
+            if (mon % 2 == 0 && mon != 2) {
+                for (i = 1; i <= 30; i++) {
+                    str += '<option name="' + i + '">' + i + '</option>';
+                }
+            } else {
+                if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) {
+                    for (i = 1; i <= 29; i++) {
+                        str += '<option name="' + i + '">' + i + '</option>';
+                    }
+                } else {
+                    for (i = 1; i <= 28; i++) {
+                        str += '<option name="' + i + '">' + i + '</option>';
+                    }
+                }
+            }
+        }
+        $('#day' + id).html(str);
+    }
+
+</script>
+<script src="../../../../style/js/app/find/jquery.autocomplete-min.js" type="text/javascript"></script>
+
 <script>
     $(function(){
+
         $("#submitBtn").click(function(){
             query = {
                 "loster_name": $("#name").val(),
@@ -780,33 +703,33 @@
                 "loster_intro": $("#lost_intro").val,
                 "loster_family": $("#family").val,
                 "loster_family_name": $("#contact_name").val,
-                "loster_family_phone": $("#moblie").val,
+                "loster_family_phone": $("#moblie").val
 
-            }
-            $.ajax({
-                url:"${pageContext.request.contextPath}/app/loster/registor",
-                type:'post',
-                data: query,
-                dataType:'json',
-                cache:false,
-                success:function(data,status){
-                    if(status=="success"){
+            },
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/app/loster/registor",
+                    type:'post',
+                    data: query,
+                    dataType:'json',
+                    cache:false,
+                    success:function(data,status){
+                        if(status=="success"){
 
-                        if(data=="1"){
-                            alert("登记成功");
-                            window.location.href = "http://localhost:8080/app/index";
-                        }else if (data=="0"){
-                            alert("登记失败");
-                        }else if(data=="2"){
-                            alert("用户尚未登录，请登录");
-                            window.location.href = "http://localhost:8088/app/loster/registration";
+                            if(data=="1"){
+                                alert("登记成功");
+                                window.location.href = "http://localhost:8088/app/loster/uploadimg";
+                            }else if (data=="0"){
+                                alert("登记失败");
+                            }else if(data=="2"){
+                                alert("用户尚未登录，请登录");
+                                window.location.href = "http://localhost:8088/app/login/loginview";
+                            }
                         }
+                    },
+                    error:function(xhr,textStatus,errorThrown){
+                        alert("失败！");
                     }
-                },
-                error:function(xhr,textStatus,errorThrown){
-                    alert("失败！");
-                }
-            });
+                });
         });
     });
     $(function () {
@@ -836,35 +759,5 @@
                 }
             });
     });
-</script>
-</body>
-<script src="../../../../style/js/app/find/jquery.autocomplete-min.js" type="text/javascript"></script>
-<script type="text/javascript">
-    var options, a;
-    jQuery(function () {
-        options = {serviceUrl: 'look.aspx'};
-        a = $('#query').autocomplete(options);
-    });
-</script>
-<script type="text/javascript">
-    function menuFix() {
-        var sfEls = document.getElementById("nav-main").getElementsByTagName("li");
-        for (var i = 0; i < sfEls.length; i++) {
-            sfEls[i].onmouseover = function () {
-                this.className += (this.className.length > 0 ? " " : "") + "sfhover";
-            };
-            sfEls[i].onMouseDown = function () {
-                this.className += (this.className.length > 0 ? " " : "") + "sfhover";
-            };
-            sfEls[i].onMouseUp = function () {
-                this.className += (this.className.length > 0 ? " " : "") + "sfhover";
-            };
-            sfEls[i].onmouseout = function () {
-                this.className = this.className.replace(new RegExp("( ?|^)sfhover\\b"), "");
-            };
-        }
-    }
-
-    window.onload = menuFix;
 </script>
 </html>

@@ -28,6 +28,14 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <!--图片上传-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置默认编码 -->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 上传图片最大大小1M-->
+        <property name="maxUploadSize" value="1048576"/>
+    </bean>
     <!--4: 扫描web相关的bean-->
     <context:component-scan base-package="org.angeleyes.web"/>
 

@@ -11,14 +11,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 @Controller
 @RequestMapping("/app/loster")
 public class LostPersonController {
+
+    // 上传的图片保存路径
+    private String UPLOAD_FILE_PATH = "G:/GitHome/v2/AngelEyes/codes/AngelEyes/src/main/webapp/style/imgs/app/loster/";
     //日志对象
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -66,7 +72,6 @@ public class LostPersonController {
     public String loster_registor(Model model, HttpServletRequest request, @RequestBody String result, HttpSession session){
         if(session.getAttribute("UserInfo_session") != null){
             try{
-//                long user_info_id = Long.valueOf(request.getParameter("user_info_id"));
                 String name = request.getParameter("loster_name");
                 String sex = request.getParameter("loster_sex");
                 String type = request.getParameter("loster_type");
@@ -83,7 +88,6 @@ public class LostPersonController {
                 String  loster_area_detail = request.getParameter("loster_area_detail");
                 String  loster_character = request.getParameter("loster_character");
                 String  loster_intro = request.getParameter("loster_intro");
-                String  loster_family = request.getParameter("loster_family");
                 String  loster_family_name = request.getParameter("loster_family_name");
                 String  loster_family_phone = request.getParameter("loster_family_phone");
 
@@ -108,10 +112,36 @@ public class LostPersonController {
             // 用户尚未登录，无权发布
             result = "2";
         }
-
         return result;
 
     }
 
+
+    @RequestMapping("/upload")
+    @ResponseBody
+    public String upload(MultipartFile file, HttpServletRequest request) throws IOException {
+        String path = request.getContextPath();
+        System.out.println(path);
+        //String path = request.getSession().getServletContext().getRealPath("upload");
+        System.out.println("path is :" + UPLOAD_FILE_PATH);
+        String fileName = file.getOriginalFilename();
+        System.out.println("fileName is :" + fileName);
+        try{
+            File dir = new File(UPLOAD_FILE_PATH, fileName);
+            file.transferTo(dir);
+            return "1";
+        }catch (Exception e){
+            System.out.println("上传图片报错" + e);
+            return "0";
+
+        }
+
+    }
+
+
+    @RequestMapping("/uploadimg")
+    public String uploadImg(Model model){
+        return "/app/registration/upload_img";
+    }
 
 }

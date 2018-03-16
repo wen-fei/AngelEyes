@@ -7,6 +7,8 @@
     <title>登记信息</title>
     <link href="<%=request.getContextPath() %>/style/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="<%=request.getContextPath() %>/style/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <script src="<%=request.getContextPath() %>/style/js/jquery.min.js"></script>
+    <script src="<%=request.getContextPath() %>/style/js/bootstrap.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="<%=request.getContextPath() %>/style/imgs/fav-icon.png"/>
 
@@ -21,7 +23,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     <!----//webfonts---->
     <!---start-click-drop-down-menu----->
-    <script src="<%=request.getContextPath() %>/style/js/jquery.min.js"></script>
+
     <!----start-dropdown--->
     <script type="text/javascript">
         var $ = jQuery.noConflict();

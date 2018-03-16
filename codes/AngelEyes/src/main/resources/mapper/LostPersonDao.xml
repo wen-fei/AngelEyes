@@ -54,7 +54,7 @@
                                       lost_person_no,
                                       lost_person_name,
                                       lost_person_sex,
-                                      lost_person_age,
+                                      lost_person_birth,
                                       lost_person_height,
                                       lost_person_area,
                                       lost_person_live,
