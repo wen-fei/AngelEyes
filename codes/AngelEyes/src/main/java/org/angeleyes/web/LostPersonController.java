@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.util.Date;
 
 @Controller
@@ -143,5 +145,25 @@ public class LostPersonController {
     public String uploadImg(Model model){
         return "/app/registration/upload_img";
     }
+
+    @RequestMapping("/findSimPerson")
+    public String findSimPerson(String fileName){
+        String result = "判断出错";
+        try{
+            Process process = Runtime.getRuntime().exec("python ../../../../python/main.py "+ fileName);
+            process.waitFor();
+            InputStreamReader ir = new InputStreamReader(process.getInputStream());
+            LineNumberReader input = new LineNumberReader(ir);
+            result = input.readLine();
+            ir.close();
+            process.waitFor();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
 }
