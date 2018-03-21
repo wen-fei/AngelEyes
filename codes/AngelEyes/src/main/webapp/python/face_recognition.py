@@ -1,6 +1,6 @@
 import cv2 as cv
 import os
-from face_pretreate import endwith, pretreat_img
+from face_pretreate import endwith, pretreat_img_chinese
 import sklearn.metrics.pairwise as pw
 import torch
 import numpy as np
@@ -95,12 +95,9 @@ def compare(feat1, feat2):
 返回图片对应的id号，
 如果返回为fail说明数据库中不存在匹配的id
 """
-def compare_feature(fileName):
-    vgg_net = torch.load(VGG_FACE_LOCATION)
-    vgg_net.modules[31] = nn.View(1, 25088)
-    feature = loadtxt(FEATURE_LOCATION)
+def compare_feature(fileName, vgg_net, feature):
     # print(feature)
-    img = pretreat_img(fileName)
+    img = pretreat_img_chinese(fileName)
     img_feature = get_feature(img, vgg_net)
     sim = 0
     num = -1
@@ -177,18 +174,17 @@ def threshold_test():
             print('threshold: ', i+1, ' | accuracy:', accuracy[i])
 
 # threshold_test()
-# save_all_feature('D://image_face', 'D://feature_test', '.jpg')
+# save_all_feature('D:\image\\2018319', 'D://feature', '.jpg')
 # save_feature('D:\image_face\Aaron_Sorkin', 'D://feature_test', '.jpg')
-# name, sim = compare_feature('D:\image_test\William_Bratton.jpg')
-net = torch.load('D://vgg.pkl')
-net.modules[31] = nn.View(1, 25088)
+# name, sim = compare_feature('D:\image\\2018319\\10772\\0.jpg')
+# net = torch.load('D://vgg.pkl')
+# net.modules[31] = nn.View(1, 25088)
+# img = pretreat_img("D:\image_face\Ai_Sugiyama\\4.jpg")
+# feature = get_feature(img, net)
+# count = 0
+# for i in range(feature.shape[0]):
+#     if not feature[i] == 0:
+#         count += 1
+# print(count)
 
-
-img = pretreat_img("D:\image_face\Ai_Sugiyama\\4.jpg")
-feature = get_feature(img, net)
-count = 0
-for i in range(feature.shape[0]):
-    if not feature[i] == 0:
-        count += 1
-print(count)
 
