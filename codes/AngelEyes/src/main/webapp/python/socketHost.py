@@ -1,6 +1,6 @@
 import socket
 from numpy import loadtxt
-from face_recognition import compare_feature, get_image
+from face_recognition import compare_feature
 import torch
 from torch.legacy import nn
 

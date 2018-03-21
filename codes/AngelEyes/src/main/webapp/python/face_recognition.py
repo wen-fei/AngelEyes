@@ -1,6 +1,6 @@
 import cv2 as cv
 import os
-from face_pretreate import endwith, pretreat_img
+from face_pretreate import endwith, pretreat_img_chinese
 import sklearn.metrics.pairwise as pw
 import torch
 import numpy as np
@@ -97,7 +97,7 @@ def compare(feat1, feat2):
 """
 def compare_feature(fileName, vgg_net, feature):
     # print(feature)
-    img = pretreat_img(fileName)
+    img = pretreat_img_chinese(fileName)
     img_feature = get_feature(img, vgg_net)
     sim = 0
     num = -1

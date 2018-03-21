@@ -28,7 +28,7 @@ def pick_withoutDir(fileName, targetName, *suffix):
     else:
         print('找不到输入路径')
 
-
+#读取带有中文路径的图片
 def pretreat_img_chinese(fileName):
     if endwith(fileName, '.jpg', ',JPG', '.PNG', '.png'):
         img = cv.imdecode(np.fromfile(fileName, dtype=np.uint8), -1)
