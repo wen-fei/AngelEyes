@@ -11,6 +11,9 @@
 *.xml
 *.pkl
 *.dat
+*.js linguist-language=java
+*.css linguist-language=java
+*.html linguist-language=java
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/**/tasks.xml
