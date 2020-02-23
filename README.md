@@ -46,23 +46,23 @@ pytorch实现vgg-face进行人脸识别
 
 3. 效果如下：
 
-   ![](http://otw7his7z.bkt.clouddn.com/1.png)
+   ![](https://user-images.githubusercontent.com/8847689/75103448-b0577b00-5635-11ea-9b6e-194669038feb.png)
 
 ##### 二、人脸对齐
 
 使用的技术：简单的仿射变换，opencv即可
 
-![](http://otw7his7z.bkt.clouddn.com/2.png)
+![](https://user-images.githubusercontent.com/8847689/75103453-c49b7800-5635-11ea-92d4-6ac5fa6bff57.png)
 
 （图片来源于网络，侵删）
 
 ##### 三、模型架构
 
-![](http://otw7his7z.bkt.clouddn.com/3.png)
+![](https://user-images.githubusercontent.com/8847689/75103550-ee08d380-5636-11ea-9717-dc2069bc8a1a.png)
 
 ##### 四、匹配度
 
-![](http://otw7his7z.bkt.clouddn.com/4.png)
+![](https://user-images.githubusercontent.com/8847689/75103574-535cc480-5637-11ea-9ee2-9b2af919a2dc.png)
 
 
 
